@@ -1,0 +1,29 @@
+{
+  "name": "web-design-19-20",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishiskhare/fbla-web-design-19.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rishiskhare/fbla-web-design-19/issues"
+  },
+  "homepage": "https://github.com/rishiskhare/fbla-web-design-19#readme",
+  "dependencies": {
+    "body-parser": "latest",
+    "compression": "^1.7.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.4"
+  }
+}
