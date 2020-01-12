@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $("body").niceScroll({
         cursorcolor:"#7e7d81",
-        cursorborder: "0px solid #fff", // css definition for cursor border
+        cursorborder: "0", // css definition for cursor border
         cursorwidth:"8px"
     });
 
@@ -18,6 +18,7 @@ $(document).ready(function(){
 
     function navBarVisibility(){
         if (window.pageYOffset >= sticky + 2*$(window).height()/5) {
+            console.log('here');
             if(navBarDown) return;
             navBarDown = true;
             let navHeight = $(navbar).outerHeight();
@@ -37,8 +38,10 @@ $(document).ready(function(){
             },10);
         } else {
             if(navBarDown && window.pageYOffset > sticky){
+                console.log("is");
                 return;
             }
+            console.log("EEE");
             $('#navbar-space-holder').css('min-height', 0).css('display', 'block');
             navBarDown = false;
             navbar.classList.remove("sticky");

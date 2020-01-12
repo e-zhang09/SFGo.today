@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+$main-yellow: #FDAE5C;
+$main-dark-grey: #727272;
+
 body {
   margin: 0;
   font-size: 28px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans', sans-serif !important;
 }
 
 .header {
@@ -19,6 +24,7 @@ body {
   opacity: 0;
   position: fixed;
   width: 100%;
+  box-shadow: 0 3px 16px 0 rgba(0, 0, 0, .1);
 
   -webkit-transition: opacity 0.5s ease, top 0.5s ease;
   -moz-transition: opacity 0.5s ease, top 0.5s ease;
@@ -35,6 +41,7 @@ body {
 .land-section {
   background-image: url("../img/plane-taking-off--blur--stretched.png");
 
+  background-position-y: -1px;
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -49,13 +56,59 @@ body {
 }
 
 .quick-contact-info {
+  background-color: #001D38;
+  height: 2.9rem;
+
+  .mr-auto {
+    font-size: 0.95rem;
+    color: $main-dark-grey;
+  }
+
+  .fab, .fas {
+    font-size: 1rem;
+  }
+
   .fab {
     color: #C7C7C7;
-    font-size: 0.9rem;
+  }
+
+  .fas {
+    color: $main-yellow;
+  }
+
+  .row {
+    padding-left: 7rem;
+    padding-right: 7rem;
+    height: 100%;
+    align-items: center;
   }
 
   .col-auto {
+    display: flex;
+    flex-direction: row;
     padding: 0;
+  }
+
+  .right-pad {
+    padding-right: 1.3em;
+  }
+
+  a {
+    font-size: 0.8rem;
+    color: $main-dark-grey;
+    padding-left: 0.8em;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+    span {
+      padding-left: 0.6em;
+      padding-right: 0.8em;
+    }
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 
   i {
@@ -63,5 +116,90 @@ body {
     height: 100%;
     justify-content: center;
     flex-direction: column
+  }
+}
+
+.navbar-brand {
+  margin: 0;
+}
+
+.navbar {
+  padding-left: 6.85rem;
+  padding-right: 6.85rem;
+
+  .justify-content-end {
+    a {
+      padding: 0 !important;
+    }
+  }
+
+  border-bottom: 2px solid rgba(255, 255, 255, 0.48);
+
+  .justify-content-center {
+    padding-top: 0.1em;
+
+    .nav-item {
+      position: relative;
+
+      .nav-link {
+        color: white;
+        font-size: 1.5rem;
+        padding-left: 0.95rem;
+        padding-right: 0.95rem;
+      }
+    }
+
+    .nav-item.active-underline::after {
+      position: absolute;
+      content: '';
+      display: inline-block;
+      width: 80%;
+      border-bottom: $main-yellow solid 5px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      bottom: calc(-0.5rem - 6px);
+    }
+
+  }
+}
+
+.navbar.sticky {
+  border-bottom: none;
+
+  .nav-item.active-underline::after {
+    bottom: calc(-0.5rem - 2.9px);
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .quick-contact-info {
+    .row {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+  }
+  .navbar {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .navbar {
+    justify-content: space-between !important;
+  }
+
+  .nav-item.active-underline::after {
+    border-bottom: 0 !important;
+  }
+
+  .justify-content-end{
+    padding-left: 0.95rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .navbar-brand {
+    padding-left: 0;
   }
 }

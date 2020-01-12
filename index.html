@@ -9,30 +9,40 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"/>
 
+    <script type="text/javascript">
+        // Notice how this gets configured before we load Font Awesome
+        window.FontAwesomeConfig = {autoReplaceSvg: false}
+    </script>
     <script src="https://kit.fontawesome.com/913ecb688b.js"></script>
 
-    <link href="css/index.css" rel="stylesheet">
+    <link href="https://use.typekit.net/dje8ytr.css" rel="stylesheet">
+
+    <link href="css/index.min.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="quick-contact-info container-fluid">
+<div class="quick-contact-info container-fluid d-none d-md-block">
     <div class="row">
         <div class="col-auto mr-auto">
             Welcome to SFGo
+        </div>
+        <div class="col-auto right-pad">
+            <a aria-label="Email" href="mailto:chemsearch.info@gmail.com?subject=SFGOFeedBack" rel="noopener"><i
+                    class="fas fa-envelope"
+                    id="icon-mail"></i><span>info@sf.go</span></a>
+            <a aria-label="Phone" href="tel:xxx-xxx-xxxx" rel="noopener"><i
+                    class="fas fa-phone fa-flip-horizontal"
+                    id="icon-phone"></i><span>1-234-567-8910</span></a>
         </div>
         <div class="col-auto">
             <a aria-label="Facebook" href="https://www.facebook.com/" rel="noopener"
                target="_blank"><i
                     class="fab fa-facebook-f"
                     id="icon-fb"></i></a>
-        </div>
-        <div class="col-auto">
             <a aria-label="Twitter" href="https://www.twitter.com/" rel="noopener"
                target="_blank"><i
                     class="fab fa-twitter"
                     id="icon-twitter"></i></a>
-        </div>
-        <div class="col-auto">
             <a aria-label="Linkedin" href="https://www.linkedin.com/" rel="noopener"
                target="_blank"><i
                     class="fab fa-linkedin-in"
@@ -43,10 +53,9 @@
 
 <div class="land-section">
     <header>
-
-        <nav class="navbar bg-transparent navbar-expand-md navbar-dark">
-            <a class="navbar-brand" href="#">
-                <img alt="" height="50" src="/img/urbane%20heavy%20italic%20sflogo%20white.svg" width="150">
+        <nav class="navbar bg-transparent navbar-expand-md navbar-dark justify-content-center">
+            <a class="navbar-brand w-50" href="#">
+                <img alt="" height="50" src="/img/urbane%20heavy%20italic%20sflogo%20white.svg" width="140">
             </a>
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                     class="navbar-toggler"
@@ -54,9 +63,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+            <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+                <ul class="navbar-nav justify-content-center w-100">
+                    <li class="nav-item active-underline">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
@@ -77,6 +86,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end w-100 ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">LOGIN</a>
                     </li>
                 </ul>
             </div>
@@ -193,9 +207,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
-<script crossorigin="anonymous"
-        integrity="sha256-LJkWYMcB83+zN8VO3EnSoNYHiBo93miOF47ZfsPSNDQ="
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="js/index.min.js"></script>
 </body>
 </html>
