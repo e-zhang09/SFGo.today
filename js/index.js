@@ -18,7 +18,6 @@ $(document).ready(function(){
 
     function navBarVisibility(){
         if (window.pageYOffset >= sticky + 2*$(window).height()/5) {
-            console.log('here');
             if(navBarDown) return;
             navBarDown = true;
             let navHeight = $(navbar).outerHeight();
@@ -38,10 +37,8 @@ $(document).ready(function(){
             },10);
         } else {
             if(navBarDown && window.pageYOffset > sticky){
-                console.log("is");
                 return;
             }
-            console.log("EEE");
             $('#navbar-space-holder').css('min-height', 0).css('display', 'block');
             navBarDown = false;
             navbar.classList.remove("sticky");
