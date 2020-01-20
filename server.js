@@ -13,7 +13,6 @@ app.use(bodyParser.json());
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded({extended: true})); // to support URL-encoded bodies
 
-
 app.use('/img', express.static(path.join(__dirname, '/img')));
 app.use('/js', express.static(path.join(__dirname, '/js')));
 app.use('/css', express.static(path.join(__dirname, '/css')));
