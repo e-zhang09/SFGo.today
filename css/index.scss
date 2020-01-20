@@ -17,6 +17,10 @@ body {
   background-color: unset;
 }
 
+.no-padding{
+  padding: 0 !important;
+}
+
 .sticky {
   top: -60px;
   opacity: 0;
@@ -49,28 +53,59 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    background-color: rgba(0,0,0,0.35);
+    border-radius: 0.5rem;
+    padding: 1rem 6rem;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    opacity: 0;
+    top: 200px;
+
     .airport-def{
       display: flex;
       flex-direction: column;
       align-items: center;
+      line-height: 1;
+      justify-content: center;
       .abbreviation{
         color: white;
-        font-size: 3.4rem;
+        font-size: 3.2rem;
+        padding-bottom: 0.7rem;
       }
       .description{
         color: white;
-        font-size: 0.95rem;
+        font-size: 0.8rem;
+        padding-bottom: 0.5rem;
       }
-      .direction.back-forth{
-
-      }
+    }
+    .direction{
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 2.1rem;
+    }
+    .direction.back-forth{
+      background-image: url("/img/back-forth-arrow.svg");
+    }
+    .direction.to-right{
+      background-image: url("/img/arrow-right.svg");
     }
   }
 }
 
 .responsive-padding {
-  padding-left: 7rem;
-  padding-right: 7rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.responsive-margin{
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 
 .quick-contact-info {
@@ -145,8 +180,9 @@ body {
 }
 
 .navbar {
-  padding-left: 6.85rem;
-  padding-right: 6.85rem;
+  z-index: 9999;
+  padding-left: 5.85rem;
+  padding-right: 5.85rem;
 
   .navbar-brand {
     margin: 0;
@@ -247,6 +283,11 @@ body {
   .responsive-padding {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  .responsive-margin {
+    margin-right: 1rem;
+    margin-left: 1rem;
   }
 
   .navbar {

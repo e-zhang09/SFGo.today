@@ -5,6 +5,9 @@ $(document).ready(function(){
         cursorwidth:"8px"
     });
 
+    //slide in animation for booking bar
+    $("#book-flight-bar").animate({top: 0, opacity:1}, 1000);
+
     window.onscroll = function() {windowScrolled()};
     let navBarDown = false;
 
