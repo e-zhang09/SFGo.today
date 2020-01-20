@@ -41,13 +41,12 @@ body {
 }
 
 .land-section {
-  background-image: url("../img/plane-taking-off--blur--stretched.png");
-
   background-position-y: -1px;
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: 100% auto;
   height: calc(100vw * 138 / 192 - 1px);
+  opacity: 0;
 
   .book-flight {
     display: flex;
@@ -66,6 +65,10 @@ body {
 
     opacity: 0;
     top: 200px;
+
+    .airport-def:hover{
+      cursor: pointer;
+    }
 
     .airport-def {
       display: flex;
@@ -208,7 +211,7 @@ body {
 }
 
 .navbar {
-  z-index: 9999;
+  z-index: 9998;
   padding-left: 5.85rem;
   padding-right: 5.85rem;
 

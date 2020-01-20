@@ -1,18 +1,26 @@
 $(document).ready(function () {
+    // LOAD BACKGROUND IMAGE
+    $('<img/>').attr('src', '/img/plane-taking-off--blur--stretched.png').on('load', function() {
+        $(this).remove();
+        $('.land-section').css('background-image', 'url(/img/plane-taking-off--blur--stretched.png)');
+        $('.land-section').animate({opacity: 1}, 200);
+
+        //slide in animation for booking bar
+        $("#book-flight-bar").animate({top: 0, opacity: 1}, 1000);
+        setTimeout(function () {
+            $("#welcome-message").animate({top: 135, opacity: 1}, 1000);
+        }, 250);
+        setTimeout(function () {
+            $("#tag-line").animate({top: 215, opacity: 1}, 1000);
+        }, 400);
+    });
+
     $("body").niceScroll({
         cursorcolor: "#7e7d81",
         cursorborder: "0", // css definition for cursor border
-        cursorwidth: "8px"
+        cursorwidth: "8px",
+        zindex: 9999
     });
-
-    //slide in animation for booking bar
-    $("#book-flight-bar").animate({top: 0, opacity: 1}, 1000);
-    setTimeout(function () {
-        $("#welcome-message").animate({top: 135, opacity: 1}, 1000);
-    }, 250);
-    setTimeout(function () {
-        $("#tag-line").animate({top: 215, opacity: 1}, 1000);
-    }, 400);
 
     window.onscroll = function () {
         windowScrolled()
@@ -24,8 +32,11 @@ $(document).ready(function () {
 
     function windowScrolled() {
         navBarVisibility();
-
     }
+
+    $(".airport-def").click(function(){
+       //TODO: show drop down
+    });
 
     function navBarVisibility() {
         if (window.pageYOffset >= sticky + 2 * $(window).height() / 5) {

@@ -11,6 +11,7 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 
+    <link rel="prefetch" href="/img/plane-taking-off--blur--stretched.png">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
     <link href="https://use.typekit.net/dje8ytr.css" rel="stylesheet">
 
@@ -24,7 +25,7 @@
 
     <link href="css/index.css" rel="stylesheet">
 </head>
-<body>
+<body style="overflow: hidden">
 
 <div class="quick-contact-info container-fluid d-none d-md-block">
     <div class="row responsive-padding">
@@ -56,87 +57,90 @@
     </div>
 </div>
 
-<div class="land-section">
-    <header>
-        <nav class="navbar bg-transparent navbar-expand-md navbar-dark justify-content-center">
-            <a class="navbar-brand w-50" href="#" aria-label="sfgo brand">
-                <img alt="" height="50" src="/img/SFLogoWhite.png" width="140" class="logo-img">
-            </a>
-            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
-                    data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<div class="background-color" style="background-color: rgb(68, 129, 170);
+  background-image: linear-gradient(rgb(78, 143, 185), rgb(19, 49, 103)); ">
+    <div class="land-section">
+        <header>
+            <nav class="navbar bg-transparent navbar-expand-md navbar-dark justify-content-center">
+                <a class="navbar-brand w-50" href="#" aria-label="sfgo brand">
+                    <img alt="" height="50" src="/img/SFLogoWhite.png" width="140" class="logo-img">
+                </a>
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler"
+                        data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-                <ul class="navbar-nav justify-content-center">
-                    <li class="nav-item active-underline">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Schedules</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                           data-toggle="dropdown"
-                           href="#" id="navbarDropdown" role="button">
-                            Programs
-                        </a>
-                        <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Frequent Flier</a>
-                            <a class="dropdown-item" href="#">Rapid Connect</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Careers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav justify-content-end ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" style="padding: 0">
-                            <i class="fas fa-user" id="icon-user"></i>
-                            Sign In
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
+                    <ul class="navbar-nav justify-content-center">
+                        <li class="nav-item active-underline">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Schedules</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                               data-toggle="dropdown"
+                               href="#" id="navbarDropdown" role="button">
+                                Programs
+                            </a>
+                            <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Frequent Flier</a>
+                                <a class="dropdown-item" href="#">Rapid Connect</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav justify-content-end ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" style="padding: 0">
+                                <i class="fas fa-user" id="icon-user"></i>
+                                Sign In
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-        <span id="navbar-space-holder"></span>
-    </header>
+            <span id="navbar-space-holder"></span>
+        </header>
 
-    <div class="container-fluid no-padding position-relative">
-        <div class="book-flight shadow responsive-margin" id="book-flight-bar">
-            <div class="airport-def">
-                <div class="abbreviation" id="selectable-src">
-                    SJC
+        <div class="container-fluid no-padding position-relative">
+            <div class="book-flight shadow responsive-margin" id="book-flight-bar">
+                <div class="airport-def src">
+                    <div class="abbreviation" id="selectable-src">
+                        SJC
+                    </div>
+                    <div class="description" id="desc-src">
+                        San Jose, CA
+                    </div>
                 </div>
-                <div class="description" id="desc-src">
-                    San Jose, CA
+                <div class="direction back-forth">
                 </div>
-            </div>
-            <div class="direction back-forth">
-            </div>
-            <div class="airport-def">
-                <div class="abbreviation" id="selectable-dest">
-                    To
+                <div class="airport-def dest">
+                    <div class="abbreviation" id="selectable-dest">
+                        To
+                    </div>
+                    <div class="description" id="desc-dest">
+                        Your Destination
+                    </div>
                 </div>
-                <div class="description" id="desc-dest">
-                    Your Destination
-                </div>
-            </div>
-            <div>
+                <div>
 
+                </div>
+                <div style="width: 65%"></div>
             </div>
-            <div style="width: 65%"></div>
+            <div class="responsive-margin" id="welcome-message">Book Your Next Flight</div>
+            <div class="responsive-margin" id="tag-line">Travel Seamlessly</div>
         </div>
-        <div class="responsive-margin" id="welcome-message">Book Your Next Flight</div>
-        <div class="responsive-margin" id="tag-line">Travel Seamlessly</div>
-    </div>
 
+    </div>
 </div>
 
 
