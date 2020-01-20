@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-
 $main-yellow: #FDAE5C;
 $main-dark-grey: #727272;
 
 body {
   margin: 0;
   font-size: 28px;
-  font-family: 'Noto Sans', sans-serif !important;
+  font-family: 'Noto Sans SC', sans-serif !important;
 }
 
 .header {
@@ -45,6 +43,34 @@ body {
   background-position-x: center;
   background-repeat: no-repeat;
   background-size: 100% auto;
+  height: calc(100vw * 138 / 192 - 1px);
+
+  .book-flight {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .airport-def{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .abbreviation{
+        color: white;
+        font-size: 3.4rem;
+      }
+      .description{
+        color: white;
+        font-size: 0.95rem;
+      }
+      .direction.back-forth{
+
+      }
+    }
+  }
+}
+
+.responsive-padding {
+  padding-left: 7rem;
+  padding-right: 7rem;
 }
 
 .quick-contact-info {
@@ -77,11 +103,10 @@ body {
   }
 
   .row {
-    padding-left: 7rem;
-    padding-right: 7rem;
     height: 100%;
     align-items: center;
   }
+
 
   .col-auto {
     display: flex;
@@ -119,13 +144,16 @@ body {
   }
 }
 
-.navbar-brand {
-  margin: 0;
-}
-
 .navbar {
   padding-left: 6.85rem;
   padding-right: 6.85rem;
+
+  .navbar-brand {
+    margin: 0;
+    .logo-img{
+      object-fit: cover;
+    }
+  }
 
   .justify-content-end {
     a {
@@ -162,13 +190,13 @@ body {
       position: relative;
     }
 
-    .nav-item.dropdown{
-      .dropdown-toggle::after{
+    .nav-item.dropdown {
+      .dropdown-toggle::after {
         margin-left: 0.1em;
       }
     }
 
-    .nav-item:not(.active-underline)::after{
+    .nav-item:not(.active-underline)::after {
       position: absolute;
       content: '';
       display: inline-block;
@@ -183,7 +211,7 @@ body {
       transition: width ease-in 0.35s, opacity ease-in 0.35s;
     }
 
-    .nav-item:hover:not(.active-underline)::after{
+    .nav-item:hover:not(.active-underline)::after {
       width: 75%;
       opacity: 1;
 
@@ -209,19 +237,18 @@ body {
 .navbar.sticky {
   border-bottom: none;
 
-  .nav-item.active-underline::after, .nav-item:not(.active-underline)::after{
+  .nav-item.active-underline::after, .nav-item:not(.active-underline)::after {
     bottom: -0.88rem;
   }
 
 }
 
 @media only screen and (max-width: 768px) {
-  .quick-contact-info {
-    .row {
-      padding-left: 1em;
-      padding-right: 1em;
-    }
+  .responsive-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
+
   .navbar {
     padding-left: 0.2em;
     padding-right: 0.2em;
