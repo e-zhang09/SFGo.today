@@ -17,7 +17,7 @@ body {
   background-color: unset;
 }
 
-.no-padding{
+.no-padding {
   padding: 0 !important;
 }
 
@@ -56,7 +56,7 @@ body {
     margin-top: 1rem;
     margin-bottom: 1rem;
 
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(0, 0, 0, 0.35);
     border-radius: 0.5rem;
     padding: 1rem 6rem;
 
@@ -67,34 +67,62 @@ body {
     opacity: 0;
     top: 200px;
 
-    .airport-def{
+    .airport-def {
       display: flex;
       flex-direction: column;
       align-items: center;
       line-height: 1;
       justify-content: center;
-      .abbreviation{
+
+      .abbreviation {
         color: white;
         font-size: 3.2rem;
         padding-bottom: 0.7rem;
       }
-      .description{
+
+      .description {
         color: white;
         font-size: 0.8rem;
         padding-bottom: 0.5rem;
       }
     }
-    .direction{
+
+    .direction {
       background-repeat: no-repeat;
       background-position: center;
       width: 2.1rem;
     }
-    .direction.back-forth{
+
+    .direction.back-forth {
       background-image: url("/img/back-forth-arrow.svg");
     }
-    .direction.to-right{
+
+    .direction.to-right {
       background-image: url("/img/arrow-right.svg");
     }
+  }
+
+  #welcome-message {
+    color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 3.5rem;
+    top: 335px;
+    opacity: 0;
+  }
+
+  #tag-line {
+    color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.2rem;
+    font-style: italic;
+    top: 395px;
+    opacity: 0;
   }
 }
 
@@ -103,7 +131,7 @@ body {
   padding-right: 6rem;
 }
 
-.responsive-margin{
+.responsive-margin {
   margin-left: 6rem;
   margin-right: 6rem;
 }
@@ -186,7 +214,8 @@ body {
 
   .navbar-brand {
     margin: 0;
-    .logo-img{
+
+    .logo-img {
       object-fit: cover;
     }
   }

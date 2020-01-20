@@ -1,14 +1,22 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $("body").niceScroll({
-        cursorcolor:"#7e7d81",
+        cursorcolor: "#7e7d81",
         cursorborder: "0", // css definition for cursor border
-        cursorwidth:"8px"
+        cursorwidth: "8px"
     });
 
     //slide in animation for booking bar
-    $("#book-flight-bar").animate({top: 0, opacity:1}, 1000);
+    $("#book-flight-bar").animate({top: 0, opacity: 1}, 1000);
+    setTimeout(function () {
+        $("#welcome-message").animate({top: 135, opacity: 1}, 1000);
+    }, 250);
+    setTimeout(function () {
+        $("#tag-line").animate({top: 215, opacity: 1}, 1000);
+    }, 400);
 
-    window.onscroll = function() {windowScrolled()};
+    window.onscroll = function () {
+        windowScrolled()
+    };
     let navBarDown = false;
 
     var navbar = document.getElementsByClassName("navbar")[0];
@@ -19,9 +27,9 @@ $(document).ready(function(){
 
     }
 
-    function navBarVisibility(){
-        if (window.pageYOffset >= sticky + 2*$(window).height()/5) {
-            if(navBarDown) return;
+    function navBarVisibility() {
+        if (window.pageYOffset >= sticky + 2 * $(window).height() / 5) {
+            if (navBarDown) return;
             navBarDown = true;
             let navHeight = $(navbar).outerHeight();
 
@@ -32,14 +40,13 @@ $(document).ready(function(){
             navbar.classList.remove("bg-transparent");
             navbar.classList.add("bg-dark");
 
-            setTimeout(function(){
-                if(!navbar.classList.contains('slideDown'))
-                {
+            setTimeout(function () {
+                if (!navbar.classList.contains('slideDown')) {
                     navbar.classList.add('slideDown');
                 }
-            },10);
+            }, 10);
         } else {
-            if(navBarDown && window.pageYOffset > sticky){
+            if (navBarDown && window.pageYOffset > sticky) {
                 return;
             }
             $('#navbar-space-holder').css('min-height', 0).css('display', 'block');
