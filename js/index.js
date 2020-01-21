@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // LOAD BACKGROUND IMAGE
-    $('<img/>').attr('src', '/img/plane-taking-off--blur--stretched.png').on('load', function() {
+    $('<img/>').attr('src', '/img/plane-taking-off--blur--stretched.png').on('load', function () {
         $(this).remove();
         $('.land-section').css('background-image', 'url(/img/plane-taking-off--blur--stretched.png)');
         $('.land-section').animate({opacity: 1}, 200);
@@ -34,9 +34,40 @@ $(document).ready(function () {
         navBarVisibility();
     }
 
-    $(".airport-def").click(function(){
-       //TODO: show drop down
+    let menuScroll = $('.scrolling.menu').niceScroll({
+        cursorcolor: "#7e7d81",
+        cursorborder: "0", // css definition for cursor border
+        cursorwidth: "8px",
+        zindex: 9999
     });
+
+    $('.ui.dropdown').dropdown({
+        fullTextSearch: "exact",
+        onChange: function (value, text, el) {
+            airportSelected(value, text, el)
+        },
+        onShow: function (e) {
+            setTimeout(function () {
+                menuScroll.show().resize();
+            }, 201);
+        },
+        onHide: function (e) {
+            menuScroll.hide();
+        }
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip"]').on('shown.bs.tooltip', function () {
+            $('.tooltip').addClass('animated slideInUp');
+        })
+    });
+
+    function airportSelected(value, text, el) {
+        console.info(value);
+        console.info(text);
+        console.info(el);
+    }
 
     function navBarVisibility() {
         if (window.pageYOffset >= sticky + 2 * $(window).height() / 5) {

@@ -3,37 +3,41 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <meta name="Description" content="Add content here">
-<!--    TODO: add description meta-->
+    <meta content="Add content here" name="Description">
+    <!--    TODO: add description meta-->
 
     <title>SFGo - Book Worldwide Flights With SFGo</title>
 
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 
-    <link rel="prefetch" href="/img/plane-taking-off--blur--stretched.png">
+    <link href="/img/plane-taking-off--blur--stretched.png" rel="prefetch">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
     <link href="https://use.typekit.net/dje8ytr.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"/>
-
     <script type="text/javascript">
-        // Notice how this gets configured before we load Font Awesome
         window.FontAwesomeConfig = {autoReplaceSvg: false}
     </script>
     <script src="https://kit.fontawesome.com/913ecb688b.js"></script>
 
     <link href="css/index.css" rel="stylesheet">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png">
-    <link rel="manifest" href="/public/site.webmanifest">
-    <link rel="mask-icon" href="/public/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="apple-mobile-web-app-title" content="SFGo">
-    <meta name="application-name" content="SFGo">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <link crossorigin="anonymous"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.css"
+          integrity="sha256-eKk/OB1/M9wf6oWV2+jUV8DpHXBFjNthcjTRvgPb4jg=" rel="stylesheet"/>
+    <link crossorigin="anonymous"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.min.css"
+          integrity="sha256-gt0FRuZd5L22CqAruA5Hbx9DXzbJS6xXzK3pEmh+1VE=" rel="stylesheet"/>
+
+    <link href="/public/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="/public/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="/public/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link href="/public/site.webmanifest" rel="manifest">
+    <link color="#5bbad5" href="/public/safari-pinned-tab.svg" rel="mask-icon">
+    <meta content="SFGo" name="apple-mobile-web-app-title">
+    <meta content="SFGo" name="application-name">
+    <meta content="#da532c" name="msapplication-TileColor">
+    <meta content="#ffffff" name="theme-color">
 </head>
 <body style="overflow: hidden">
 
@@ -72,8 +76,8 @@
     <div class="land-section">
         <header>
             <nav class="navbar bg-transparent navbar-expand-md navbar-dark justify-content-center">
-                <a class="navbar-brand w-50" href="#" aria-label="sfgo brand">
-                    <img alt="" height="50" src="/img/SFLogoWhite.png" width="140" class="logo-img">
+                <a aria-label="sfgo brand" class="navbar-brand w-50" href="#">
+                    <img alt="" class="logo-img" height="50" src="/img/SFLogoWhite.png" width="140">
                 </a>
                 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                         class="navbar-toggler"
@@ -131,18 +135,67 @@
                         San Jose, CA
                     </div>
                 </div>
-                <div class="direction back-forth">
-                </div>
-                <div class="airport-def dest">
-                    <div class="abbreviation" id="selectable-dest">
-                        To
+                <div class="direction back-forth"></div>
+                <div class="ui floating dropdown labeled button dest">
+                    <div class="airport-def dest">
+                        <div class="abbreviation" id="selectable-dest">
+                            To
+                        </div>
+                        <div class="description" id="desc-dest">
+                            Your Destination
+                        </div>
                     </div>
-                    <div class="description" id="desc-dest">
-                        Your Destination
+                    <div class="menu" style="margin-top: 0.25em!important;">
+                        <div class="ui icon search input">
+                            <input placeholder="Search airports..." type="text">
+                        </div>
+                        <div class="scrolling menu">
+                            <div class="item" data-delay='{"show":"2500", "hide":"100"}' data-placement="top"
+                                 data-toggle="tooltip"
+                                 data-value="SFO" title="San Francisco International Airport, United States">
+                                [SFO] San Francisco International Airport
+                            </div>
+                            <div class="item" data-value="ATL">
+                                [ATL] Hartsfield-Jackson Atlanta International Airport
+                            </div>
+                            <div class="item">
+                                [ORD] Chicago O'Hare International Airport
+                            </div>
+                            <div class="item">
+                                [LHR] Heathrow Airport
+                            </div>
+                            <div class="item">
+                                [LAX] Los Angeles International Airport
+                            </div>
+                            <div class="item">
+                                [ORD] Chicago O'Hare International Airport
+                            </div>
+                            <div class="item">
+                                [LHR] Heathrow Airport
+                            </div>
+                            <div class="item">
+                                [LAX] Los Angeles International Airport
+                            </div>
+                            <div class="item">
+                                [ORD] Chicago O'Hare International Airport
+                            </div>
+                            <div class="item">
+                                [LHR] Heathrow Airport
+                            </div>
+                            <div class="item">
+                                [LAX] Los Angeles International Airport
+                            </div>
+                            <div class="item">
+                                [ORD] Chicago O'Hare International Airport
+                            </div>
+                            <div class="item">
+                                [LHR] Heathrow Airport
+                            </div>
+                            <div class="item">
+                                [LAX] Los Angeles International Airport
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-
                 </div>
                 <div style="width: 65%"></div>
             </div>
@@ -170,8 +223,13 @@
 <script crossorigin="anonymous"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <script src="js/jquery.nicescroll.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM="
+        src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha256-k30cmb6hiQ/LGKpX2AcllUduUJ0kA4DKKStgUxkGQzM="
+        src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.min.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>
