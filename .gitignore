@@ -2,6 +2,5 @@
 node_modules/
 *.min.js
 *.min.css
-*.css
 *.css.map
 .brackets.json

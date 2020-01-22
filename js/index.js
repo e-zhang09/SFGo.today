@@ -22,6 +22,12 @@ $(document).ready(function () {
         zindex: 9999
     });
 
+    $(".active-underline").removeClass('active-underline');
+    let loc = window.location.pathname;
+    loc = loc.replace(/\//g, "");
+    if (loc.length === 0) loc = "home";
+    $( "[data-nav-item*="+ loc +"]" ).addClass('active-underline');
+
     window.onscroll = function () {
         windowScrolled()
     };
@@ -66,6 +72,46 @@ $(document).ready(function () {
             $('.tooltip').addClass('animated slideInUp');
         })
     });
+
+    //when user clicks back
+    $(window).on("popstate", function (evt) {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 800);
+        $(".active-underline").removeClass('active-underline');
+        let loc = window.location.pathname;
+        loc = loc.replace(/\//g, "");
+        if (loc.length === 0) loc = "home";
+        $( "[data-nav-item*="+ loc +"]" ).addClass('active-underline');
+    });
+
+    //set up nav buttons
+    $(".nav-button").on('click', function(event){
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        let targetLoc = $(this).data("nav-target");
+        let loc = window.location.pathname;
+        loc = loc.replace(/\//g, "");
+        if (loc.length === 0) loc = "home";
+        if(loc !== targetLoc){
+            window.history.pushState({urlPath:'/' + targetLoc},capitalizeFirstLetter(targetLoc) + ' - SFGo','/' +targetLoc);
+            $(".active-underline").removeClass('active-underline');
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        $( "[data-nav-item*="+ targetLoc +"]" ).addClass('active-underline');
+
+        $('html, body').animate({
+            scrollTop: 0
+        }, 800);
+    });
+
+    function loadContent(){
+        //TODO: if not home, load new content from public
+    }
 
     function airportSelected(value, text, el) {
         console.info(value);
