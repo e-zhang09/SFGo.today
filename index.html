@@ -127,7 +127,7 @@
 
         <div class="container-fluid no-padding position-relative">
             <div class="book-flight shadow responsive-margin" id="book-flight-bar">
-                <div class="airport-def src">
+                <div class="airport-def src no-select">
                     <div class="abbreviation" id="selectable-src">
                         SJC
                     </div>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="direction back-forth"></div>
                 <div class="ui floating dropdown labeled button dest">
-                    <div class="airport-def dest">
+                    <div class="airport-def dest no-select">
                         <div class="abbreviation" id="selectable-dest">
                             To
                         </div>
@@ -197,7 +197,22 @@
                         </div>
                     </div>
                 </div>
-                <div style="width: 65%"></div>
+                <div class="ui floating dropdown labeled button dir no-select">
+                    <input type="hidden" name="dir">
+                    <div class="drop-desc" id="dir-display">
+                        Round Trip
+                    </div>
+                    <div class="drop-indicator"></div>
+                    <div class="menu" style="margin-top: 0.25em!important;">
+                        <div class="item active selected" data-value="round">
+                            Round Trip
+                        </div>
+                        <div class="item" data-value="one">
+                            One Direction
+                        </div>
+
+                    </div>
+                </div>
             </div>
             <div class="responsive-margin" id="welcome-message">Book Your Next Flight</div>
             <div class="responsive-margin" id="tag-line">Travel Seamlessly</div>

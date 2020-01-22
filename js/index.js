@@ -53,7 +53,11 @@ $(document).ready(function () {
         },
         onHide: function (e) {
             menuScroll.hide();
-        }
+        },
+    });
+
+    $('.ui.dropdown').on('keyup', 'input:text', function() {
+        menuScroll.show().resize();
     });
 
     $(function () {
