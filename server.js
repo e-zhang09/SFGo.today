@@ -13,13 +13,16 @@ app.use(bodyParser.json());
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded({extended: true})); // to support URL-encoded bodies
 
-app.use('/img', express.static(path.join(__dirname, '/img')));
-app.use('/js', express.static(path.join(__dirname, '/js')));
-app.use('/css', express.static(path.join(__dirname, '/css')));
-app.use('/public', express.static(path.join(__dirname, '/public')));
+app.use('/img', express.static(path.join(__dirname, 'img')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
+app.get('/home', (req, res) => {
+    res.redirect('/');
+});
 
-app.get('/', (req, res) => {
+app.get(['/', '/schedules', '/contact', '/rapid', '/frequent', '/careers'], (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 

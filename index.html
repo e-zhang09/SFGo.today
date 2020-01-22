@@ -20,6 +20,7 @@
     </script>
     <script src="https://kit.fontawesome.com/913ecb688b.js"></script>
 
+    <link href="css/styles.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 
     <link crossorigin="anonymous"
@@ -76,7 +77,7 @@
     <div class="land-section">
         <header>
             <nav class="navbar bg-transparent navbar-expand-md navbar-dark justify-content-center">
-                <a aria-label="sfgo brand" class="navbar-brand w-50" href="#">
+                <a aria-label="sfgo brand" class="navbar-brand nav-button" data-nav-target="home">
                     <img alt="" class="logo-img" height="50" src="/img/SFLogoWhite.png" width="140">
                 </a>
                 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
@@ -87,28 +88,28 @@
 
                 <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
                     <ul class="navbar-nav justify-content-center">
-                        <li class="nav-item active-underline">
-                            <a class="nav-link" href="#">Home</a>
+                        <li class="nav-item" data-nav-item="home">
+                            <a class="nav-link nav-button" data-nav-target="home">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Schedules</a>
+                        <li class="nav-item" data-nav-item="schedules">
+                            <a class="nav-link nav-button" data-nav-target="schedules">Schedules</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" data-nav-item="frequent rapid">
                             <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                                data-toggle="dropdown"
                                href="#" id="navbarDropdown" role="button">
                                 Programs
                             </a>
                             <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Frequent Flier</a>
-                                <a class="dropdown-item" href="#">Rapid Connect</a>
+                                <a class="dropdown-item nav-button" data-nav-target="frequent">Frequent Flier</a>
+                                <a class="dropdown-item nav-button" data-nav-target="rapid">Rapid Connect</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Careers</a>
+                        <li class="nav-item" data-nav-item="careers">
+                            <a class="nav-link nav-button" data-nav-target="careers">Careers</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                        <li class="nav-item" data-nav-item="contact">
+                            <a class="nav-link nav-button" data-nav-target="contact">Contact</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav justify-content-end ml-auto">
@@ -127,7 +128,7 @@
 
         <div class="container-fluid no-padding position-relative">
             <div class="book-flight shadow responsive-margin" id="book-flight-bar">
-                <div class="airport-def src">
+                <div class="airport-def src no-select">
                     <div class="abbreviation" id="selectable-src">
                         SJC
                     </div>
@@ -137,7 +138,7 @@
                 </div>
                 <div class="direction back-forth"></div>
                 <div class="ui floating dropdown labeled button dest">
-                    <div class="airport-def dest">
+                    <div class="airport-def dest no-select">
                         <div class="abbreviation" id="selectable-dest">
                             To
                         </div>
@@ -197,7 +198,22 @@
                         </div>
                     </div>
                 </div>
-                <div style="width: 65%"></div>
+                <div class="ui floating dropdown labeled button dir no-select">
+                    <input name="dir" type="hidden">
+                    <div class="drop-desc" id="dir-display">
+                        Round Trip
+                    </div>
+                    <div class="drop-indicator"></div>
+                    <div class="menu" style="margin-top: 0.25em!important;">
+                        <div class="item active selected" data-value="round">
+                            Round Trip
+                        </div>
+                        <div class="item" data-value="one">
+                            One Direction
+                        </div>
+
+                    </div>
+                </div>
             </div>
             <div class="responsive-margin" id="welcome-message">Book Your Next Flight</div>
             <div class="responsive-margin" id="tag-line">Travel Seamlessly</div>
