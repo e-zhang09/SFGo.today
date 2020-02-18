@@ -22,7 +22,7 @@ app.get('/home', (req, res) => {
     res.redirect('/');
 });
 
-app.get(['/', '/schedules', '/contact', '/rapid', '/frequent', '/careers'], (req, res) => {
+app.get(['/', '/schedules', '/contact', '/rapid', '/frequent', '/careers', '/programs'], (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 

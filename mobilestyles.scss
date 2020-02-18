@@ -1,0 +1,41 @@
+@media only screen and (max-width: 576px) {
+  .navbar-brand {
+    padding-left: 0;
+  }
+  .navbar {
+    .justify-content-center {
+      position: unset;
+      left: unset;
+      top: unset;
+      transform: unset;
+    }
+
+
+    .navbar-collapse.collapsing,
+    .navbar-collapse.show {
+      background-color: rgba(200, 200, 200, 0.4);
+      position: absolute;
+      top: 100%;
+      left: 0;
+
+      transition: background-color ease-in-out 0.35s, height ease 0.35s;
+    }
+
+    .justify-content-end {
+      padding-left: 0;
+
+      a {
+        padding: .5rem 1rem !important;
+      }
+    }
+  }
+  .navbar.sticky {
+    .navbar-collapse.collapsing,
+    .navbar-collapse.show {
+      background-color: rgba(114, 114, 114, 0.98);
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+  }
+}
