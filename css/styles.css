@@ -66,15 +66,17 @@ body {
 }
 
 .quick-contact-info {
-  background-color: #001D38;
-  height: 2.9rem;
+  height: 2rem;
+  position: absolute;
+  top: 0;
 }
 .quick-contact-info .mr-auto {
-  font-size: 0.95rem;
-  color: #727272;
+  margin-left: 1px;
+  font-size: 0.71rem;
+  color: white;
 }
 .quick-contact-info .fab, .quick-contact-info .fas {
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 .quick-contact-info .fab {
   color: #C7C7C7;
@@ -92,17 +94,18 @@ body {
   padding: 0;
 }
 .quick-contact-info .right-pad {
-  padding-right: 1.3em;
+  padding-right: 0.8em;
 }
 .quick-contact-info a {
-  font-size: 0.8rem;
-  color: #727272;
+  font-size: 0.65rem;
+  color: #C7C7C7;
   padding-left: 0.8em;
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
 .quick-contact-info a span {
+  padding-bottom: 0.1em;
   padding-left: 0.6em;
   padding-right: 0.8em;
 }
@@ -117,10 +120,11 @@ body {
 }
 
 .navbar {
+  background-color: #001D38 !important;
   z-index: 9998;
   padding-left: 5.85rem;
   padding-right: 5.85rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.68);
+  padding-top: 0.7em;
 }
 .navbar .navbar-brand {
   margin: 0;
@@ -149,8 +153,7 @@ body {
   padding-top: 0.1em;
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 }
 .navbar .justify-content-center .nav-item {
   position: relative;
@@ -168,7 +171,7 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  bottom: -1.11rem;
+  bottom: -1.04rem;
   transition: width ease-in 0.35s, opacity ease-in 0.35s;
 }
 .navbar .justify-content-center .nav-item:hover:not(.active-underline)::after {
@@ -185,7 +188,8 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-  bottom: -1.11rem;
+  bottom: -1.04rem;
+  transition: bottom 250ms ease-in;
 }
 
 .nav-button:hover {

@@ -1,30 +1,9 @@
 $(document).ready(function () {
-    function toggleDropdown (e) {
-        const _d = $(e.target).closest('.dropdown'),
-            _m = $('.dropdown-menu', _d);
-        setTimeout(function(){
-            const shouldOpen = e.type !== 'click' && _d.is(':hover');
-            _m.toggleClass('show', shouldOpen);
-            _d.toggleClass('show', shouldOpen);
-            $('[data-toggle="dropdown"]', _d).attr('aria-expanded', shouldOpen);
-        }, e.type === 'mouseleave' ? 150 : 0);
-    }
-
-    $('body')
-        .on('mouseenter mouseleave','.dropdown',toggleDropdown)
-        .on('click', '.dropdown-menu a', toggleDropdown);
 
     let loca = window.location.pathname;
     loca = loca.replace(/\//g, "");
     if (loca.length === 0) loca = "home";
     loadContent(loca);
-
-    $("body").niceScroll({
-        cursorcolor: "#7e7d81",
-        cursorborder: "0", // css definition for cursor border
-        cursorwidth: "8px",
-        zindex: 9999
-    });
 
     $(".active-underline").removeClass('active-underline');
     let loc = window.location.pathname;
@@ -98,7 +77,10 @@ $(document).ready(function () {
         navAction(targetLoc);
     });
 
-    function navAction(targetLoc){
+    function navAction(targetLoc) {
+        if (targetLoc === '/') {
+            window.location = './';
+        }
         let loc = window.location.pathname;
         loc = loc.replace(/\//g, "");
         if (loc.length === 0) loc = "home";
@@ -136,17 +118,32 @@ $(document).ready(function () {
 
     function loadNewSplash(loc) {
         let src = '/img/';
+        let bigHeader = 'Book Your Next Flight';
+
         if (loc === 'careers') {
-            src += 'ground-crew.jpg'
+            src += 'ground-crew.jpg';
+            bigHeader = 'Work With Us';
         } else if (loc === 'contact') {
-            src += 'support-lady.jpg'
+            src += 'support-lady.jpg';
+            bigHeader = 'Contact Us';
         } else if (loc === 'programs') {
-            src += 'programs.jpg'
-        } else if (loc !== 'home') {
-            src += 'airport-xl.jpg'
+            src += 'programs.jpg';
+            bigHeader = 'Join Our Programs'
+        } else if (loc === 'home') {
+            src += 'plane-taking-off-xl.png';
+            bigHeader = 'Book Your Next Flight';
         } else {
-            src += 'plane-taking-off-xl.jpg'
+            src += 'airport-xl.jpg';
+            bigHeader = 'Get Our Schedules'
         }
+
+        $('#welcome-message').fadeOut(500, function () {
+            $(this).text(bigHeader).fadeIn(250);
+        });
+
+        $('#tag-line').fadeOut(500, function () {
+            $(this).text('Travel Seamlessly').fadeIn(250);
+        });
 
         // LOAD BACKGROUND IMAGE
         $('<img/>').attr('src', src).on('load', function () {
@@ -168,14 +165,16 @@ $(document).ready(function () {
             $('.land-section').css('height', 'calc(100vw * ' + height + ' / ' + width + ' - 1px)');
             $('.land-section').animate({opacity: 1}, 200);
 
-            //slide in animation for booking bar
-            $("#book-flight-bar").animate({top: 0, opacity: 1}, 1000);
-            setTimeout(function () {
-                $("#welcome-message").animate({top: 135, opacity: 1}, 1000);
-            }, 250);
-            setTimeout(function () {
-                $("#tag-line").animate({top: 215, opacity: 1}, 1000);
-            }, 400);
+            if ($("#book-flight-bar").scrollTop !== 20) {
+                //slide in animation for booking bar
+                $("#book-flight-bar").animate({top: 5, opacity: 1}, 1000);
+                setTimeout(function () {
+                    $("#welcome-message").animate({top: 137, opacity: 1}, 1000);
+                }, 250);
+                setTimeout(function () {
+                    $("#tag-line").animate({top: 217, opacity: 1}, 1000);
+                }, 400);
+            }
         });
     }
 
@@ -186,7 +185,7 @@ $(document).ready(function () {
     }
 
     function navBarVisibility() {
-        if (window.pageYOffset >= sticky + 2 * $(window).height() / 5) {
+        if (window.pageYOffset >= sticky + 4 * $(window).height() / 5) {
             if (navBarDown) return;
             navBarDown = true;
             let navHeight = $(navbar).outerHeight();

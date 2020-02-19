@@ -26,6 +26,10 @@ app.get(['/', '/schedules', '/contact', '/rapid', '/frequent', '/careers', '/pro
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/bower_components/*/dist/*', (req, res)=>{
+    res.sendFile(path.join(__dirname, req.path));
+});
+
 let server = app.listen(process.env.PORT || 3000, function () {
     console.log('Listening on port ' + server.address().port);
 });
