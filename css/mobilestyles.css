@@ -1,0 +1,109 @@
+@media only screen and (max-width: 576px) {
+  header .navbar-brand {
+    padding-left: 0;
+  }
+  header .navbar .dropdown-menu {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: unset !important;
+    border: unset !important;
+    border-radius: unset !important;
+  }
+  header .navbar .dropdown-menu a {
+    color: cornsilk;
+  }
+  header .navbar .justify-content-center {
+    position: unset;
+    left: unset;
+    top: unset;
+    transform: unset;
+  }
+  header .navbar .navbar-collapse.collapsing,
+header .navbar .navbar-collapse.show {
+    background-color: rgba(114, 114, 114, 0.98);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transition: background-color ease-in-out 0.35s, height ease 0.35s;
+  }
+  header .navbar .justify-content-end {
+    padding-left: 0;
+  }
+  header .navbar .justify-content-end a {
+    padding: 0.5rem 1rem !important;
+  }
+  header .navbar.sticky {
+    width: 100vw !important;
+  }
+  header .navbar.sticky .navbar-collapse.collapsing,
+header .navbar.sticky .navbar-collapse.show {
+    background-color: rgba(114, 114, 114, 0.98);
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  .book-flight {
+    display: none !important;
+  }
+
+  .book-flight-m {
+    z-index: 9998;
+    display: flex !important;
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0 1rem;
+  }
+  .book-flight-m .navbar-nav {
+    height: 60vh;
+  }
+  .book-flight-m .navbar-toggler {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    color: unset !important;
+    border: none !important;
+  }
+  .book-flight-m .navbar-brand {
+    padding: 4vh 0;
+  }
+
+  #welcome-message {
+    text-align: left !important;
+    width: 67.5vw;
+    font-size: 2.5rem !important;
+    text-shadow: rgba(0, 0, 0, 0.75) 3px 3px 10px !important;
+  }
+
+  #tag-line {
+    text-align: left !important;
+    font-size: 1rem !important;
+  }
+
+  .list-group-item {
+    font-size: 1rem !important;
+  }
+  .list-group-item .ui.selection.dropdown {
+    min-height: unset !important;
+    min-width: 8em !important;
+    padding: 5px 0 8px 4px !important;
+    font-size: 1.25rem !important;
+  }
+  .list-group-item .ui.selection.dropdown .icon,
+.list-group-item .ui.selection.dropdown .search,
+.list-group-item .ui.selection.dropdown .single {
+    padding: 5px !important;
+  }
+  .list-group-item .ui.selection.dropdown .text i {
+    display: none;
+  }
+  .list-group-item .input-group .input-group-addon {
+    padding: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/*# sourceMappingURL=mobilestyles.css.map */

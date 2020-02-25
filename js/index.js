@@ -1,4 +1,9 @@
+let isMobile = false;
+let tripType = 'one';
+
 $(document).ready(function () {
+    $(window).resize(update_windowResized);
+    update_windowResized();
 
     let loca = window.location.pathname;
     loca = loca.replace(/\//g, "");
@@ -30,7 +35,7 @@ $(document).ready(function () {
         zindex: 9999
     });
 
-    $('.ui.dropdown').dropdown({
+    $('.ui.floating.dropdown').dropdown({
         fullTextSearch: "exact",
         onChange: function (value, text, el) {
             airportSelected(value, text, el)
@@ -45,8 +50,23 @@ $(document).ready(function () {
         },
     });
 
-    $('.ui.dropdown').on('keyup', 'input:text', function () {
+    $('.ui.fluid.dropdown').dropdown();
+    $('.ui.single.dropdown').dropdown({
+        onChange: function(value){update_dateSelectType(value)}
+    });
+
+    $('.ui.floating.dropdown').on('keyup', 'input:text', function () {
         menuScroll.show().resize();
+    });
+
+    // Add slideDown animation to Bootstrap dropdown when expanding.
+    $('body > header > nav').on('show.bs.dropdown', function() {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(250);
+    });
+
+    // Add slideUp animation to Bootstrap dropdown when collapsing.
+    $('body > header > nav').on('hide.bs.dropdown', function() {
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(175);
     });
 
     $(function () {
@@ -77,10 +97,38 @@ $(document).ready(function () {
         navAction(targetLoc);
     });
 
+    update_dateSelectType();
+
+    function update_dateSelectType(val){
+        //enable date pickers
+        if(val){
+            tripType = val;
+        }
+        if(isMobile){
+            if(tripType === 'one' || tripType === 'rapid') {
+                $('.single-date.form-control').show().datepicker({
+                    autoclose: true
+                });
+                $('.range-date.input-group').hide();
+            }else{
+                $('.range-date.input-group').show().datepicker({
+                    autoclose: true
+                });
+                $('.single-date.form-control').hide();
+            }
+        }
+    }
+
     function navAction(targetLoc) {
         if (targetLoc === '/') {
             window.location = './';
         }
+
+        $(".dropdown-menu").removeClass('show');
+        if(isMobile){
+            $('.collapse').collapse("hide");
+        }
+
         let loc = window.location.pathname;
         loc = loc.replace(/\//g, "");
         if (loc.length === 0) loc = "home";
@@ -98,9 +146,6 @@ $(document).ready(function () {
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
-
-        $(".dropdown-menu").removeClass('show');
-
         $("[data-nav-item*=" + targetLoc + "]").addClass('active-underline');
 
         $('html, body').animate({
@@ -130,7 +175,7 @@ $(document).ready(function () {
             src += 'programs.jpg';
             bigHeader = 'Join Our Programs'
         } else if (loc === 'home') {
-            src += 'plane-taking-off-xl.png';
+            src += 'plane-taking-off-'+(isMobile?'m-':'')+'xl.png';
             bigHeader = 'Book Your Next Flight';
         } else {
             src += 'airport-xl.jpg';
@@ -151,28 +196,33 @@ $(document).ready(function () {
             // $('.land-section').css('background-image', 'url(' + src + ')');
             $('.land-section').css({
                 backgroundImage: 'url(' + src + ')',
-                WebkitTransition: 'background-image 1s ease-in-out, height 1s ease-in-out',
-                MozTransition: 'background-image 1s ease-in-out, height 1s ease-in-out',
-                MsTransition: 'background-image 1s ease-in-out, height 1s ease-in-out',
-                OTransition: 'background-image 1s ease-in-out, height 1s ease-in-out',
-                transition: 'background-image 1s ease-in-out, height 1s ease-in-out',
+                WebkitTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
+                MozTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
+                MsTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
+                OTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
+                transition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
             });
 
             //calculate landing-splash size
             let image = new Image();
             image.src = src;
             let width = image.width, height = image.height;
-            $('.land-section').css('height', 'calc(100vw * ' + height + ' / ' + width + ' - 1px)');
+            $('.land-section').css('height', isMobile?'calc(100vw * 4464 / 5370 - 1px)':'calc(100vw * ' + height + ' / ' + width + ' - 1px)');
+            if(isMobile){
+                $('.land-section').css('background-size', 'cover');
+            }
             $('.land-section').animate({opacity: 1}, 200);
 
             if ($("#book-flight-bar").scrollTop !== 20) {
                 //slide in animation for booking bar
                 $("#book-flight-bar").animate({top: 5, opacity: 1}, 1000);
                 setTimeout(function () {
-                    $("#welcome-message").animate({top: 137, opacity: 1}, 1000);
+                    $("#welcome-message").animate({top: (isMobile?15:137), opacity: 1}, 1000);
                 }, 250);
                 setTimeout(function () {
-                    $("#tag-line").animate({top: 217, opacity: 1}, 1000);
+                    let ratio = screen.width/screen.height;
+
+                    $("#tag-line").animate({top: 217 + (isMobile?10 + 30 * (1-ratio): 0), opacity: 1}, 1000);
                 }, 400);
             }
         });
@@ -194,8 +244,8 @@ $(document).ready(function () {
             $('#navbar-space-holder').css('min-height', navHeight).css('display', 'block');
             navbar.classList.add("sticky");
 
-            navbar.classList.remove("bg-transparent");
-            navbar.classList.add("bg-dark");
+            // navbar.classList.remove("bg-transparent");
+            // navbar.classList.add("bg-dark");
 
             setTimeout(function () {
                 if (!navbar.classList.contains('slideDown')) {
@@ -211,8 +261,24 @@ $(document).ready(function () {
             navbar.classList.remove("sticky");
             navbar.classList.remove("slide", "slideDown");
 
-            navbar.classList.remove("bg-dark");
-            navbar.classList.add("bg-transparent");
+            // navbar.classList.remove("bg-dark");
+            // navbar.classList.add("bg-transparent");
+        }
+    }
+
+    $('.return-to-top').click(function () {
+        $("html, body").animate({scrollTop: 0}, 600);
+        return false;
+    });
+
+    function update_windowResized() {
+        isMobile = $(window).width() < 576;
+        if ($(window).width() < 576) {
+            //mobile
+            $('.return-to-top').css('margin-bottom', $('.book-flight-m').outerHeight() - 6);
+        } else {
+            //tablet/desktop
+            $('.return-to-top').css('margin-bottom', 0);
         }
     }
 });
