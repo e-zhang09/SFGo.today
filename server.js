@@ -3,6 +3,8 @@ const path = require('path');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const Fuse = require('fuse.js');
+const airportsList = require(path.join(__dirname, 'public/res/airports-flat'));
 
 let app = express();
 
@@ -28,6 +30,28 @@ app.get(['/', '/schedules', '/contact', '/rapid', '/frequent', '/careers', '/pro
 
 app.get('/bower_components/*/dist/*', (req, res)=>{
     res.sendFile(path.join(__dirname, req.path));
+});
+
+app.get('/api/airports/*', (req, res)=>{
+    let fuzOptions  = {
+        shouldSort: true,
+        threshold: 0.4,
+        location: 0,
+        distance: 546,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+            "name", "iata"
+        ]
+    };
+    let fuse = new Fuse(airportsList, fuzOptions ); // "list" is the item array
+    let result = fuse.search(req.params[0]?req.params[0]:'sfo').slice(0,50);
+
+    let resJson = {
+        "success" : "true",
+        "results": result
+    };
+    res.json(resJson);
 });
 
 let server = app.listen(process.env.PORT || 3000, function () {

@@ -21,8 +21,9 @@
   "dependencies": {
     "body-parser": "latest",
     "compression": "^1.7.4",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "uglify-js": "^3.7.4",
-    "cookie-parser": "^1.4.4"
+    "fuse.js": "^3.4.6",
+    "uglify-js": "^3.7.4"
   }
 }

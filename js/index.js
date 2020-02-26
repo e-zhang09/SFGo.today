@@ -1,5 +1,6 @@
 let isMobile = false;
 let tripType = 'one';
+let curLoc = '';
 
 $(document).ready(function () {
     $(window).resize(update_windowResized);
@@ -7,6 +8,7 @@ $(document).ready(function () {
 
     let loca = window.location.pathname;
     loca = loca.replace(/\//g, "");
+    curLoc = loca;
     if (loca.length === 0) loca = "home";
     loadContent(loca);
 
@@ -28,44 +30,42 @@ $(document).ready(function () {
         navBarVisibility();
     }
 
-    let menuScroll = $('.scrolling.menu').niceScroll({
-        cursorcolor: "#7e7d81",
-        cursorborder: "0", // css definition for cursor border
-        cursorwidth: "8px",
-        zindex: 9999
-    });
+    if(isMobile){
+        $('.ui.fluid.dropdown').dropdown();
+        $('.ui.single.dropdown').dropdown({
+            onChange: function (value) {
+                update_dateSelectType(value)
+            }
+        });
+    }else{
+        $('.labeled.button').on('click', function(e){
+            if(e.target.classList.contains('clickable')){
+                $("#"+$(e.target).data('btn-target')).toggleClass('visible');
+            }
+        });
 
-    $('.ui.floating.dropdown').dropdown({
-        fullTextSearch: "exact",
-        onChange: function (value, text, el) {
-            airportSelected(value, text, el)
-        },
-        onShow: function (e) {
-            setTimeout(function () {
-                menuScroll.show().resize();
-            }, 201);
-        },
-        onHide: function (e) {
-            menuScroll.hide();
-        },
-    });
+        $('.dropdown.dest').dropdown({
+            fullTextSearch: "true",
+            ignoreCase: "true",
+            apiSettings: {
+                url: '/api/airports/{query}'
+            },
+            minCharacters: 0,
+            saveRemoteData: false,
+            onChange: function (value, text, el) {
+                airportSelected(value, text, el)
+            }
+        });
 
-    $('.ui.fluid.dropdown').dropdown();
-    $('.ui.single.dropdown').dropdown({
-        onChange: function(value){update_dateSelectType(value)}
-    });
-
-    $('.ui.floating.dropdown').on('keyup', 'input:text', function () {
-        menuScroll.show().resize();
-    });
+    }
 
     // Add slideDown animation to Bootstrap dropdown when expanding.
-    $('body > header > nav').on('show.bs.dropdown', function() {
+    $('body > header > nav').on('show.bs.dropdown', function () {
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown(250);
     });
 
     // Add slideUp animation to Bootstrap dropdown when collapsing.
-    $('body > header > nav').on('hide.bs.dropdown', function() {
+    $('body > header > nav').on('hide.bs.dropdown', function () {
         $(this).find('.dropdown-menu').first().stop(true, true).slideUp(175);
     });
 
@@ -99,18 +99,18 @@ $(document).ready(function () {
 
     update_dateSelectType();
 
-    function update_dateSelectType(val){
+    function update_dateSelectType(val) {
         //enable date pickers
-        if(val){
+        if (val) {
             tripType = val;
         }
-        if(isMobile){
-            if(tripType === 'one' || tripType === 'rapid') {
+        if (isMobile) {
+            if (tripType === 'one' || tripType === 'rapid') {
                 $('.single-date.form-control').show().datepicker({
                     autoclose: true
                 });
                 $('.range-date.input-group').hide();
-            }else{
+            } else {
                 $('.range-date.input-group').show().datepicker({
                     autoclose: true
                 });
@@ -125,12 +125,13 @@ $(document).ready(function () {
         }
 
         $(".dropdown-menu").removeClass('show');
-        if(isMobile){
+        if (isMobile) {
             $('.collapse').collapse("hide");
         }
 
         let loc = window.location.pathname;
         loc = loc.replace(/\//g, "");
+        curLoc = loc;
         if (loc.length === 0) loc = "home";
         let sDest;
         if (['frequent', 'rapid'].includes(targetLoc)) {
@@ -146,6 +147,7 @@ $(document).ready(function () {
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
+
         $("[data-nav-item*=" + targetLoc + "]").addClass('active-underline');
 
         $('html, body').animate({
@@ -166,36 +168,38 @@ $(document).ready(function () {
         let bigHeader = 'Book Your Next Flight';
 
         if (loc === 'careers') {
-            src += 'ground-crew.jpg';
+            src += 'ground-crew-sm.jpg';
             bigHeader = 'Work With Us';
         } else if (loc === 'contact') {
-            src += 'support-lady.jpg';
+            src += 'support-lady-sm.jpg';
             bigHeader = 'Contact Us';
         } else if (loc === 'programs') {
             src += 'programs.jpg';
             bigHeader = 'Join Our Programs'
         } else if (loc === 'home') {
-            src += 'plane-taking-off-'+(isMobile?'m-':'')+'xl.png';
+            src += 'plane-taking-off-' + (isMobile ? 'm-' : '') + 'xl.jpg';
             bigHeader = 'Book Your Next Flight';
         } else {
             src += 'airport-xl.jpg';
-            bigHeader = 'Get Our Schedules'
+            bigHeader = isMobile ? 'Check Out Our Schedules' : 'Get Our Schedules'
         }
 
         $('#welcome-message').fadeOut(500, function () {
-            $(this).text(bigHeader).fadeIn(250);
+            $(this).css('width', '80vw').text(bigHeader).fadeIn(250);
         });
 
         $('#tag-line').fadeOut(500, function () {
             $(this).text('Travel Seamlessly').fadeIn(250);
         });
 
+        let fullSrc = 'https://pixboost.com/api/2/img/https://sfgo.today' + src + '/resize?size='+ (isMobile?'576':$(window).width()) +'&auth=MTc5MzczMTIxMA__';
+
         // LOAD BACKGROUND IMAGE
-        $('<img/>').attr('src', src).on('load', function () {
+        $('<img/>').attr('src', fullSrc).on('load', function () {
             $(this).remove();
             // $('.land-section').css('background-image', 'url(' + src + ')');
             $('.land-section').css({
-                backgroundImage: 'url(' + src + ')',
+                backgroundImage: 'url('+fullSrc+')',
                 WebkitTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
                 MozTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
                 MsTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
@@ -205,10 +209,10 @@ $(document).ready(function () {
 
             //calculate landing-splash size
             let image = new Image();
-            image.src = src;
+            image.src = fullSrc;
             let width = image.width, height = image.height;
-            $('.land-section').css('height', isMobile?'calc(100vw * 4464 / 5370 - 1px)':'calc(100vw * ' + height + ' / ' + width + ' - 1px)');
-            if(isMobile){
+            $('.land-section').css('height', isMobile ? 'calc(100vw * 4464 / 5370 - 1px)' : 'calc(100vw * ' + height + ' / ' + width + ' - 1px)');
+            if (isMobile) {
                 $('.land-section').css('background-size', 'cover');
             }
             $('.land-section').animate({opacity: 1}, 200);
@@ -217,12 +221,11 @@ $(document).ready(function () {
                 //slide in animation for booking bar
                 $("#book-flight-bar").animate({top: 5, opacity: 1}, 1000);
                 setTimeout(function () {
-                    $("#welcome-message").animate({top: (isMobile?15:137), opacity: 1}, 1000);
+                    $("#welcome-message").animate({top: (isMobile ? 15 : 137), opacity: 1}, 1000);
                 }, 250);
                 setTimeout(function () {
-                    let ratio = screen.width/screen.height;
-
-                    $("#tag-line").animate({top: 217 + (isMobile?10 + 30 * (1-ratio): 0), opacity: 1}, 1000);
+                    let ratio = screen.width / screen.height;
+                    $("#tag-line").animate({top: 217 + (isMobile ? 10 + 30 * (1 - ratio) : 0), opacity: 1}, 1000);
                 }, 400);
             }
         });
@@ -276,9 +279,22 @@ $(document).ready(function () {
         if ($(window).width() < 576) {
             //mobile
             $('.return-to-top').css('margin-bottom', $('.book-flight-m').outerHeight() - 6);
+            if (curLoc === 'schedules') {
+                $('#welcome-message').text('Check Out Our Schedules');
+                reanim_welcomeMsg();
+            }
         } else {
             //tablet/desktop
             $('.return-to-top').css('margin-bottom', 0);
+            if (curLoc === 'schedules') {
+                $('#welcome-message').text('Get Our Schedules');
+                reanim_welcomeMsg();
+            }
+        }
+        function reanim_welcomeMsg(){
+            $("#welcome-message").animate({top: (isMobile ? 15 : 137), opacity: 1}, 1000);
+            let ratio = screen.width / screen.height;
+            $("#tag-line").animate({top: 217 + (isMobile ? 10 + 30 * (1 - ratio) : 0), opacity: 1}, 1000);
         }
     }
 });

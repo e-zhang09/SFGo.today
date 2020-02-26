@@ -94,6 +94,14 @@ body {
 .land-section .book-flight .direction.to-right {
   background-image: url("/img/arrow-right.svg");
 }
+.land-section .book-flight .labeled.button.dest.visible .menu-container {
+  display: unset !important;
+}
+.land-section .book-flight .menu-container {
+  z-index: 9998;
+  display: none;
+  position: absolute;
+}
 .land-section .book-flight .dropdown .search {
   font-size: 1.25rem;
 }

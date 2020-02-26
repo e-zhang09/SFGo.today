@@ -114,7 +114,20 @@ body {
       background-image: url("/img/arrow-right.svg");
     }
 
+    .labeled.button.dest.visible{
+      .menu-container{
+        display: unset !important;
+      }
+    }
+
+    .menu-container{
+      z-index: 9998;
+      display: none;
+      position: absolute;
+    }
+
     .dropdown {
+
       .search {
         font-size: 1.25rem;
 

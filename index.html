@@ -11,10 +11,6 @@
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
 
-    <link href="/img/plane-taking-off-xl.png" rel="prefetch">
-    <link href="/img/programs.jpg" rel="prefetch">
-    <link as="image" href="/img/support-lady.jpg" rel="prefetch">
-    <link href="/img/ground-crew.jpg" rel="prefetch">
 
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
     <link href="https://use.typekit.net/dje8ytr.css" rel="stylesheet">
@@ -143,64 +139,20 @@
                     </div>
                 </div>
                 <div class="direction back-forth"></div>
-                <div class="ui floating dropdown labeled button dest">
-                    <div class="airport-def dest no-select">
-                        <div class="abbreviation" id="selectable-dest">
+                <div class="labeled button dest" id="dest-btn">
+                    <div class="airport-def dest no-select clickable" data-btn-target="dest-btn">
+                        <div class="abbreviation clickable" id="selectable-dest"  data-btn-target="dest-btn">
                             To
                         </div>
-                        <div class="description" id="desc-dest">
+                        <div class="description clickable" id="desc-dest"  data-btn-target="dest-btn">
                             Your Destination
                         </div>
                     </div>
-                    <div class="menu" style="margin-top: 0.25em!important;">
-                        <div class="ui icon search input">
-                            <input placeholder="Search airports..." type="text">
-                        </div>
-                        <div class="scrolling menu">
-                            <div class="item" data-delay='{"show":"2500", "hide":"100"}' data-placement="top"
-                                 data-toggle="tooltip"
-                                 data-value="SFO" title="San Francisco International Airport, United States">
-                                [SFO] San Francisco International Airport
-                            </div>
-                            <div class="item" data-value="ATL">
-                                [ATL] Hartsfield-Jackson Atlanta International Airport
-                            </div>
-                            <div class="item">
-                                [ORD] Chicago O'Hare International Airport
-                            </div>
-                            <div class="item">
-                                [LHR] Heathrow Airport
-                            </div>
-                            <div class="item">
-                                [LAX] Los Angeles International Airport
-                            </div>
-                            <div class="item">
-                                [ORD] Chicago O'Hare International Airport
-                            </div>
-                            <div class="item">
-                                [LHR] Heathrow Airport
-                            </div>
-                            <div class="item">
-                                [LAX] Los Angeles International Airport
-                            </div>
-                            <div class="item">
-                                [ORD] Chicago O'Hare International Airport
-                            </div>
-                            <div class="item">
-                                [LHR] Heathrow Airport
-                            </div>
-                            <div class="item">
-                                [LAX] Los Angeles International Airport
-                            </div>
-                            <div class="item">
-                                [ORD] Chicago O'Hare International Airport
-                            </div>
-                            <div class="item">
-                                [LHR] Heathrow Airport
-                            </div>
-                            <div class="item">
-                                [LAX] Los Angeles International Airport
-                            </div>
+                    <div class="menu-container" style="margin-top: 0.25em!important;">
+                        <div class="ui fluid search selection dropdown dest">
+                            <input type="hidden" name="country">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Select Country</div>
                         </div>
                     </div>
                 </div>
@@ -217,7 +169,9 @@
                         <div class="item" data-value="one">
                             One Direction
                         </div>
-
+                        <div class="item" data-value="rapid">
+                            Rapid Connect
+                        </div>
                     </div>
                 </div>
             </div>
@@ -755,7 +709,8 @@
                             <div class="menu">
                                 <div class="item" data-value="one">One Way</div>
                                 <div class="item" data-value="round">Round Trip</div>
-                                <div class="item" data-value="rapid">Rapid Connect <span onclick="window.open('/rapid')"><i
+                                <div class="item" data-value="rapid">Rapid Connect <span
+                                        onclick="window.open('/rapid')"><i
                                         class="fas fa-question-circle ml-1"></i></span></div>
                             </div>
                         </div>
@@ -764,9 +719,9 @@
                         Date
                         <input class="single-date form-control" type="text">
                         <div class="input-daterange input-group range-date" id="datepicker">
-                            <input type="text" class="input-sm form-control" name="start" />
+                            <input class="input-sm form-control" name="start" type="text"/>
                             <span class="input-group-addon">to</span>
-                            <input type="text" class="input-sm form-control" name="end" />
+                            <input class="input-sm form-control" name="end" type="text"/>
                         </div>
                     </li>
                     <li class="list-group-item">
@@ -896,19 +851,10 @@
         integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM="
         src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js"></script>
 <script crossorigin="anonymous"
+        integrity="sha256-und4HgOg2CxzBcqdJOvcT9LfJx0Hf9xQmEO/u7r1Ync=" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/api.min.js"></script>
+<script crossorigin="anonymous"
         integrity="sha256-k30cmb6hiQ/LGKpX2AcllUduUJ0kA4DKKStgUxkGQzM="
         src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.min.js"></script>
 <script src="js/index.js"></script>
-
-<script>
-    let _pLoadS = new Image();
-    let _pLoadL = new Image();
-    let _pLoadG = new Image();
-    let _pLoadP = new Image();
-    _pLoadS.src = "img/airport.png";
-    _pLoadL.src = "img/support-lady.jpg";
-    _pLoadG.src = "img/ground-crew.jpg";
-    _pLoadP.src = "img/programs.jpg";
-</script>
 </body>
 </html>
