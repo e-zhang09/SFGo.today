@@ -126,5 +126,10 @@
     }
   }
 
-
+  footer{
+    .disabled.btn-link{
+      padding: 0;
+      display: none;
+    }
+  }
 }

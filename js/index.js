@@ -41,23 +41,108 @@ $(document).ready(function () {
         $('.labeled.button').on('click', function(e){
             if(e.target.classList.contains('clickable')){
                 $("#"+$(e.target).data('btn-target')).toggleClass('visible');
+                $("#"+$(e.target).data('btn-target')+" > div.menu-container > div").dropdown("show");
+                $("#"+$(e.target).data('btn-target')+" > div.menu-container > div > input").focus();
+            }
+        });
+
+        $('.labeled.button').on("focusout", function(event){
+            let targElem = "#"+$(event.target.parentElement).data('btn-target');
+            if($(targElem).hasClass('visible')){
+                $(event.target.parentElement.parentElement).animate({
+                    opacity: 0
+                }, 500, function() {
+                    $(targElem).removeClass('visible');
+                    $(event.target.parentElement.parentElement).css('opacity', 1);
+                });
+            }
+        });
+
+        $('.dropdown.dir').dropdown({
+            onChange: function(value, text, el){
+                $("#dir-display").text(text);
+                update_dateSelectType(value);
+
             }
         });
 
         $('.dropdown.dest').dropdown({
-            fullTextSearch: "true",
+            fullTextSearch: "fuzzy",
             ignoreCase: "true",
             apiSettings: {
                 url: '/api/airports/{query}'
             },
             minCharacters: 0,
-            saveRemoteData: false,
             onChange: function (value, text, el) {
-                airportSelected(value, text, el)
+                // closeTop();
+                airportSelected(value, text, el, 'dest')
             }
         });
 
+        $('.dropdown.src').dropdown({
+            fullTextSearch: "fuzzy",
+            ignoreCase: "true",
+            apiSettings: {
+                url: '/api/airports/{query}'
+            },
+            minCharacters: 0,
+            onChange: function (value, text, el) {
+                // closeTop();
+                airportSelected(value, text, el, 'src')
+            }
+        });
+
+        $("input[type='text']").on("focus", function () {
+            $(this).select();
+        });
+
+        $('.date-container .form-control').on("focusout", function(event){
+            if(!this.value){
+                this.value = 'Departure Date'
+            }
+        });
+
+        $('.dropdown.num').dropdown({
+            onChange: function(value, text, el){
+                $('.dropdown.num .drop-num').text(text);
+            }
+        });
     }
+
+    // close opened tabs one by one
+    $( document ).keyup(function( event ) {
+        if ( event.which === 13 ) {
+            event.preventDefault();
+        }
+        if(event.originalEvent.key === 'Tab'){
+            setTimeout(function(){closeTop()}, 500)
+        }
+        if(event.originalEvent.key === 'Escape'){
+            closeTop();
+        }
+    });
+
+    $(document).on("click", function(event){
+        // close other tabs if this isn't one
+        if($(event.target).closest("[data-importance]").length === 0){
+            closeTop();
+        }
+    });
+
+    function closeTop(){
+        let mostImportant = null;
+        let val = 1000;
+        $("[data-importance]").each(function(i){
+            if(i < val && this.classList.contains('visible')){
+                mostImportant = this;
+            }
+        });
+
+        if(mostImportant){
+            mostImportant.classList.remove("visible");
+        }
+    }
+
 
     // Add slideDown animation to Bootstrap dropdown when expanding.
     $('body > header > nav').on('show.bs.dropdown', function () {
@@ -106,15 +191,33 @@ $(document).ready(function () {
         }
         if (isMobile) {
             if (tripType === 'one' || tripType === 'rapid') {
-                $('.single-date.form-control').show().datepicker({
+                $('.single-date.form-control.mobile-d').show().datepicker({
                     autoclose: true
                 });
-                $('.range-date.input-group').hide();
+                $('.range-date.input-group.mobile-d').hide();
             } else {
-                $('.range-date.input-group').show().datepicker({
+                $('.range-date.input-group.mobile-d').show().datepicker({
                     autoclose: true
                 });
-                $('.single-date.form-control').hide();
+                $('.single-date.form-control.mobile-d').hide();
+            }
+        }else{
+            if(tripType === 'one' || tripType === 'rapid'){
+                $('#direction-indicator').removeClass('back-forth').addClass('to-right');
+            }else{
+                $('#direction-indicator').addClass('back-forth').removeClass('to-right');
+            }
+            if (tripType === 'one' || tripType === 'rapid') {
+                $('.single-date.form-control:not(mobile-d)').show().datepicker({
+                    autoclose: true
+                });
+                $('.range-date.input-group:not(mobile-d)').hide();
+            } else {
+                $('.range-date.input-group:not(mobile-d)').show().datepicker({
+                    autoclose: true,
+                    format: "mm/dd"
+                });
+                $('.single-date.form-control:not(mobile-d)').hide();
             }
         }
     }
@@ -185,14 +288,21 @@ $(document).ready(function () {
         }
 
         $('#welcome-message').fadeOut(500, function () {
-            $(this).css('width', '80vw').text(bigHeader).fadeIn(250);
+            if(isMobile && loc === 'schedules'){
+                $(this).css('width', '78vw');
+            }else if(isMobile){
+                $(this).css('width', '67.5vw');
+            }else{
+                $(this).css('width', 'unset');
+            }
+            $(this).text(bigHeader).fadeIn(250);
         });
 
         $('#tag-line').fadeOut(500, function () {
             $(this).text('Travel Seamlessly').fadeIn(250);
         });
 
-        let fullSrc = 'https://pixboost.com/api/2/img/https://sfgo.today' + src + '/resize?size='+ (isMobile?'576':$(window).width()) +'&auth=MTc5MzczMTIxMA__';
+        let fullSrc = 'https://pixboost.com/api/2/img/https://sfgo.today' + src + '/resize?size='+ (isMobile?'576':Math.ceil($(window).width()/256)*256) +'&auth=MTc5MzczMTIxMA__';
 
         // LOAD BACKGROUND IMAGE
         $('<img/>').attr('src', fullSrc).on('load', function () {
@@ -231,10 +341,11 @@ $(document).ready(function () {
         });
     }
 
-    function airportSelected(value, text, el) {
-        console.info(value);
-        console.info(text);
-        console.info(el);
+    function airportSelected(value, text, el, loc) {
+        let iata = value.substr(-4,3);
+        let location = value.substring(0, value.length - 5).trim();
+        $("#selectable-" + loc).text(iata);
+        $("#desc-" + loc).text(location);
     }
 
     function navBarVisibility() {
@@ -281,14 +392,22 @@ $(document).ready(function () {
             $('.return-to-top').css('margin-bottom', $('.book-flight-m').outerHeight() - 6);
             if (curLoc === 'schedules') {
                 $('#welcome-message').text('Check Out Our Schedules');
+                $('#welcome-message').css('width', '78vw');
                 reanim_welcomeMsg();
             }
+            $('.logo-img').attr('width', "105");
         } else {
             //tablet/desktop
             $('.return-to-top').css('margin-bottom', 0);
             if (curLoc === 'schedules') {
                 $('#welcome-message').text('Get Our Schedules');
+                $('#welcome-message').css('width', 'unset');
                 reanim_welcomeMsg();
+            }
+            if($(window).width() < 1024){
+                $('.logo-img').attr('width', "70");
+            }else{
+                $('.logo-img').attr('width', "140");
             }
         }
         function reanim_welcomeMsg(){

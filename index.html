@@ -130,49 +130,94 @@
     <div class="land-section">
         <div class="container-fluid no-padding position-relative">
             <div class="book-flight shadow responsive-margin" id="book-flight-bar">
-                <div class="airport-def src no-select">
-                    <div class="abbreviation" id="selectable-src">
-                        SJC
+                <div class="labeled button src" data-importance="1" id="src-btn">
+                    <div class="airport-def src no-select clickable" data-btn-target="src-btn">
+                        <div class="abbreviation clickable" data-btn-target="src-btn" id="selectable-src">
+                            SJC
+                        </div>
+                        <div class="description clickable" data-btn-target="src-btn" id="desc-src">
+                            San Jose, CA
+                        </div>
                     </div>
-                    <div class="description" id="desc-src">
-                        San Jose, CA
+                    <div class="menu-container" style="margin-top: 0.25em!important;">
+                        <div class="ui fluid search selection dropdown src" data-btn-target="src-btn"
+                             data-importance="0">
+                            <input name="source" type="hidden">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Search Airports</div>
+                        </div>
                     </div>
                 </div>
-                <div class="direction back-forth"></div>
-                <div class="labeled button dest" id="dest-btn">
+                <div class="direction back-forth" id="direction-indicator"
+                     onclick="$('.ui.floating.dir.dropdown').dropdown('show')"></div>
+                <div class="labeled button dest" data-importance="1" id="dest-btn">
                     <div class="airport-def dest no-select clickable" data-btn-target="dest-btn">
-                        <div class="abbreviation clickable" id="selectable-dest"  data-btn-target="dest-btn">
+                        <div class="abbreviation clickable" data-btn-target="dest-btn" id="selectable-dest">
                             To
                         </div>
-                        <div class="description clickable" id="desc-dest"  data-btn-target="dest-btn">
+                        <div class="description clickable" data-btn-target="dest-btn" id="desc-dest">
                             Your Destination
                         </div>
                     </div>
                     <div class="menu-container" style="margin-top: 0.25em!important;">
-                        <div class="ui fluid search selection dropdown dest">
-                            <input type="hidden" name="country">
+                        <div class="ui fluid search selection dropdown dest" data-btn-target="dest-btn"
+                             data-importance="0">
+                            <input name="dest" type="hidden">
                             <i class="dropdown icon"></i>
-                            <div class="default text">Select Country</div>
+                            <div class="default text">Search Destinations</div>
                         </div>
                     </div>
                 </div>
                 <div class="ui floating dropdown labeled button dir no-select">
                     <input name="dir" type="hidden">
                     <div class="drop-desc" id="dir-display">
-                        Round Trip
+                        One Direction
                     </div>
                     <div class="drop-indicator"></div>
                     <div class="menu" style="margin-top: 0.25em!important;">
-                        <div class="item active selected" data-value="round">
+                        <div class="item" data-value="round">
                             Round Trip
                         </div>
-                        <div class="item" data-value="one">
+                        <div class="item active selected" data-value="one">
                             One Direction
                         </div>
                         <div class="item" data-value="rapid">
                             Rapid Connect
                         </div>
                     </div>
+                </div>
+                <div class="date-container">
+                    <input class="single-date form-control" type="text" value="Departure Date">
+                    <div class="input-daterange input-group range-date" id="datepickr">
+                        <input class="input-sm form-control" name="start" type="text" value="Depart"/>
+                        <span class="input-group-addon">&#8212;</span>
+                        <input class="input-sm form-control" name="end" type="text" value="Return"/>
+                    </div>
+                    <i class="far fa-calendar drop-indicator"></i>
+                </div>
+                <div class="ui floating dropdown labeled button num no-select">
+                    <input name="dir" type="hidden">
+                    <div class="drop-num" id="num-passenger">
+                        1 Passenger
+                    </div>
+                    <div class="drop-indicator"></div>
+                    <div class="menu" style="margin-top: 0.25em!important;">
+                        <div class="item active selected" data-value="1">
+                            1 Passenger
+                        </div>
+                        <div class="item" data-value="2">
+                            2 Passengers
+                        </div>
+                        <div class="item" data-value="3">3 Passengers</div>
+                        <div class="item" data-value="4">4 Passengers</div>
+                        <div class="item" data-value="5">5 Passengers</div>
+                        <div class="item" data-value="6">6 Passengers</div>
+                        <div class="item" data-value="7">7 Passengers</div>
+                        <div class="item" data-value="8">8 Passengers</div>
+                    </div>
+                </div>
+                <div class="book-now">
+                    <i class="fas fa-arrow-circle-right"></i>
                 </div>
             </div>
             <div class="responsive-margin" id="welcome-message">Book Your Next Flight</div>
@@ -717,8 +762,8 @@
                     </li>
                     <li class="list-group-item">
                         Date
-                        <input class="single-date form-control" type="text">
-                        <div class="input-daterange input-group range-date" id="datepicker">
+                        <input class="single-date form-control mobile-d" type="text">
+                        <div class="input-daterange input-group range-date mobile-d" id="datepicker">
                             <input class="input-sm form-control" name="start" type="text"/>
                             <span class="input-group-addon">to</span>
                             <input class="input-sm form-control" name="end" type="text"/>
@@ -769,10 +814,16 @@
                     <a href="#!">Frequent Flier</a>
                 </p>
                 <p>
-                    <a href="#!">Student Aid</a>
+                <div class="tooltip-wrapper" data-delay='{"show":"500", "hide":"100"}' data-placement="left"
+                     data-toggle="tooltip" title="Coming Winter 2020">
+                    <a class="btn disabled btn-link" href="#">Student Aid</a>
+                </div>
                 </p>
                 <p>
-                    <a href="#!">Pets, No Sweat</a>
+                <div class="tooltip-wrapper" data-delay='{"show":"500", "hide":"100"}' data-placement="left"
+                     data-toggle="tooltip" title="Coming Summer 2020">
+                    <a class="btn disabled btn-link" href="#">Pets, No Sweat</a>
+                </div>
                 </p>
 
             </div>
@@ -794,7 +845,7 @@
                     <a href="#!">Site Map</a>
                 </p>
                 <p>
-                    <a href="#!">Partner With Us</a>
+                    <a href="#!">Privacy Policy</a>
                 </p>
 
             </div>
@@ -851,7 +902,8 @@
         integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM="
         src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js"></script>
 <script crossorigin="anonymous"
-        integrity="sha256-und4HgOg2CxzBcqdJOvcT9LfJx0Hf9xQmEO/u7r1Ync=" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/api.min.js"></script>
+        integrity="sha256-und4HgOg2CxzBcqdJOvcT9LfJx0Hf9xQmEO/u7r1Ync="
+        src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/api.min.js"></script>
 <script crossorigin="anonymous"
         integrity="sha256-k30cmb6hiQ/LGKpX2AcllUduUJ0kA4DKKStgUxkGQzM="
         src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.min.js"></script>

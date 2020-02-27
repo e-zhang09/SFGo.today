@@ -12,18 +12,14 @@ body {
   height: calc(100vw * 138 / 192 - 1px);
   opacity: 0;
 }
-.land-section .book-flight > div {
-  margin: 0 1vw;
-}
 .land-section .book-flight {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.35);
   border-radius: 0.5rem;
   padding: 1rem 6rem;
+  margin: 1rem 6rem;
   position: absolute;
   left: 0;
   right: 0;
@@ -38,7 +34,7 @@ body {
   flex-direction: column;
   align-items: center;
   line-height: 1;
-  justify-content: center;
+  justify-content: end;
 }
 .land-section .book-flight .airport-def .abbreviation {
   color: white;
@@ -50,12 +46,16 @@ body {
   font-size: 0.8rem;
   padding-bottom: 0.5rem;
   text-align: center;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.land-section .book-flight .dropdown.dir {
+.land-section .book-flight .dropdown.dir, .land-section .book-flight .dropdown.num {
   display: flex;
   align-items: center;
 }
-.land-section .book-flight .dropdown.dir .menu {
+.land-section .book-flight .dropdown.dir .menu, .land-section .book-flight .dropdown.num .menu {
   width: fit-content;
   width: -moz-fit-content;
 }
@@ -66,6 +66,11 @@ body {
   height: 22px;
   width: 22px;
   margin: 3px 0 0 12px;
+}
+.land-section .book-flight .drop-indicator.far {
+  background-image: unset;
+  font-size: 21px;
+  color: #FDAE5C;
 }
 .land-section .book-flight .drop-indicator::after {
   position: absolute;
@@ -79,14 +84,19 @@ body {
   bottom: 0.775rem;
   width: 108%;
 }
-.land-section .book-flight .drop-desc {
+.land-section .book-flight .drop-desc,
+.land-section .book-flight .drop-num {
   color: white !important;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .land-section .book-flight .direction {
   background-repeat: no-repeat;
   background-position: center;
-  width: 38px;
+  background-size: contain;
+  width: 5%;
+}
+.land-section .book-flight .direction:hover {
+  cursor: pointer;
 }
 .land-section .book-flight .direction.back-forth {
   background-image: url("/img/back-forth-arrow.svg");
@@ -94,18 +104,95 @@ body {
 .land-section .book-flight .direction.to-right {
   background-image: url("/img/arrow-right.svg");
 }
-.land-section .book-flight .labeled.button.dest.visible .menu-container {
+.land-section .book-flight .labeled.button {
+  width: 10%;
+  min-width: 10%;
+  max-width: 10%;
+}
+.land-section .book-flight .labeled.button.dir {
+  width: 15%;
+  min-width: 15%;
+  max-width: 15%;
+}
+.land-section .book-flight .labeled.button.dir .drop-desc {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.land-section .book-flight .drop-num {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.land-section .book-flight .book-now {
+  width: 3.8%;
+  max-width: 3.8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.land-section .book-flight .book-now i {
+  color: #FDAE5C;
+  font-size: 32px;
+}
+.land-section .book-flight .book-now:hover {
+  cursor: pointer;
+}
+.land-section .book-flight .labeled.button.visible .menu-container {
   display: unset !important;
+}
+.land-section .book-flight .date-container {
+  display: flex;
+  width: 17%;
+  max-width: 21%;
+  justify-content: center;
+  position: relative;
+  align-items: center;
+}
+.land-section .book-flight .date-container .input-group-addon {
+  color: white;
+  width: 9px;
+  margin: 0 1px;
+  padding-bottom: 5px;
+  overflow: hidden;
+}
+.land-section .book-flight .date-container .form-control {
+  box-shadow: none;
+  height: unset;
+  font-size: 1.2rem;
+  color: white;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0);
+  outline: unset;
+  border: none rgba(0, 0, 0, 0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.land-section .book-flight .date-container .form-control:hover {
+  cursor: pointer;
+}
+.land-section .book-flight .date-container .form-control:focus {
+  cursor: unset;
+}
+.land-section .book-flight .dropdown.num {
+  width: 15%;
+  max-width: 15%;
 }
 .land-section .book-flight .menu-container {
   z-index: 9998;
   display: none;
   position: absolute;
 }
-.land-section .book-flight .dropdown .search {
+.land-section .book-flight .menu-container .text {
+  text-overflow: ellipsis;
+}
+.land-section .book-flight .menu-container .search {
   font-size: 1.25rem;
 }
-.land-section .book-flight .dropdown .search input {
+.land-section .book-flight .menu-container .search input {
   border-radius: 0.28571429rem;
   outline: 0;
   width: 100%;
@@ -135,39 +222,39 @@ body {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.land-section .book-flight .dropdown .search input:focus {
+.land-section .book-flight .menu-container .search input:focus {
   border: 1px solid #FDAE5C;
 }
-.land-section .book-flight .dropdown .search input:focus::placeholder {
+.land-section .book-flight .menu-container .search input:focus::placeholder {
   color: #5d5d5d;
   opacity: 1;
   /* Firefox */
 }
-.land-section .book-flight .dropdown .search input:focus:-ms-input-placeholder {
+.land-section .book-flight .menu-container .search input:focus:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #5d5d5d;
 }
-.land-section .book-flight .dropdown .search input:focus::-ms-input-placeholder {
+.land-section .book-flight .menu-container .search input:focus::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #5d5d5d;
 }
-.land-section .book-flight .dropdown .search input::placeholder {
+.land-section .book-flight .menu-container .search input::placeholder {
   color: #dcdcdc;
   opacity: 1;
   /* Firefox */
 }
-.land-section .book-flight .dropdown .search input:-ms-input-placeholder {
+.land-section .book-flight .menu-container .search input:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #dcdcdc;
 }
-.land-section .book-flight .dropdown .search input::-ms-input-placeholder {
+.land-section .book-flight .menu-container .search input::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #dcdcdc;
 }
-.land-section .book-flight .dropdown .menu {
+.land-section .book-flight .menu-container .menu {
   width: 30vw;
 }
-.land-section .book-flight .dropdown .menu .item {
+.land-section .book-flight .menu-container .menu .item {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -198,6 +285,9 @@ body {
 
 footer {
   font-size: 1rem;
+}
+footer .disabled.btn-link {
+  padding: 0;
 }
 
 .header {

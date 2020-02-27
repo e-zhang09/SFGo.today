@@ -104,6 +104,11 @@ header .navbar.sticky .navbar-collapse.show {
     justify-content: center;
     align-items: center;
   }
+
+  footer .disabled.btn-link {
+    padding: 0;
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=mobilestyles.css.map */

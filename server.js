@@ -46,11 +46,16 @@ app.get('/api/airports/*', (req, res)=>{
     };
     let fuse = new Fuse(airportsList, fuzOptions ); // "list" is the item array
     let result = fuse.search(req.params[0]?req.params[0]:'sfo').slice(0,50);
+    //
+    // result.forEach(obj => {
+    //     obj.text = (obj.value.substr(-5) +" " + obj.value.substring(0, obj.value.length - 5)).trim();
+    // });
 
     let resJson = {
         "success" : "true",
         "results": result
     };
+
     res.json(resJson);
 });
 
