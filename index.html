@@ -113,11 +113,12 @@
                 </li>
             </ul>
             <ul class="navbar-nav justify-content-end ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" style="padding: 0">
+                <li class="nav-item" style="position: relative">
+                    <a class="nav-link" href="javascript:void(0)" onclick="signIn()" style="padding: 0" id="user-pfp">
                         <i class="fas fa-user" id="icon-user"></i>
                         Sign In
                     </a>
+                    <span class="signout-drop" id="signoutDrop">Sign Out</span>
                 </li>
             </ul>
         </div>
@@ -168,6 +169,7 @@
                         </div>
                     </div>
                 </div>
+                <span class="xs-spacer"></span>
                 <div class="ui floating dropdown labeled button dir no-select">
                     <input name="dir" type="hidden">
                     <div class="drop-desc" id="dir-display">
@@ -186,6 +188,7 @@
                         </div>
                     </div>
                 </div>
+                <span class="sm-spacer"></span>
                 <div class="date-container">
                     <input class="single-date form-control" type="text" value="Departure Date">
                     <div class="input-daterange input-group range-date" id="datepickr">
@@ -195,6 +198,7 @@
                     </div>
                     <i class="far fa-calendar drop-indicator"></i>
                 </div>
+                <span class="sm-spacer"></span>
                 <div class="ui floating dropdown labeled button num no-select">
                     <input name="dir" type="hidden">
                     <div class="drop-num" id="num-passenger">
@@ -216,7 +220,8 @@
                         <div class="item" data-value="8">8 Passengers</div>
                     </div>
                 </div>
-                <div class="book-now">
+                <span class="xxs-spacer"></span>
+                <div class="book-now" onclick="bookFlight()">
                     <i class="fas fa-arrow-circle-right"></i>
                 </div>
             </div>
@@ -227,6 +232,423 @@
     </div>
 </div>
 
+<!-- LogIn -->
+<div aria-hidden="true" aria-labelledby="loginModalLabel" class="modal fade" id="loginModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="needs-validation" id="loginForm" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Log In !</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="left">
+                        <div class="jumbotron jumbotron-fluid">
+                            <div class="container">
+                                <h1 class="display-6">Register for SFGo</h1>
+                                <hr class="my-6">
+                                <p class="lead">- Frequent Flyer</p>
+                                <p class="lead">- Rapid Connect</p>
+                                <p class="lead">- Seamless Purchasing</p>
+                                <hr class="my-6">
+                                <p class="lead">
+                                    <a class="btn btn-dark btn-lg" href="javascript:registerClick()" role="button">Register
+                                        Now</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="right-container login-container">
+                            <div class="form-group">
+                                <label for="emailInput">Email address</label>
+                                <input aria-describedby="emailHelp" autocomplete="email" class="form-control"
+                                       id="emailInput"
+                                       placeholder="Enter email" required type="email">
+                                <div class="invalid-feedback">
+                                    Please enter your email.
+                                </div>
+                                <small class="form-text text-muted" id="emailHelp">We'll never share your email with
+                                    anyone
+                                    else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordInput">Password</label>
+                                <input autocomplete="current-password" class="form-control" id="passwordInput" placeholder="Password"
+                                       required type="password">
+                                <div class="invalid-feedback">
+                                    Please enter your (correct) password.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-container register-container">
+                            <div class="form-group">
+                                <label for="nameIn">Name</label>
+                                <input autocomplete="name" class="form-control" id="nameIn" placeholder="Johnny Appleseed"
+                                        type="text">
+                                <div class="invalid-feedback">
+                                    Please enter your name.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailIn">Email address</label>
+                                <input aria-describedby="emailH" autocomplete="email" class="form-control"
+                                       id="emailIn"
+                                       placeholder="Enter email" type="email">
+                                <div class="invalid-feedback">
+                                    Please enter an email.
+                                </div>
+                                <small class="form-text text-muted" id="emailH">We'll never share your email with
+                                    anyone
+                                    else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordIn">Password</label>
+                                <input autocomplete="new-password" class="form-control" id="passwordIn" placeholder="Password"
+                                       type="password">
+                                <div class="invalid-feedback">
+                                    Please enter a password.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" onclick="registerClick()">Continue as a Guest</button>
+                <button class="btn btn-primary" onclick="loginClick(event)" type="submit">Log In</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="bookModalLabel" class="modal fade" id="bookModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookModalLabel">Book A Flight !</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span class="details"></span>
+                <ul class="list-group">
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                    <li class="list-group-item"><span class="flight-container row">
+                    <div class="airline-logo col-sm-2">
+                        <img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png">
+                    </div>
+                    <div class="date-airline-container just-left col-sm-3">
+                        <div class="flight-times">
+                            6:04 PM - 11:45 PM
+                        </div>
+                        <div class="airline is-small">
+                            SFGo
+                        </div>
+                    </div>
+                    <div class="time-dest-container just-left col-sm-2">
+                        <div class="flight-length">
+                            3h 42m
+                        </div>
+                        <div class="src-dest is-small">
+                            SJO-SFO
+                        </div>
+                    </div>
+                    <div class="trip-stops col-sm-2">
+                        Nonstop
+                    </div>
+                    <div class="price-type-container just-left col-sm-2">
+                        <div class="trip-price">
+                            $405
+                        </div>
+                        <div class="trip-type is-small">
+                            one way
+                        </div>
+                    </div>
+                    <div class="book-trip-container col-sm-1">
+                        <button type="button" class="btn btn-primary">Book</button>
+                    </div>
+                </span></li>
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" onclick="$('#bookModal').modal('hide')">Cancel</button>
+                <button class="btn btn-primary" onclick="loginClick(event)" type="submit">Check Out</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="checkoutModalLabel" class="modal fade" id="checkoutModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checkoutModalLabel">Checkout !</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" onclick="registerClick()">Cancel</button>
+                <button class="btn btn-primary" onclick="loginClick(event)" type="submit">Check Out</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <main class="page-content">
 </main>
@@ -836,10 +1258,10 @@
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
-                    <a href="#!">Your Account</a>
+                    <a href="./">Book Flight</a>
                 </p>
                 <p>
-                    <a href="#!">Flight Checker</a>
+                    <a href="./schedules">Flight Checker</a>
                 </p>
                 <p>
                     <a href="#!">Site Map</a>
@@ -876,7 +1298,11 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">&copy; Copyright 2020 | SFGo
+    <div class="footer-copyright text-center py-3">
+        &copy; Copyright 2020 | SFGo
+    </div>
+    <div class="text-center">
+        *Images, used under license from Shutterstock.com
     </div>
     <!-- Copyright -->
 

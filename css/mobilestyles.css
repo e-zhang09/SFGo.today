@@ -109,6 +109,14 @@ header .navbar.sticky .navbar-collapse.show {
     padding: 0;
     display: none;
   }
+
+  .modal .modal-dialog {
+    max-width: unset !important;
+  }
+  .modal .modal-body {
+    height: unset !important;
+    flex-direction: column !important;
+  }
 }
 
 /*# sourceMappingURL=mobilestyles.css.map */

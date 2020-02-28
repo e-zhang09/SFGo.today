@@ -1,6 +1,25 @@
 let isMobile = false;
 let tripType = 'one';
+let srcAirport = 'San Jose, CA (SJC)';
+let destAirport = 'San Francisco, CA (SFO)';
+let numPassenger = 1;
+let date = {};
 let curLoc = '';
+let isStorage = storageAvailable('localStorage');
+let isLoggedIn = false;
+let nextAct = null;
+let userName = null;
+let email = localStorage.getItem('email');
+
+if (isStorage) {
+    let status = localStorage.getItem('user');
+    if (status) {
+        isLoggedIn = true;
+        userName = status;
+    } else {
+        isLoggedIn = false;
+    }
+}
 
 $(document).ready(function () {
     $(window).resize(update_windowResized);
@@ -30,28 +49,28 @@ $(document).ready(function () {
         navBarVisibility();
     }
 
-    if(isMobile){
+    if (isMobile) {
         $('.ui.fluid.dropdown').dropdown();
         $('.ui.single.dropdown').dropdown({
             onChange: function (value) {
                 update_dateSelectType(value)
             }
         });
-    }else{
-        $('.labeled.button').on('click', function(e){
-            if(e.target.classList.contains('clickable')){
-                $("#"+$(e.target).data('btn-target')).toggleClass('visible');
-                $("#"+$(e.target).data('btn-target')+" > div.menu-container > div").dropdown("show");
-                $("#"+$(e.target).data('btn-target')+" > div.menu-container > div > input").focus();
+    } else {
+        $('.labeled.button').on('click', function (e) {
+            if (e.target.classList.contains('clickable')) {
+                $("#" + $(e.target).data('btn-target')).toggleClass('visible');
+                $("#" + $(e.target).data('btn-target') + " > div.menu-container > div").dropdown("show");
+                $("#" + $(e.target).data('btn-target') + " > div.menu-container > div > input").focus();
             }
         });
 
-        $('.labeled.button').on("focusout", function(event){
-            let targElem = "#"+$(event.target.parentElement).data('btn-target');
-            if($(targElem).hasClass('visible')){
+        $('.labeled.button').on("focusout", function (event) {
+            let targElem = "#" + $(event.target.parentElement).data('btn-target');
+            if ($(targElem).hasClass('visible')) {
                 $(event.target.parentElement.parentElement).animate({
                     opacity: 0
-                }, 500, function() {
+                }, 500, function () {
                     $(targElem).removeClass('visible');
                     $(event.target.parentElement.parentElement).css('opacity', 1);
                 });
@@ -59,7 +78,7 @@ $(document).ready(function () {
         });
 
         $('.dropdown.dir').dropdown({
-            onChange: function(value, text, el){
+            onChange: function (value, text, el) {
                 $("#dir-display").text(text);
                 update_dateSelectType(value);
 
@@ -96,49 +115,52 @@ $(document).ready(function () {
             $(this).select();
         });
 
-        $('.date-container .form-control').on("focusout", function(event){
-            if(!this.value){
+        $('.date-container .form-control').on("focusout", function (event) {
+            if (!this.value) {
                 this.value = 'Departure Date'
             }
         });
 
         $('.dropdown.num').dropdown({
-            onChange: function(value, text, el){
+            onChange: function (value, text, el) {
+                numPassenger = +value;
                 $('.dropdown.num .drop-num').text(text);
             }
         });
     }
 
     // close opened tabs one by one
-    $( document ).keyup(function( event ) {
-        if ( event.which === 13 ) {
+    $(document).keyup(function (event) {
+        if (event.which === 13) {
             event.preventDefault();
         }
-        if(event.originalEvent.key === 'Tab'){
-            setTimeout(function(){closeTop()}, 500)
+        if (event.originalEvent.key === 'Tab') {
+            setTimeout(function () {
+                closeTop()
+            }, 500)
         }
-        if(event.originalEvent.key === 'Escape'){
+        if (event.originalEvent.key === 'Escape') {
             closeTop();
         }
     });
 
-    $(document).on("click", function(event){
+    $(document).on("click", function (event) {
         // close other tabs if this isn't one
-        if($(event.target).closest("[data-importance]").length === 0){
+        if ($(event.target).closest("[data-importance]").length === 0) {
             closeTop();
         }
     });
 
-    function closeTop(){
+    function closeTop() {
         let mostImportant = null;
         let val = 1000;
-        $("[data-importance]").each(function(i){
-            if(i < val && this.classList.contains('visible')){
+        $("[data-importance]").each(function (i) {
+            if (i < val && this.classList.contains('visible')) {
                 mostImportant = this;
             }
         });
 
-        if(mostImportant){
+        if (mostImportant) {
             mostImportant.classList.remove("visible");
         }
     }
@@ -201,10 +223,10 @@ $(document).ready(function () {
                 });
                 $('.single-date.form-control.mobile-d').hide();
             }
-        }else{
-            if(tripType === 'one' || tripType === 'rapid'){
+        } else {
+            if (tripType === 'one' || tripType === 'rapid') {
                 $('#direction-indicator').removeClass('back-forth').addClass('to-right');
-            }else{
+            } else {
                 $('#direction-indicator').addClass('back-forth').removeClass('to-right');
             }
             if (tripType === 'one' || tripType === 'rapid') {
@@ -231,6 +253,8 @@ $(document).ready(function () {
         if (isMobile) {
             $('.collapse').collapse("hide");
         }
+
+        $('.land').click();
 
         let loc = window.location.pathname;
         loc = loc.replace(/\//g, "");
@@ -288,11 +312,11 @@ $(document).ready(function () {
         }
 
         $('#welcome-message').fadeOut(500, function () {
-            if(isMobile && loc === 'schedules'){
+            if (isMobile && loc === 'schedules') {
                 $(this).css('width', '78vw');
-            }else if(isMobile){
+            } else if (isMobile) {
                 $(this).css('width', '67.5vw');
-            }else{
+            } else {
                 $(this).css('width', 'unset');
             }
             $(this).text(bigHeader).fadeIn(250);
@@ -302,19 +326,14 @@ $(document).ready(function () {
             $(this).text('Travel Seamlessly').fadeIn(250);
         });
 
-        let fullSrc = 'https://pixboost.com/api/2/img/https://sfgo.today' + src + '/resize?size='+ (isMobile?'576':Math.ceil($(window).width()/256)*256) +'&auth=MTc5MzczMTIxMA__';
+        let fullSrc = 'https://pixboost.com/api/2/img/https://sfgo.today' + src + '/resize?size=' + (isMobile ? '576' : Math.ceil($(window).width() / 256) * 256) + '&auth=MTc5MzczMTIxMA__';
 
         // LOAD BACKGROUND IMAGE
         $('<img/>').attr('src', fullSrc).on('load', function () {
             $(this).remove();
             // $('.land-section').css('background-image', 'url(' + src + ')');
             $('.land-section').css({
-                backgroundImage: 'url('+fullSrc+')',
-                WebkitTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
-                MozTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
-                MsTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
-                OTransition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
-                transition: 'background-image 1500ms ease-in-out, height 1500ms ease-in-out',
+                backgroundImage: 'url(' + fullSrc + ')'
             });
 
             //calculate landing-splash size
@@ -325,7 +344,7 @@ $(document).ready(function () {
             if (isMobile) {
                 $('.land-section').css('background-size', 'cover');
             }
-            $('.land-section').animate({opacity: 1}, 200);
+            $('.land-section').animate({opacity: 1}, 500);
 
             if ($("#book-flight-bar").scrollTop !== 20) {
                 //slide in animation for booking bar
@@ -342,10 +361,15 @@ $(document).ready(function () {
     }
 
     function airportSelected(value, text, el, loc) {
-        let iata = value.substr(-4,3);
+        let iata = value.substr(-4, 3);
         let location = value.substring(0, value.length - 5).trim();
         $("#selectable-" + loc).text(iata);
         $("#desc-" + loc).text(location);
+        if (loc === 'src') {
+            srcAirport = value;
+        } else {
+            destAirport = value;
+        }
     }
 
     function navBarVisibility() {
@@ -404,16 +428,218 @@ $(document).ready(function () {
                 $('#welcome-message').css('width', 'unset');
                 reanim_welcomeMsg();
             }
-            if($(window).width() < 1024){
+            if ($(window).width() < 1024) {
                 $('.logo-img').attr('width', "70");
-            }else{
+            } else {
                 $('.logo-img').attr('width', "140");
             }
         }
-        function reanim_welcomeMsg(){
+
+        function reanim_welcomeMsg() {
+            $("#welcome-message").stop(true);
+            $("#tag-line").stop(true);
             $("#welcome-message").animate({top: (isMobile ? 15 : 137), opacity: 1}, 1000);
             let ratio = screen.width / screen.height;
             $("#tag-line").animate({top: 217 + (isMobile ? 10 + 30 * (1 - ratio) : 0), opacity: 1}, 1000);
         }
     }
+
+
+    $('#passwordInput, #passwordIn').on("keyup", function () {
+        if ($(this).val()) {
+            $(this).addClass('hasvalue')
+        } else {
+            $(this).removeClass('hasvalue')
+        }
+    });
+
+    let forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    let validation = Array.prototype.filter.call(forms, function (form) {
+        form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            } else {
+                event.preventDefault();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+
+    $('#loginModal').on('hidden.bs.modal', function () {
+        nextAct = null;
+    });
+
+    $('.register-container').addClass('is-hide');
+    update_userImg();
+
+    $('.signout-drop').on("click", function () {
+        $('.signout-drop').animate({opacity: 0}, 500);
+        setTimeout(function () {
+            $('.signout-drop').removeClass('visible');
+        }, 500);
+        isLoggedIn = false;
+        userName = null;
+        email = null;
+        localStorage.clear();
+        update_userImg();
+    })
 });
+
+function bookFlight() {
+    nextAct = 'book';
+    if (!isLoggedIn) {
+        signIn();
+    } else {
+        nextStep();
+    }
+}
+
+function signIn() {
+    if (!isLoggedIn) {
+        $('#loginModal').modal('show');
+        if ($('#passwordInput').val()) {
+            $('#passwordInput').addClass('hasvalue')
+        }
+        if ($('#passwordIn').val()) {
+            $('#passwordIn').addClass('hasvalue')
+        }
+    }
+}
+
+function registerClick() {
+    if ($('.register-container').is(':visible')) {
+        $('.modal-content .display-6').fadeOut(function () {
+            $(this).text("Register for SFGo").fadeIn();
+        });
+        $('.lead .btn-dark').fadeOut(function () {
+            $(this).text("Register Now").fadeIn();
+        });
+        $('.modal-footer .btn-primary').fadeOut(function () {
+            $(this).text("Log In").fadeIn();
+        });
+
+        $('.register-container [required]').removeAttr('required');
+        $('.login-container input').attr("required");
+
+        $('.register-container').animate({'top': '-200', 'opacity': '0', 'display': 'none'}, 1000).css({'top': 250});
+        $('.login-container').css({'top': 250, 'opacity': 0});
+        setTimeout(function () {
+            $('.login-container').animate({'top': '0', 'opacity': '1', 'display': 'block'}, 1000);
+            setTimeout(function () {
+                $('.register-container').addClass('is-hide');
+            }, 1000);
+        }, 250);
+    } else {
+        $('.modal-content .display-6').fadeOut(function () {
+            $(this).text("Log in to SFGo").fadeIn();
+        });
+        $('.lead .btn-dark').fadeOut(function () {
+            $(this).text("Log In Now").fadeIn();
+        });
+        $('.modal-footer .btn-primary').fadeOut(function () {
+            $(this).text("Register").fadeIn();
+        });
+
+        $('.login-container [required]').removeAttr('required');
+        $('.register-container input').attr("required");
+
+        $('.login-container').animate({'top': '-200', 'opacity': '0', 'display': 'none'}, 1000).css({'top': 250});
+        $('.register-container').css({'top': 250, 'opacity': 0});
+        setTimeout(function () {
+            $('.register-container').removeClass('is-hide');
+            $('.register-container').animate({'top': '0', 'opacity': '1', 'display': 'block'}, 1000);
+        }, 250);
+    }
+}
+
+function loginClick(e) {
+    let form = document.getElementById('loginForm');
+    if (!form.checkValidity()) return;
+    let register = ($('.register-container').is(':visible'));
+
+    let dataPrep = {};
+    if (register) {
+        dataPrep.email = $('#emailIn').val();
+        dataPrep.password = $('#passwordIn').val();
+        dataPrep.name = $('#nameIn').val();
+    } else {
+        dataPrep.email = $('#emailInput').val();
+        dataPrep.password = $('#passwordInput').val();
+    }
+    $.ajax({
+        type: 'POST',
+        url: '/api/' + (register ? 'register' : 'signin'),
+        data: dataPrep,
+        success: function (data) {
+            userName = data.name;
+            isLoggedIn = true;
+            localStorage.setItem('user', userName);
+            localStorage.setItem('email', dataPrep.email);
+            update_userImg();
+            nextStep();
+        },
+        error: function (data) {
+            if (!register) {
+                $('input').val('').removeClass('hasvalue');
+            }
+        }
+    });
+}
+
+function nextStep() {
+    $('#loginModal').modal('hide');
+    if (nextAct) {
+        $('#bookModal').modal('show');
+        if (tripType === 'round') {
+            let startDate = ($('.date-container .input-sm[name=start]').datepicker('getUTCDate'));
+            let endDate = ($('.date-container .input-sm[name=end]').datepicker('getUTCDate'));
+            $('.details').text('Showing flights departing on ' + startDate + ' and returning on ' + endDate + ' from ' + srcAirport + ' to ' + destAirport + '...');
+        } else {
+            let date = ($('.date-container .single-date').datepicker('getUTCDate'));
+            $('.details').text('Showing flights departing on ' + date + ' from ' + srcAirport + ' to ' + destAirport + '...');
+        }
+    }
+}
+
+function update_userImg() {
+    if (isLoggedIn) {
+        $('#user-pfp').html(' <i class="fas fa-user" id="icon-user"></i>' + userName.split(' ')[0]);
+        $('#user-pfp').attr('onclick', 'signOut()');
+    } else {
+        $('#user-pfp').html(' <i class="fas fa-user" id="icon-user"></i>Sign In');
+        $('#user-pfp').attr('onclick', 'signIn()');
+    }
+}
+
+
+function signOut() {
+    if ($('.signout-drop').css('display') === 'block') {
+        $('.signout-drop').animate({opacity: 0}, 500);
+        setTimeout(function () {
+            $('.signout-drop').css('display', 'none');
+        }, 500);
+    } else {
+        $('.signout-drop').css('display', 'block').animate({opacity: 1}, 500);
+    }
+}
+
+
+function storageAvailable(type) {
+    let storage;
+    try {
+        storage = window[type];
+        let x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    } catch (e) {
+        return e instanceof DOMException && (
+            e.code === 22 ||
+            e.code === 1014 ||
+            e.name === 'QuotaExceededError' ||
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            (storage && storage.length !== 0);
+    }
+}

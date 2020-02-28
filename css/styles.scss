@@ -14,7 +14,9 @@ body {
   background-repeat: no-repeat;
   background-size: 100% auto;
   height: calc(100vw * 138 / 192 - 1px);
-  opacity: 0;
+  opacity: 0.4;
+
+  transition: background-image 1500ms ease-in-out, height 1500ms ease-in-out;
 
   .book-flight > div {
     //margin: 0 1vw;
@@ -50,13 +52,13 @@ body {
 
       .abbreviation {
         color: white;
-        font-size: 3.2rem;
+        font-size: 3.51vw;
         padding-bottom: 0.7rem;
       }
 
       .description {
         color: white;
-        font-size: 0.8rem;
+        font-size: 0.877vw;
         padding-bottom: 0.5rem;
         text-align: center;
         width: 100%;
@@ -85,7 +87,7 @@ body {
       margin: 3px 0 0 12px;
     }
 
-    .drop-indicator.far{
+    .drop-indicator.far {
       background-image: unset;
       font-size: 21px;
       color: $main-yellow;
@@ -114,7 +116,7 @@ body {
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-      width: 5%;
+      width: 4%;
     }
 
     .direction:hover {
@@ -156,19 +158,20 @@ body {
       white-space: nowrap;
     }
 
-    .book-now{
+    .book-now {
       width: 3.8%;
       max-width: 3.8%;
       display: flex;
       justify-content: center;
       align-items: center;
-      i{
+
+      i {
         color: $main-yellow;
         font-size: 32px;
       }
     }
 
-    .book-now:hover{
+    .book-now:hover {
       cursor: pointer;
     }
 
@@ -178,6 +181,21 @@ body {
       }
     }
 
+    .xxs-spacer {
+      width: 0.125%;
+      min-width: 0.125%;
+    }
+
+    .xs-spacer {
+      width: 0.5%;
+      min-width: 0.5%;
+    }
+
+    .sm-spacer {
+      width: 1%;
+      min-width: 1%;
+    }
+
     .date-container {
       display: flex;
       width: 17%;
@@ -185,20 +203,22 @@ body {
       justify-content: center;
       position: relative;
       align-items: center;
-      .input-group-addon{
+
+      .input-group-addon {
         color: white;
         width: 9px;
         margin: 0 1px;
         padding-bottom: 5px;
         overflow: hidden;
       }
+
       .form-control {
         box-shadow: none;
         height: unset;
         font-size: 1.2rem;
         color: white;
         padding: 0;
-        background-color: rgba(0,0,0,0);
+        background-color: rgba(0, 0, 0, 0);
         outline: unset;
         border: none rgba(0, 0, 0, 0);
         overflow: hidden;
@@ -206,17 +226,17 @@ body {
         white-space: nowrap;
       }
 
-      .form-control:hover{
+      .form-control:hover {
         cursor: pointer;
       }
 
-      .form-control:focus{
+      .form-control:focus {
         cursor: unset;
       }
 
     }
 
-    .dropdown.num{
+    .dropdown.num {
       width: 15%;
       max-width: 15%;
     }
@@ -337,6 +357,116 @@ body {
   }
 }
 
+.modal {
+  z-index: 9999;
+
+  .modal-dialog {
+    max-width: calc(100vw - 16px - 12rem);
+  }
+
+  .modal-footer {
+    .btn-primary {
+      background-color: $main-yellow;
+      border-color: $main-yellow;
+    }
+
+    .btn-primary:hover {
+      background-color: #d7964b;
+      border-color: #de9a4f;
+    }
+  }
+}
+
+#loginModal {
+  .modal-body {
+    height: 65vh;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+
+    .left, .right {
+      flex: 1;
+    }
+
+    .left, .right .jumbotron {
+      height: 100%;
+    }
+
+    .right-container {
+      position: absolute;
+      padding: 4rem 15vw 4rem 15px;
+
+      small, .invalid-feedback {
+        font-size: 50%;
+      }
+
+      .hasvalue {
+        font-weight: bolder;
+        letter-spacing: -5px;
+      }
+
+      .register-container {
+        label {
+          font-size: 90%;
+        }
+      }
+    }
+  }
+
+  .modal-content {
+    overflow: hidden;
+  }
+
+
+
+  form {
+    padding: 0;
+  }
+
+}
+
+#bookModal{
+  .modal-body{
+    display: flex;
+    flex-direction: column;
+    .details{
+      font-size: 1rem;
+    }
+    .list-group{
+      padding-top: 1rem;
+    }
+    .flight-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 30px;
+      .airline-logo{
+        padding: 0 40px 0 0px;
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .price-type-container{
+      padding-left: 7.5%;
+    }
+    .just-left{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    font-size: 1.2rem;
+
+    .is-small{
+      font-size: 0.75rem;
+      color: #2c2c2cba;
+    }
+  }
+}
+
 footer {
   font-size: 1rem;
 
@@ -357,6 +487,24 @@ footer {
 
 .no-padding {
   padding: 0 !important;
+}
+
+.signout-drop {
+  display: none;
+  position: absolute;
+  opacity: 0;
+  background-color: #3c3c3c;
+  color: white;
+  font-size: 1.25rem;
+  white-space: nowrap;
+  padding: 10px 20px;
+  right: 0;
+  border-radius: 5px;
+}
+
+.signout-drop:hover {
+  cursor: pointer;
+  background-color: #353535;
 }
 
 .sticky {
@@ -493,7 +641,7 @@ header {
       }
 
       #icon-user {
-        padding-top: 0.1em;
+        padding-top: 0.3em;
         padding-right: 0.5em;
         font-size: 0.6em;
         color: $main-yellow;
@@ -630,3 +778,8 @@ header {
 .book-flight-m {
   display: none;
 }
+
+.is-hide {
+  display: none;
+}
+

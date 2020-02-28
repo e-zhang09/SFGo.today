@@ -132,4 +132,14 @@
       display: none;
     }
   }
+
+  .modal{
+    .modal-dialog{
+      max-width: unset !important;
+    }
+    .modal-body{
+      height: unset !important;
+      flex-direction: column !important;
+    }
+  }
 }
