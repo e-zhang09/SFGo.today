@@ -388,7 +388,7 @@ body {
       flex: 1;
     }
 
-    .right{
+    .right {
       position: relative;
     }
 
@@ -413,13 +413,15 @@ body {
         font-size: 1.25rem;
       }
 
-      .right-container.form-group{
+      .right-container.form-group {
         margin-bottom: 0.75rem;
-        a{
+
+        a {
           color: #6c757d !important;
         }
       }
-      .left-container.form-group{
+
+      .left-container.form-group {
         margin-bottom: 0.5rem;
       }
     }
@@ -442,7 +444,7 @@ button:disabled {
   min-height: 100vh;
 
   .modal-body {
-    span.details{
+    span.details {
       padding-right: 5%;
     }
 
@@ -497,6 +499,15 @@ footer {
 
   .disabled.btn-link {
     padding: 0;
+  }
+
+  .copyright-container {
+    padding: 0.8rem 0;
+
+    .slant {
+      font-size: 72%;
+      font-style: italic;
+    }
   }
 }
 
@@ -817,4 +828,172 @@ header {
   background: none !important;
   cursor: context-menu !important;
 }
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 4.2vh;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  .basis-100 {
+    flex-basis: 100%;
+  }
+
+  .small-desc {
+    font-size: 55%;
+    font-weight: bolder;
+    color: #002a50
+  }
+
+  .big-splash {
+    margin-top: 1.8vh;
+    font-size: 125%;
+    color: #002e58
+  }
+}
+
+.home-content{
+  .white-bg-container {
+    padding: 2.125rem 6rem 2rem;
+
+    .new-card-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .left, .right {
+        flex: 1;
+
+        img {
+          width: 100%;
+          padding: 0 2vw;
+        }
+
+        margin: 0 5.5vw;
+      }
+
+      .right:hover {
+        cursor: pointer;
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+
+        .title {
+          font-size: 55%;
+          font-weight: bolder;
+          color: #002e58;
+          padding-bottom: 1vh;
+        }
+
+        .desc {
+          font-size: 52%;
+          color: $main-dark-blue
+        }
+
+        .sym {
+          padding-left: 8px;
+          i {
+            font-size: 70%;
+            color: $main-yellow;
+          }
+        }
+      }
+    }
+
+    .background-img {
+      background-color: #cbf7ff;
+      background-image: url('https://pixboost.com/api/2/img/https://sfgo.today/img/backpacker.jpg/resize?size=1566&auth=MTc5MzczMTIxMA__');
+      background-size: cover;
+      width: 100%;
+      max-height: 70vh;
+
+      .box {
+        padding-left: 8.4%;
+        padding-top: 9%;
+        padding-bottom: 9.6%;
+        height: 83%;
+        width: 35%;
+
+        .box-txt-container:hover{
+          cursor: pointer;
+        }
+        .box-txt-container {
+          padding: 2vw;
+          background-color: $main-dark-blue;
+          display: flex;
+          align-items: center;
+
+          .title {
+            font-size: 55%;
+            font-weight: bolder;
+            color: white;
+            padding-bottom: 1vh;
+          }
+
+          .desc {
+            font-size: 52%;
+            color: white
+          }
+
+          .sym {
+            padding-left: 10px;
+            i {
+              font-size: 70%;
+              color: $main-yellow;
+            }
+          }
+
+          div {
+            color: white;
+          }
+
+        }
+      }
+    }
+  }
+  .btn{
+    background-color: $main-yellow;
+    border-radius: 0 !important;
+    color: white !important;
+    font-size: 70%;
+    padding: 15px 75px;
+  }
+
+  .deals-dest{
+    padding: 5rem 6rem 2.5rem;
+  }
+
+  .xl-splash{
+    font-size: 125%;
+    color: #002e58;
+    position: relative;
+  }
+  .xl-splash:after{
+    position: absolute;
+    left: 0;
+    bottom: -3.5px;
+    width: 10%;
+    content: '';
+    border-bottom: $main-yellow 3.5px solid;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -408,6 +408,13 @@ footer {
 footer .disabled.btn-link {
   padding: 0;
 }
+footer .copyright-container {
+  padding: 0.8rem 0;
+}
+footer .copyright-container .slant {
+  font-size: 72%;
+  font-style: italic;
+}
 
 .header {
   background-color: #f1f1f1;
@@ -677,6 +684,135 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
 .no-click:hover {
   background: none !important;
   cursor: context-menu !important;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 4.2vh;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.content-container .basis-100 {
+  flex-basis: 100%;
+}
+.content-container .small-desc {
+  font-size: 55%;
+  font-weight: bolder;
+  color: #002a50;
+}
+.content-container .big-splash {
+  margin-top: 1.8vh;
+  font-size: 125%;
+  color: #002e58;
+}
+
+.home-content .white-bg-container {
+  padding: 2.125rem 6rem 2rem;
+}
+.home-content .white-bg-container .new-card-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.home-content .white-bg-container .new-card-container .left, .home-content .white-bg-container .new-card-container .right {
+  flex: 1;
+  margin: 0 5.5vw;
+}
+.home-content .white-bg-container .new-card-container .left img, .home-content .white-bg-container .new-card-container .right img {
+  width: 100%;
+  padding: 0 2vw;
+}
+.home-content .white-bg-container .new-card-container .right:hover {
+  cursor: pointer;
+}
+.home-content .white-bg-container .new-card-container .right {
+  display: flex;
+  align-items: center;
+}
+.home-content .white-bg-container .new-card-container .right .title {
+  font-size: 55%;
+  font-weight: bolder;
+  color: #002e58;
+  padding-bottom: 1vh;
+}
+.home-content .white-bg-container .new-card-container .right .desc {
+  font-size: 52%;
+  color: #001D38;
+}
+.home-content .white-bg-container .new-card-container .right .sym {
+  padding-left: 8px;
+}
+.home-content .white-bg-container .new-card-container .right .sym i {
+  font-size: 70%;
+  color: #FDAE5C;
+}
+.home-content .white-bg-container .background-img {
+  background-color: #cbf7ff;
+  background-image: url("https://pixboost.com/api/2/img/https://sfgo.today/img/backpacker.jpg/resize?size=1566&auth=MTc5MzczMTIxMA__");
+  background-size: cover;
+  width: 100%;
+  max-height: 70vh;
+}
+.home-content .white-bg-container .background-img .box {
+  padding-left: 8.4%;
+  padding-top: 9%;
+  padding-bottom: 9.6%;
+  height: 83%;
+  width: 35%;
+}
+.home-content .white-bg-container .background-img .box .box-txt-container:hover {
+  cursor: pointer;
+}
+.home-content .white-bg-container .background-img .box .box-txt-container {
+  padding: 2vw;
+  background-color: #001D38;
+  display: flex;
+  align-items: center;
+}
+.home-content .white-bg-container .background-img .box .box-txt-container .title {
+  font-size: 55%;
+  font-weight: bolder;
+  color: white;
+  padding-bottom: 1vh;
+}
+.home-content .white-bg-container .background-img .box .box-txt-container .desc {
+  font-size: 52%;
+  color: white;
+}
+.home-content .white-bg-container .background-img .box .box-txt-container .sym {
+  padding-left: 10px;
+}
+.home-content .white-bg-container .background-img .box .box-txt-container .sym i {
+  font-size: 70%;
+  color: #FDAE5C;
+}
+.home-content .white-bg-container .background-img .box .box-txt-container div {
+  color: white;
+}
+.home-content .btn {
+  background-color: #FDAE5C;
+  border-radius: 0 !important;
+  color: white !important;
+  font-size: 70%;
+  padding: 15px 75px;
+}
+.home-content .deals-dest {
+  padding: 5rem 6rem 2.5rem;
+}
+.home-content .xl-splash {
+  font-size: 125%;
+  color: #002e58;
+  position: relative;
+}
+.home-content .xl-splash:after {
+  position: absolute;
+  left: 0;
+  bottom: -3.5px;
+  width: 10%;
+  content: "";
+  border-bottom: #FDAE5C 3.5px solid;
 }
 
 /*# sourceMappingURL=styles.css.map */

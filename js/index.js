@@ -760,6 +760,13 @@ function checkOut() {
         $('#bookModal').modal('hide');
         $('#checkoutModal').modal('show');
         $('#checkOutBtn').html('Check Out');
+        setTimeout(function(){
+            let $form = $('#200621569630148');
+            console.info($form.attr('height'));
+            if($form.css('height') === "0px"){
+                $form.css('height', 'unset');
+            }
+        },1500);
     }, rndInt(500,2500));
 }
 
