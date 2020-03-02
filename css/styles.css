@@ -799,7 +799,7 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
   padding: 15px 75px;
 }
 .home-content .deals-dest {
-  padding: 5rem 6rem 2.5rem;
+  padding: 4.5rem 6rem 2.5rem;
 }
 .home-content .xl-splash {
   font-size: 125%;
@@ -813,6 +813,11 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
   width: 10%;
   content: "";
   border-bottom: #FDAE5C 3.5px solid;
+}
+.home-content .deals-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 3vh;
 }
 
 /*# sourceMappingURL=styles.css.map */

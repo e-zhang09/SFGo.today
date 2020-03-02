@@ -964,7 +964,7 @@ header {
   }
 
   .deals-dest{
-    padding: 5rem 6rem 2.5rem;
+    padding: 4.5rem 6rem 2.5rem;
   }
 
   .xl-splash{
@@ -979,6 +979,15 @@ header {
     width: 10%;
     content: '';
     border-bottom: $main-yellow 3.5px solid;
+  }
+
+  .deals-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 3vh;
+    .deal-card{
+
+    }
   }
 }
 
