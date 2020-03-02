@@ -502,7 +502,7 @@ footer {
   }
 
   .copyright-container {
-    padding: 0.8rem 0;
+    padding: 0.8rem 0 3.5rem;
 
     .slant {
       font-size: 72%;
@@ -964,7 +964,11 @@ header {
   }
 
   .deals-dest{
-    padding: 4.5rem 6rem 2.5rem;
+    padding: 4.5rem 6rem 6.5rem;
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+    background-color: rgb(245, 251, 253);
+    width: 100%;
   }
 
   .xl-splash{
@@ -976,17 +980,55 @@ header {
     position: absolute;
     left: 0;
     bottom: -3.5px;
-    width: 10%;
+    width: 25%;
     content: '';
     border-bottom: $main-yellow 3.5px solid;
   }
 
   .deals-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding-top: 3vh;
-    .deal-card{
+    .slick-prev{
+      left: -30px;
+    }
+    .slick-slide {
+      margin: 0 15px;
+    }
+    .slick-list {
+      margin: 0 -15px;
+    }
 
+    padding-top: 2.5rem;
+    .slick-arrow:before{
+      color: $main-dark-blue;
+      font-size: 25px;
+    }
+
+    .deal-card{
+      background-color: white;
+      img{
+        width: 100%;
+      }
+
+      .txt-sym-container{
+        display: flex;
+        align-items: center;
+        padding: 4vh 2.5vw;
+        i{
+          padding-left: 8px;
+          color: $main-yellow;
+        }
+      }
+
+      .title {
+        font-size: 55%;
+        font-weight: bolder;
+        color: #002e58;
+        padding-bottom: 1vh;
+      }
+
+      .desc {
+        font-size: 52%;
+        color: $main-dark-blue
+      }
     }
   }
 }
