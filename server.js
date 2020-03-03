@@ -137,6 +137,13 @@ app.get('/api/jobs', (req, res) => {
     res.json(jobs);
 });
 
+app.get(['/privacy-policy', '/robot.txt', '/terms-of-service', '/sitemap.xml'], (req, res) => {
+    if(!req.url.includes('.')){
+        req.url += '.html';
+    }
+    res.sendFile(path.join(__dirname, req.url));
+});
+
 let server = app.listen(process.env.PORT || 3000, function () {
     console.log('Listening on port ' + server.address().port);
 });

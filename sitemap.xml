@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+    <url>
+        <loc>https://sfgo.today/</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>https://sfgo.today/schedules</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://sfgo.today/programs</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://sfgo.today/home</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://sfgo.today/careers</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://sfgo.today/contact</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://sfgo.today/terms-of-service</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://sfgo.today/privacy-policy</loc>
+        <lastmod>2020-03-04T05:39:00+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+
+</urlset>
