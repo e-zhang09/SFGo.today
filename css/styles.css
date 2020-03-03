@@ -19,7 +19,7 @@ body {
   justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.35);
   border-radius: 0.5rem;
-  padding: 1rem calc(5.2vw + 1.7px);
+  padding: 1rem calc(5.2vw - -1.7px);
   margin: 1rem 6rem;
   position: absolute;
   left: 0;
@@ -88,7 +88,7 @@ body {
 .land-section .book-flight .drop-desc,
 .land-section .book-flight .drop-num {
   color: white !important;
-  font-size: calc(1vw + 4.6px);
+  font-size: calc(1vw - -4.6px);
 }
 .land-section .book-flight .direction {
   background-repeat: no-repeat;
@@ -174,7 +174,7 @@ body {
 .land-section .book-flight .date-container .form-control {
   box-shadow: none;
   height: unset;
-  font-size: calc(1vw + 4.6px);
+  font-size: calc(1vw - -4.6px);
   color: white;
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
@@ -361,6 +361,16 @@ button:disabled {
 #jobAppModal {
   max-height: 100vh;
   min-height: 100vh;
+}
+#jobAppModal .modal-body .title {
+  font-size: 55%;
+  font-weight: bolder;
+  color: #002e58;
+}
+#jobAppModal .modal-body .desc {
+  font-size: 52%;
+  color: #001D38;
+  padding-bottom: 1.5vh;
 }
 
 #bookModal {
@@ -876,6 +886,43 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
   color: #001D38;
 }
 
+.schedules-container {
+  justify-content: center;
+  padding-bottom: 4.5rem;
+}
+.schedules-container table {
+  margin-top: 2.5rem;
+}
+.schedules-container .one-way td {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.schedules-container .one-way td img {
+  margin-top: -2px;
+  margin-bottom: -2px;
+}
+.schedules-container .mg-top {
+  margin-top: 4.5rem;
+}
+.schedules-container td {
+  padding: 10px 15px;
+  font-family: "Noto Sans SC", serif;
+  color: #002e58;
+}
+.schedules-container th {
+  background-color: #002e58;
+  color: white;
+  padding: 10px 15px;
+  font-family: "Noto Sans SC", serif;
+  font-size: 20px;
+}
+.schedules-container .airport {
+  font-size: 18px;
+}
+.schedules-container .schedules-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 .careers-container .is-loading {
   opacity: 0;
   transition: opacity 2s ease-in-out;
@@ -957,6 +1004,10 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
 }
 .careers-container .spinner-container span .spinner-border {
   margin-right: 10px;
+}
+
+.content-container {
+  margin-bottom: 4.5rem;
 }
 
 .white-bg-container {

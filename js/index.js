@@ -748,7 +748,7 @@ function signOut() {
             setTimeout(function () {
                 $('.signout-drop').css('display', 'none');
             }, 500);
-        }, 5000)
+        }, 5000);
     }
 }
 

@@ -19,15 +19,26 @@
             if (qOnce) return;
             qOnce = true;
             qData = data;
-            let dKeys = Object.keys(data);
-            for (let i = 0; i < dKeys.length; i++) {
-                $('.job-desc-container').append(genCategoryComponent(data[dKeys[i]].type, data[dKeys[i]]['desc']));
+            for (let i = 0; i < qData.length; i++) {
+                $('.job-desc-container').append(genCategoryComponent(data[i].type, data[i]['desc']));
             }
 
 
             $('.category-container').on('click', function(e){
                 $('#jobAppModal').modal('show');
-                console.info($(this).data('modal-target'));
+                let targetData = $(this).data('modal-target');
+
+                let $popTarget = $("#populateTarget");
+                $popTarget.empty();
+
+                for (let i = 0; i < qData.length; i++) {
+                    if(qData[i].type === targetData){
+                        let jobs = qData[i]['jobs'];
+                        for (let j = 0; j < jobs.length; j++) {
+                            $popTarget.append('<div class="title">'+jobs[j].title+'</div><div class="desc">'+jobs[j]["desc"]+'</div>')
+                        }
+                    }
+                }
             });
 
             function genCategoryComponent(title, description) {

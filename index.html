@@ -19,8 +19,8 @@
     </script>
     <script src="https://kit.fontawesome.com/913ecb688b.js"></script>
 
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/mobilestyles.css" rel="stylesheet">
+    <link href="css/styles.min.css" rel="stylesheet">
+    <link href="css/mobilestyles.min.css" rel="stylesheet">
 
     <link crossorigin="anonymous"
           href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.css"
@@ -347,21 +347,25 @@
     </div>
 </div>
 
-<div class="modal fade" id="jobAppModal" tabindex="-1" role="dialog" aria-labelledby="jobAppModalLabel" aria-hidden="true">
+<div aria-hidden="true" aria-labelledby="jobAppModalLabel" class="modal fade" id="jobAppModal" role="dialog"
+     tabindex="-1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="jobAppModalLabel">Open Positions</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="populateTarget">
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="window.open('mailto:jobs@sfgo.today?subject=Job%20Application&body=Please%20mention%20the%20position%20you%20are%20applying%20for%20in%20the%20body.')">Apply Now!</button>
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" onclick="window.open('mailto:jobs@sfgo.today?subject=Job%20Application&body=Please%20mention%20the%20position%20you%20are%20applying%20for%20in%20the%20body.')"
+                        type="button">
+                    Apply Now!
+                </button>
             </div>
         </div>
     </div>
@@ -1370,7 +1374,7 @@
 <script crossorigin="anonymous"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="js/jquery.nicescroll.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
 <script crossorigin="anonymous"
         integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM="
         src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js"></script>
@@ -1383,6 +1387,6 @@
 <script crossorigin="anonymous"
         integrity="sha256-NXRS8qVcmZ3dOv3LziwznUHPegFhPZ1F/4inU7uC8h0="
         src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<script src="js/index.js"></script>
+<script src="js/index.min.js"></script>
 </body>
 </html>

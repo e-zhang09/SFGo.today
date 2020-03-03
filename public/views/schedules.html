@@ -1,103 +1,145 @@
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Garamond|Nanum+Gothic|Kaushan+Script|Amaranth|Courgette|Faster+One|Playfair+Display+SC|Prompt|Pacifico|Trade+Winds&display=swap" rel="stylesheet">
-<div class="container-fluid content" style="height: 1000px">
-    <p id= "schedules_text" style="height: 50px; display: flex; align-items: center; justify-content: center">SCHEDULES</p>
-    <table id = "schedules" border=2px style="display: flex; align-items: center; justify-content: center" align = "center">
-    	<tr>
-    		<th>Airlines</th>
-    		<th>Start</th>
-    		<th>Destination</th>
-    	</tr>
-    	<tr>
-    		<td style="font-family: Trade Winds">Pacific Airlines</td>
-    		<td class="airport">San Francisco, CA (SFO)</td>
-    		<td class="airport">Juneau, AK (JNU)</td>
-    	</tr>
-    	<tr>
-    		<td style="font-family: Pacifico">Journeyman</td>
-    		<td class="airport">Phoenix, AZ (PHX)</td>
-    		<td class="airport">Seattle, WA (SEA) </td>
-    	</tr>
-    	<tr>
-    		<td style="font-family: Playfair Display SC">Northeastern Airlines</td>
-    		<td class="airport">New York City, NY (JFK)</td>
-    		<td class="airport">Detroit, MI (DTW)</td>
-    	</tr>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Garamond|Nanum+Gothic|Kaushan+Script|Amaranth|Courgette|Faster+One|Playfair+Display+SC|Prompt|Pacifico|Trade+Winds&display=swap"
+      rel="stylesheet">
+<div class="container-fluid content-container schedules-container">
+    <div class="basis-100 text-center small-desc">FLIGHT SCHEDULES</div>
+    <div class="basis-100 text-center big-splash">Fly With SFGo To Go Places</div>
 
-    	<tr>
-    		<td style="font-family: Prompt">Pioneer Airlines</td>
-    		<td class="airport">San Francisco, CA (SFO)</td>
-    		<td class="airport">Dallas, TX (DFW)</td>
-    	</tr>
+    <table border="2"
+           class="schedules-table one-way" style="display: flex; align-items: center; justify-content: center; border: black;">
+        <tr>
+            <th>Airline</th>
+            <th>Start</th>
+            <th>Destination</th>
+			<th>Days</th>
+        </tr>
+        <tr>
+            <td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Juneau, AK (JNU)</td>
+			<td class="airport">M T F</td>
+        </tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">Phoenix, AZ (PHX)</td>
+            <td class="airport">Seattle, WA (SEA)</td>
+			<td class="airport">M Th F</td>
+        </tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">New York City, NY (JFK)</td>
+            <td class="airport">Detroit, MI (DTW)</td>
+			<td class="airport">M W Th F</td>
+        </tr>
 
-    	<tr>
-    		<td style="font-family: Faster One">EagleAir</td>
-    		<td class="airport">Las Vegas, NV (LAS)</td>
-    		<td class="airport">Atlanta, GA (ATL)</td>
-    	</tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Dallas, TX (DFW)</td>
+			<td class="airport">M T W Th F</td>
+        </tr>
 
-    	<tr>
-    		<td style="font-family: Courgette">Fearless Flyer</td>
-    		<td class="airport">San Francisco, CA (SFO)</td>
-    		<td class="airport">Toronto, ON, Canada (YYZ)</td>
-    	</tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">Las Vegas, NV (LAS)</td>
+            <td class="airport">Atlanta, GA (ATL)</td>
+			<td class="airport">M T Th</td>
+        </tr>
 
-    	<tr>
-    		<td style="font-family: Amaranth">Summit Airways</td>
-    		<td class="airport">Chicago, IL (ORD)</td>
-    		<td class="airport">Denver, CO (DEN)</td>
-    	</tr>
-    	<tr>
-    		<td style="font-family: Garamond">Midwest Airlines</td>
-    		<td class="airport">St. Louis, MO (ALN)</td>
-    		<td class="airport">Houston, TX (IAH)</td>
-    	</tr>
-    	<tr>
-    		<td style="font-family: Kaushan Script">Majestic Airways</td>
-    		<td class="airport">San Francisco, CA (SFO)</td>
-    		<td class="airport">Honolulu, HI (HNL)</td>
-    	</tr>
-    	<tr>
-    		<td style="font-family: Nanum Gothic">TransAtlantic</td>
-    		<td class="airport">Washington, DC (DCA)</td>
-    		<td class="airport">London, England (LHR)</td>
-    	</tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Toronto, ON, Canada (YYZ)</td>
+			<td class="airport">Th F</td>
+        </tr>
+
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">Chicago, IL (ORD)</td>
+            <td class="airport">Denver, CO (DEN)</td>
+			<td class="airport">M T W</td>
+        </tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">St. Louis, MO (ALN)</td>
+            <td class="airport">Houston, TX (IAH)</td>
+			<td class="airport">M T W F</td>
+        </tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Honolulu, HI (HNL)</td>
+			<td class="airport">M W Th F</td>
+        </tr>
+        <tr>
+			<td><img src="img/urbane%20heavy%20italic%20sflogo%20orange%20sm.png" alt="SFGo logo"></td>
+            <td class="airport">Washington, DC (DCA)</td>
+            <td class="airport">London, England (LHR)</td>
+			<td class="airport">T Th F</td>
+        </tr>
+    </table>
+    <div class="basis-100 text-center small-desc mg-top">RAPIDCONNECT SCHEDULES</div>
+    <div class="basis-100 text-center big-splash">Use RapidConnect® To Go Places</div>
+
+    <table border="2" class="schedules-table"
+           style="display: flex; align-items: center; justify-content: center; border: black;">
+        <tr>
+            <th>Airlines</th>
+            <th>Start</th>
+            <th>Destination</th>
+        </tr>
+        <tr>
+            <td style="font-family: Trade Winds">Pacific Airlines</td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Juneau, AK (JNU)</td>
+        </tr>
+        <tr>
+            <td style="font-family: Pacifico">Journeyman</td>
+            <td class="airport">Phoenix, AZ (PHX)</td>
+            <td class="airport">Seattle, WA (SEA)</td>
+        </tr>
+        <tr>
+            <td style="font-family: Playfair Display SC">Northeastern</td>
+            <td class="airport">New York City, NY (JFK)</td>
+            <td class="airport">Detroit, MI (DTW)</td>
+        </tr>
+
+        <tr>
+            <td style="font-family: Prompt">Pioneer Airlines</td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Dallas, TX (DFW)</td>
+        </tr>
+
+        <tr>
+            <td style="font-family: Faster One">EagleAir</td>
+            <td class="airport">Las Vegas, NV (LAS)</td>
+            <td class="airport">Atlanta, GA (ATL)</td>
+        </tr>
+
+        <tr>
+            <td style="font-family: Courgette">Fearless Flyer</td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Toronto, ON, Canada (YYZ)</td>
+        </tr>
+
+        <tr>
+            <td style="font-family: Amaranth">Summit Airways</td>
+            <td class="airport">Chicago, IL (ORD)</td>
+            <td class="airport">Denver, CO (DEN)</td>
+        </tr>
+        <tr>
+            <td style="font-family: Garamond">Midwest Airlines</td>
+            <td class="airport">St. Louis, MO (ALN)</td>
+            <td class="airport">Houston, TX (IAH)</td>
+        </tr>
+        <tr>
+            <td style="font-family: Kaushan Script">Majestic Airways</td>
+            <td class="airport">San Francisco, CA (SFO)</td>
+            <td class="airport">Honolulu, HI (HNL)</td>
+        </tr>
+        <tr>
+            <td style="font-family: Nanum Gothic">TransAtlantic</td>
+            <td class="airport">Washington, DC (DCA)</td>
+            <td class="airport">London, England (LHR)</td>
+        </tr>
     </table>
 </div>
-<style>
-td {
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-family: "Noto Sans SC";
-	color: #002e58;
-}
-
-th {
-	background-color: #002e58;
-	color: white;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-family: "Noto Sans SC";
-	font-size: 20px;
-}
-
-.airport {
-	font-size: 18px;
-}
-
-#schedules_text {
-	margin-top: 30px;
-}
-
-#schedules {
-	margin-right: 300px;
-	margin-left: 300px;
-}
-
-#schedules tr:nth-child(even){
-	background-color: #f2f2f2;
-}
-</style>

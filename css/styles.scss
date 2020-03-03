@@ -26,10 +26,9 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    //justify-content: flex-start;
     background-color: rgba(0, 0, 0, 0.35);
     border-radius: 0.5rem;
-    padding: 1rem calc(5.2vw + 1.7px);
+    padding: 1rem calc(5.2vw - -1.7px);
     margin: 1rem 6rem;
 
     position: absolute;
@@ -109,7 +108,7 @@ body {
     .drop-desc,
     .drop-num {
       color: white !important;
-      font-size: calc(1vw + 4.6px);
+      font-size: calc(1vw - -4.6px);
     }
 
     .direction {
@@ -215,7 +214,7 @@ body {
       .form-control {
         box-shadow: none;
         height: unset;
-        font-size: calc(1vw + 4.6px);
+        font-size: calc(1vw - -4.6px);
         color: white;
         padding: 0;
         background-color: rgba(0, 0, 0, 0);
@@ -440,8 +439,22 @@ button:disabled {
 }
 
 #jobAppModal{
+
   max-height: 100vh;
   min-height: 100vh;
+
+  .modal-body{
+    .title {
+      font-size: 55%;
+      font-weight: bolder;
+      color: #002e58;
+    }
+    .desc {
+      font-size: 52%;
+      color: $main-dark-blue;
+      padding-bottom: 1.5vh;
+    }
+  }
 }
 
 #bookModal {
@@ -1057,6 +1070,48 @@ header {
   }
 }
 
+.schedules-container{
+  justify-content: center;
+  padding-bottom: 4.5rem;
+  table{
+    margin-top: 2.5rem;
+  }
+  .one-way{
+    td{
+      padding-top: 0;
+      padding-bottom: 0;
+      img{
+        margin-top: -2px;
+        margin-bottom: -2px;
+      }
+    }
+  }
+  .mg-top{
+    margin-top: 4.5rem;
+  }
+
+  td {
+    padding: 10px 15px;
+    font-family: "Noto Sans SC",serif;
+    color: #002e58;
+  }
+
+  th {
+    background-color: #002e58;
+    color: white;
+    padding: 10px 15px;
+    font-family: "Noto Sans SC",serif;
+    font-size: 20px;
+  }
+
+  .airport {
+    font-size: 18px;
+  }
+  .schedules-table tr:nth-child(even){
+    background-color: #f2f2f2;
+  }
+}
+
 .careers-container{
   .is-loading{
     opacity: 0;
@@ -1147,8 +1202,9 @@ header {
   }
 }
 
-
-
+.content-container{
+  margin-bottom: 4.5rem;
+}
 
 
 

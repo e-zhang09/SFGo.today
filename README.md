@@ -5,7 +5,9 @@ CUPERTINO HIGH SCHOOL
 
 ## TO VIEW
 
-Please navigate to the site through this URL: [sfgo.today](https://sfgo.today)
+Please navigate to the site through this URL: [sfgo.today](https://sfgo.today)  
+##### Want to run and build the project?
+Please email me for the Firebase API Keys and instructions on how to set-up
 
 ## INTRODUCTION
 Our website is designed to cater to all the needs of a fictional Airline Company. 
@@ -29,20 +31,20 @@ A: Try zooming in or out of your browser. Many times, you have zoomed in or out 
 Q: Why are the images not showing up?  
 A: The images are loading into the site. Usually the first time takes the longest. Please be patient.  
 
-##FUTURE VISIONS
+## FUTURE VISIONS  
 In the future, we hope to utilize the user booking activities to better predict the next users' interaction with machine learning.
 
-##SOFTWARE USED  
+## SOFTWARE USED  
 The website was written in pure HTML/CSS/Javascript with the addition of external Javascript libraries and external CSS links.
 
-##TEMPLATES USED
+## TEMPLATES USED  
 No templates were used.
 
-##MAINTAINERS  
+## MAINTAINERS   
 Ethan Zhang  
 Neil Angajala  
 Ashwin Rajesh  
 
-##INFORMATION SOURCES
+## INFORMATION SOURCES  
 - Stackoverflow
 - https://www.iata.org/en/services/codes/
