@@ -29,7 +29,7 @@ body {
     //justify-content: flex-start;
     background-color: rgba(0, 0, 0, 0.35);
     border-radius: 0.5rem;
-    padding: 1rem 6rem;
+    padding: 1rem calc(5.2vw + 1.7px);
     margin: 1rem 6rem;
 
     position: absolute;
@@ -109,7 +109,7 @@ body {
     .drop-desc,
     .drop-num {
       color: white !important;
-      font-size: 1.2rem;
+      font-size: calc(1vw + 4.6px);
     }
 
     .direction {
@@ -215,7 +215,7 @@ body {
       .form-control {
         box-shadow: none;
         height: unset;
-        font-size: 1.2rem;
+        font-size: calc(1vw + 4.6px);
         color: white;
         padding: 0;
         background-color: rgba(0, 0, 0, 0);
@@ -242,7 +242,7 @@ body {
     }
 
     .menu-container {
-      z-index: 9998;
+      z-index: 9997;
       display: none;
       position: absolute;
     }
@@ -358,7 +358,7 @@ body {
 }
 
 .modal {
-  z-index: 9999;
+  z-index: 9998;
 
   .modal-dialog {
     max-width: calc(100vw - 16px - 12rem);
@@ -388,6 +388,10 @@ body {
       flex: 1;
     }
 
+    .right{
+      position: relative;
+    }
+
     .left, .right .jumbotron {
       height: 100%;
     }
@@ -405,18 +409,21 @@ body {
         letter-spacing: -5px;
       }
 
-      .register-container {
-        label {
-          font-size: 90%;
+      label {
+        font-size: 1.25rem;
+      }
+
+      .right-container.form-group{
+        margin-bottom: 0.75rem;
+        a{
+          color: #6c757d !important;
         }
+      }
+      .left-container.form-group{
+        margin-bottom: 0.5rem;
       }
     }
   }
-
-  .modal-content {
-    overflow: hidden;
-  }
-
 
 
   form {
@@ -425,34 +432,52 @@ body {
 
 }
 
-#bookModal{
-  .modal-body{
+button:disabled {
+  cursor: default;
+  pointer-events: all !important;
+}
+
+#bookModal {
+  max-height: 100vh;
+  min-height: 100vh;
+
+  .modal-body {
+    span.details{
+      padding-right: 5%;
+    }
+
     display: flex;
     flex-direction: column;
-    .details{
+
+    .details {
       font-size: 1rem;
     }
-    .list-group{
+
+    .list-group {
       padding-top: 1rem;
     }
-    .flight-container{
+
+    .flight-container {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 0 30px;
-      .airline-logo{
+
+      .airline-logo {
         padding: 0 40px 0 0px;
-        img{
-          width: 100%;
+
+        img {
+          width: 85%;
           height: auto;
         }
       }
     }
 
-    .price-type-container{
+    .price-type-container {
       padding-left: 7.5%;
     }
-    .just-left{
+
+    .just-left {
       display: flex;
       justify-content: center;
       flex-direction: column;
@@ -460,7 +485,7 @@ body {
 
     font-size: 1.2rem;
 
-    .is-small{
+    .is-small {
       font-size: 0.75rem;
       color: #2c2c2cba;
     }
@@ -620,7 +645,7 @@ footer {
 header {
   .navbar {
     background-color: $main-dark-blue !important;
-    z-index: 9998;
+    z-index: 9996;
     padding-left: 5.85rem;
     padding-right: 5.85rem;
     padding-top: 0.7em;
@@ -781,5 +806,15 @@ header {
 
 .is-hide {
   display: none;
+}
+
+
+.no-click {
+  color: #6e6e6e !important;
+}
+
+.no-click:hover {
+  background: none !important;
+  cursor: context-menu !important;
 }
 

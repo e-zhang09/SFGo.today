@@ -45,7 +45,9 @@
 </head>
 <body>
 <noscript>
-
+    <div style="position: fixed; top: 0px; left: 0px; z-index: 9999; height: 100vh; width: 100vw; background-color: #000; color: #FDAE5C">
+    JavaScript is required to view this app, sorry :_(
+    </div>
 </noscript>
 
 <header>
@@ -114,7 +116,7 @@
             </ul>
             <ul class="navbar-nav justify-content-end ml-auto">
                 <li class="nav-item" style="position: relative">
-                    <a class="nav-link" href="javascript:void(0)" onclick="signIn()" style="padding: 0" id="user-pfp">
+                    <a class="nav-link" href="javascript:void(0)" id="user-pfp" onclick="signIn()" style="padding: 0">
                         <i class="fas fa-user" id="icon-user"></i>
                         Sign In
                     </a>
@@ -177,14 +179,16 @@
                     </div>
                     <div class="drop-indicator"></div>
                     <div class="menu" style="margin-top: 0.25em!important;">
-                        <div class="item" data-value="round">
-                            Round Trip
-                        </div>
                         <div class="item active selected" data-value="one">
                             One Direction
                         </div>
                         <div class="item" data-value="rapid">
                             Rapid Connect
+                        </div>
+                        <div class="item no-click" data-placement="left" data-toggle="tooltip"
+                             data-value="round" onclick="event.stopPropagation(); return false;"
+                             title="Coming Summer 2020">
+                            Round Trip
                         </div>
                     </div>
                 </div>
@@ -238,13 +242,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form class="needs-validation" id="loginForm" novalidate>
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModalLabel">Log In !</h5>
-                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Log In Now</h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
                     <div class="left">
                         <div class="jumbotron jumbotron-fluid">
                             <div class="container">
@@ -271,24 +275,26 @@
                                 <div class="invalid-feedback">
                                     Please enter your email.
                                 </div>
-                                <small class="form-text text-muted" id="emailHelp">We'll never share your email with
-                                    anyone
-                                    else.</small>
+
                             </div>
                             <div class="form-group">
                                 <label for="passwordInput">Password</label>
-                                <input autocomplete="current-password" class="form-control" id="passwordInput" placeholder="Password"
+                                <input autocomplete="current-password" class="form-control" id="passwordInput"
+                                       placeholder="Password"
                                        required type="password">
                                 <div class="invalid-feedback">
                                     Please enter your (correct) password.
                                 </div>
+                                <a href="javascript:registerClick('true')" id="btnReset"><small
+                                        class="form-text text-muted" id="emailHelp">Forgot your password?</small></a>
                             </div>
                         </div>
                         <div class="right-container register-container">
                             <div class="form-group">
                                 <label for="nameIn">Name</label>
-                                <input autocomplete="name" class="form-control" id="nameIn" placeholder="Johnny Appleseed"
-                                        type="text">
+                                <input autocomplete="name" class="form-control" id="nameIn"
+                                       placeholder="Johnny Appleseed"
+                                       type="text">
                                 <div class="invalid-feedback">
                                     Please enter your name.
                                 </div>
@@ -307,19 +313,32 @@
                             </div>
                             <div class="form-group">
                                 <label for="passwordIn">Password</label>
-                                <input autocomplete="new-password" class="form-control" id="passwordIn" placeholder="Password"
+                                <input autocomplete="new-password" class="form-control" id="passwordIn"
+                                       placeholder="Password"
                                        type="password">
                                 <div class="invalid-feedback">
                                     Please enter a password.
                                 </div>
                             </div>
                         </div>
+                        <div class="right-container reset-container">
+                            <div class="form-group">
+                                <label for="emailInpu">Enter the email used</label>
+                                <input aria-describedby="emailH" autocomplete="email" class="form-control"
+                                       id="emailInpu"
+                                       placeholder="Enter your email" type="email">
+                                <div class="invalid-feedback">
+                                    Please enter your email.
+                                </div>
+                            </div>
+                        </div>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" onclick="registerClick()">Continue as a Guest</button>
-                <button class="btn btn-primary" onclick="loginClick(event)" type="submit">Log In</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="nextStep('true')" type="button">Continue as a Guest
+                    </button>
+                    <button class="btn btn-primary" onclick="loginClick(event)" type="submit">Log In</button>
+                </div>
             </form>
         </div>
     </div>
@@ -370,7 +389,7 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" type="button">Book</button>
                     </div>
                 </span></li>
                     <li class="list-group-item"><span class="flight-container row">
@@ -405,7 +424,7 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" type="button">Book</button>
                     </div>
                 </span></li>
                     <li class="list-group-item"><span class="flight-container row">
@@ -440,7 +459,7 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" type="button">Book</button>
                     </div>
                 </span></li>
                     <li class="list-group-item"><span class="flight-container row">
@@ -475,7 +494,9 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" data-book-id="SFGO123" type="button">
+                            Book
+                        </button>
                     </div>
                 </span></li>
                     <li class="list-group-item"><span class="flight-container row">
@@ -510,7 +531,7 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" type="button">Book</button>
                     </div>
                 </span></li>
                     <li class="list-group-item"><span class="flight-container row">
@@ -545,7 +566,7 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" type="button">Book</button>
                     </div>
                 </span></li>
                     <li class="list-group-item"><span class="flight-container row">
@@ -580,7 +601,7 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" type="button">Book</button>
                     </div>
                 </span></li>
                     <li class="list-group-item"><span class="flight-container row">
@@ -615,15 +636,17 @@
                         </div>
                     </div>
                     <div class="book-trip-container col-sm-1">
-                        <button type="button" class="btn btn-primary">Book</button>
+                        <button class="btn btn-primary" type="button">Book</button>
                     </div>
                 </span></li>
                 </ul>
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" onclick="$('#bookModal').modal('hide')">Cancel</button>
-                <button class="btn btn-primary" onclick="loginClick(event)" type="submit">Check Out</button>
+                <button class="btn btn-secondary" onclick="$('#bookModal').modal('hide')" type="button">Cancel</button>
+                <button class="btn btn-primary" disabled id="checkOutBtn" onclick="checkOut()" type="submit">
+                    Check Out
+                </button>
             </div>
         </div>
     </div>
@@ -640,11 +663,10 @@
                 </button>
             </div>
             <div class="modal-body">
-
+                <script type="text/javascript" src="https://form.jotform.com/jsform/200617108604143"></script>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" onclick="registerClick()">Cancel</button>
-                <button class="btn btn-primary" onclick="loginClick(event)" type="submit">Check Out</button>
+                <button class="btn btn-primary" onclick="done()" type="submit">Close</button>
             </div>
         </div>
     </div>

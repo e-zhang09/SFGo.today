@@ -19,7 +19,7 @@ body {
   justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.35);
   border-radius: 0.5rem;
-  padding: 1rem 6rem;
+  padding: 1rem calc(5.2vw + 1.7px);
   margin: 1rem 6rem;
   position: absolute;
   left: 0;
@@ -88,7 +88,7 @@ body {
 .land-section .book-flight .drop-desc,
 .land-section .book-flight .drop-num {
   color: white !important;
-  font-size: 1.2rem;
+  font-size: calc(1vw + 4.6px);
 }
 .land-section .book-flight .direction {
   background-repeat: no-repeat;
@@ -174,7 +174,7 @@ body {
 .land-section .book-flight .date-container .form-control {
   box-shadow: none;
   height: unset;
-  font-size: 1.2rem;
+  font-size: calc(1vw + 4.6px);
   color: white;
   padding: 0;
   background-color: rgba(0, 0, 0, 0);
@@ -195,7 +195,7 @@ body {
   max-width: 15%;
 }
 .land-section .book-flight .menu-container {
-  z-index: 9998;
+  z-index: 9997;
   display: none;
   position: absolute;
 }
@@ -297,7 +297,7 @@ body {
 }
 
 .modal {
-  z-index: 9999;
+  z-index: 9998;
 }
 .modal .modal-dialog {
   max-width: calc(100vw - 16px - 12rem);
@@ -320,6 +320,9 @@ body {
 #loginModal .modal-body .left, #loginModal .modal-body .right {
   flex: 1;
 }
+#loginModal .modal-body .right {
+  position: relative;
+}
 #loginModal .modal-body .left, #loginModal .modal-body .right .jumbotron {
   height: 100%;
 }
@@ -334,20 +337,38 @@ body {
   font-weight: bolder;
   letter-spacing: -5px;
 }
-#loginModal .modal-body .right-container .register-container label {
-  font-size: 90%;
+#loginModal .modal-body .right-container label {
+  font-size: 1.25rem;
 }
-#loginModal .modal-content {
-  overflow: hidden;
+#loginModal .modal-body .right-container .right-container.form-group {
+  margin-bottom: 0.75rem;
+}
+#loginModal .modal-body .right-container .right-container.form-group a {
+  color: #6c757d !important;
+}
+#loginModal .modal-body .right-container .left-container.form-group {
+  margin-bottom: 0.5rem;
 }
 #loginModal form {
   padding: 0;
 }
 
+button:disabled {
+  cursor: default;
+  pointer-events: all !important;
+}
+
+#bookModal {
+  max-height: 100vh;
+  min-height: 100vh;
+}
 #bookModal .modal-body {
   display: flex;
   flex-direction: column;
   font-size: 1.2rem;
+}
+#bookModal .modal-body span.details {
+  padding-right: 5%;
 }
 #bookModal .modal-body .details {
   font-size: 1rem;
@@ -365,7 +386,7 @@ body {
   padding: 0 40px 0 0px;
 }
 #bookModal .modal-body .flight-container .airline-logo img {
-  width: 100%;
+  width: 85%;
   height: auto;
 }
 #bookModal .modal-body .price-type-container {
@@ -519,7 +540,7 @@ footer .disabled.btn-link {
 
 header .navbar {
   background-color: #001D38 !important;
-  z-index: 9998;
+  z-index: 9996;
   padding-left: 5.85rem;
   padding-right: 5.85rem;
   padding-top: 0.7em;
@@ -647,6 +668,15 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
 
 .is-hide {
   display: none;
+}
+
+.no-click {
+  color: #6e6e6e !important;
+}
+
+.no-click:hover {
+  background: none !important;
+  cursor: context-menu !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

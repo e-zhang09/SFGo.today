@@ -122,9 +122,8 @@ app.post('/api/register', (req, res) => {
 app.get('/api/flights', (req, res) => {
     let {src, dest, type, dates, num} = req.body.src;
     let startDate = new Date(dates.start);
-    if(type === 'round'){
-
-    }else if(type === 'rapid'){
+    let ranNum = Math.floor(Math.random() * 4);
+    if(type === 'rapid'){
 
     }else{
 

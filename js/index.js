@@ -10,6 +10,7 @@ let isLoggedIn = false;
 let nextAct = null;
 let userName = null;
 let email = localStorage.getItem('email');
+let selectedFlights = 0;
 
 if (isStorage) {
     let status = localStorage.getItem('user');
@@ -409,6 +410,12 @@ $(document).ready(function () {
         return false;
     });
 
+    $('body').on('hidden.bs.modal', function () {
+        if ($('.modal.show').length > 0) {
+            $('body').addClass('modal-open');
+        }
+    });
+
     function update_windowResized() {
         isMobile = $(window).width() < 576;
         if ($(window).width() < 576) {
@@ -468,10 +475,30 @@ $(document).ready(function () {
     });
 
     $('#loginModal').on('hidden.bs.modal', function () {
+        if (!$('.reset-container').hasClass('is-hide')) {
+            $('.modal-content .display-6').text("Register for SFGo");
+            $('.lead .btn-dark').text("Register Now");
+            $('.modal-footer .btn-primary').text("Log In");
+            $('#loginModalLabel').text("Log In Now");
+
+            $('.reset-container [required]').removeAttr('required');
+            $('.register-container [required]').removeAttr('required');
+            $('.login-container input').attr("required");
+
+            $('.register-container').css({
+                'top': '250',
+                'opacity': '0',
+                'display': 'none'
+            });
+
+            $('.login-container').css({'top': '0', 'opacity': '1', 'display': 'block'});
+            $('.reset-container').addClass('is-hide');
+        }
         nextAct = null;
     });
 
     $('.register-container').addClass('is-hide');
+    $('.reset-container').addClass('is-hide');
     update_userImg();
 
     $('.signout-drop').on("click", function () {
@@ -484,19 +511,41 @@ $(document).ready(function () {
         email = null;
         localStorage.clear();
         update_userImg();
-    })
+    });
+
+    $('.book-trip-container button.btn-primary').on("click", function (evt) {
+        let $chck = $('#checkOutBtn');
+        if (selectedFlights === 0) {
+            $chck.prop("disabled", false);
+        }
+        selectedFlights++;
+        $chck.text('Check Out (' + selectedFlights + ')');
+
+        if ($(this).hasClass('flight-booked')) return;
+        $(this).css('width', $(this).outerWidth());
+        $(this).prop("disabled", true);
+        $(this).addClass('flight-booked');
+        $(this).html('<span class="spinner-border spinner-border-sm"></span>');
+        setTimeout(function () {
+            $(evt.target).html('<i class="fas fa-check">');
+        }, rndInt(500,4500));
+        console.info($(this).data('book-id'));
+    });
 });
 
 function bookFlight() {
     nextAct = 'book';
     if (!isLoggedIn) {
-        signIn();
+        signIn('book');
     } else {
         nextStep();
     }
 }
 
-function signIn() {
+function signIn(isBook) {
+    if (!isBook && nextAct === 'book') {
+        nextAct = null;
+    }
     if (!isLoggedIn) {
         $('#loginModal').modal('show');
         if ($('#passwordInput').val()) {
@@ -508,8 +557,49 @@ function signIn() {
     }
 }
 
-function registerClick() {
-    if ($('.register-container').is(':visible')) {
+function registerClick(isReset) {
+    if (isReset) {
+        let isRegVis = $('.register-container').is(':visible');
+        let isLogVis = $('.login-container').is(':visible');
+
+        $('.modal-content .display-6').fadeOut(function () {
+            $(this).text("Log in to SFGo").fadeIn();
+        });
+        $('.lead .btn-dark').fadeOut(function () {
+            $(this).text("Log In Now").fadeIn();
+        });
+        $('#loginModalLabel').fadeOut(function () {
+            $(this).text("Reset Password").fadeIn();
+        });
+
+        $('.modal-footer .btn-primary').fadeOut(function () {
+            $(this).text("Reset").fadeIn();
+        });
+
+        $('.register-container [required]').removeAttr('required');
+        $('.login-container [required]').removeAttr('required');
+        $('.reset-container input').attr("required");
+
+        if (isLogVis) {
+            $('.login-container').animate({'top': '-200', 'opacity': '0', 'display': 'none'}, 1000).css({'top': 250});
+        }
+        if (isRegVis) {
+            $('.register-container').animate({
+                'top': '-200',
+                'opacity': '0',
+                'display': 'none'
+            }, 1000).css({'top': 250});
+        }
+
+        $('.reset-container').css({'top': 250, 'opacity': 0});
+        setTimeout(function () {
+            $('.reset-container').removeClass('is-hide');
+            $('.reset-container').animate({'top': '0', 'opacity': '1', 'display': 'block'}, 1000);
+        }, 250);
+    } else if ($('.register-container').is(':visible') || $('.reset-container').is(':visible')) {
+        let isRegVis = $('.register-container').is(':visible');
+        let isResVis = $('.reset-container').is(':visible');
+
         $('.modal-content .display-6').fadeOut(function () {
             $(this).text("Register for SFGo").fadeIn();
         });
@@ -519,16 +609,30 @@ function registerClick() {
         $('.modal-footer .btn-primary').fadeOut(function () {
             $(this).text("Log In").fadeIn();
         });
+        $('#loginModalLabel').fadeOut(function () {
+            $(this).text("Log In Now").fadeIn();
+        });
 
+        $('.reset-container [required]').removeAttr('required');
         $('.register-container [required]').removeAttr('required');
         $('.login-container input').attr("required");
 
-        $('.register-container').animate({'top': '-200', 'opacity': '0', 'display': 'none'}, 1000).css({'top': 250});
+        if (isResVis) {
+            $('.reset-container').animate({'top': '-200', 'opacity': '0', 'display': 'none'}, 1000).css({'top': 250});
+        }
+        if (isRegVis) {
+            $('.register-container').animate({
+                'top': '-200',
+                'opacity': '0',
+                'display': 'none'
+            }, 1000).css({'top': 250});
+        }
         $('.login-container').css({'top': 250, 'opacity': 0});
         setTimeout(function () {
             $('.login-container').animate({'top': '0', 'opacity': '1', 'display': 'block'}, 1000);
             setTimeout(function () {
                 $('.register-container').addClass('is-hide');
+                $('.reset-container').addClass('is-hide');
             }, 1000);
         }, 250);
     } else {
@@ -540,6 +644,9 @@ function registerClick() {
         });
         $('.modal-footer .btn-primary').fadeOut(function () {
             $(this).text("Register").fadeIn();
+        });
+        $('#loginModalLabel').fadeOut(function () {
+            $(this).text("Register Now").fadeIn();
         });
 
         $('.login-container [required]').removeAttr('required');
@@ -558,6 +665,15 @@ function loginClick(e) {
     let form = document.getElementById('loginForm');
     if (!form.checkValidity()) return;
     let register = ($('.register-container').is(':visible'));
+    let isReset = $('.reset-container').is(':visible');
+
+    if (isReset) {
+        setTimeout(function () {
+            window.alert('Email sent. Check your email for more instructions!');
+            window.location = './';
+        }, rndInt(1000,2000));
+        return;
+    }
 
     let dataPrep = {};
     if (register) {
@@ -588,8 +704,8 @@ function loginClick(e) {
     });
 }
 
-function nextStep() {
-    $('#loginModal').modal('hide');
+function nextStep(isGuest) {
+    $('.modal').modal('hide');
     if (nextAct) {
         $('#bookModal').modal('show');
         if (tripType === 'round') {
@@ -622,7 +738,29 @@ function signOut() {
         }, 500);
     } else {
         $('.signout-drop').css('display', 'block').animate({opacity: 1}, 500);
+        setTimeout(function () {
+            $('.signout-drop').animate({opacity: 0}, 500);
+            setTimeout(function () {
+                $('.signout-drop').css('display', 'none');
+            }, 500);
+        }, 5000)
     }
+}
+
+function done() {
+    $('.modal').modal('hide');
+}
+
+function checkOut() {
+    let $chckBtn = $('#checkOutBtn');
+    $chckBtn.css('width', $chckBtn.outerWidth());
+    $chckBtn.html('<span class="spinner-border spinner-border-sm"></span>');
+    setTimeout(function () {
+        $('#checkOutBtn').html('<i class="fas fa-check">');
+        $('#bookModal').modal('hide');
+        $('#checkoutModal').modal('show');
+        $('#checkOutBtn').html('Check Out');
+    }, rndInt(500,2500));
 }
 
 
@@ -642,4 +780,9 @@ function storageAvailable(type) {
             e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
             (storage && storage.length !== 0);
     }
+}
+
+
+function rndInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
 }
