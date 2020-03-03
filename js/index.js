@@ -245,6 +245,8 @@ $(document).ready(function () {
         }
     }
 
+    window.navAction = navAction;
+
     function navAction(targetLoc) {
         if (targetLoc === '/') {
             window.location = './';
@@ -712,9 +714,12 @@ function nextStep(isGuest) {
             let startDate = ($('.date-container .input-sm[name=start]').datepicker('getUTCDate'));
             let endDate = ($('.date-container .input-sm[name=end]').datepicker('getUTCDate'));
             $('.details').text('Showing flights departing on ' + startDate + ' and returning on ' + endDate + ' from ' + srcAirport + ' to ' + destAirport + '...');
-        } else {
+        } else if(tripType === 'one') {
             let date = ($('.date-container .single-date').datepicker('getUTCDate'));
             $('.details').text('Showing flights departing on ' + date + ' from ' + srcAirport + ' to ' + destAirport + '...');
+        }else{
+            let date = ($('.date-container .single-date').datepicker('getUTCDate'));
+            $('.details').text('Showing Rapid Connect® flights departing on ' + date + ' from ' + srcAirport + ' to ' + destAirport + '...');
         }
     }
 }
@@ -760,6 +765,13 @@ function checkOut() {
         $('#bookModal').modal('hide');
         $('#checkoutModal').modal('show');
         $('#checkOutBtn').html('Check Out');
+        setTimeout(function(){
+            let $form = $('#200621569630148');
+            console.info($form.attr('height'));
+            if($form.css('height') === "0px"){
+                $form.css('height', 'unset');
+            }
+        },1500);
     }, rndInt(500,2500));
 }
 
@@ -781,7 +793,6 @@ function storageAvailable(type) {
             (storage && storage.length !== 0);
     }
 }
-
 
 function rndInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
