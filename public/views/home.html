@@ -52,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="basis-100 text-center">
+    <div class="basis-100 text-center explore-more">
         <a class="btn" href="javascript:window.navAction('rapid')">EXPLORE MORE</a>
     </div>
     <section class="deals-dest">
@@ -72,7 +72,7 @@
                         <img src="https://pixboost.com/api/2/img/http://sfgo.today/img/first.jpg/asis?auth=MTc5MzczMTIxMA__">
                     </picture>
                 </div>
-                <div class="txt-sym-container">
+                <div class="txt-sym-container" onclick="window.navAction('rapid')">
                     <div class="txt-container">
                         <div class="title">
                             RAPIDCONNECT DEALS
@@ -101,7 +101,7 @@
                         <img src="https://pixboost.com/api/2/img/http://sfgo.today/img/second.jpg/asis?auth=MTc5MzczMTIxMA__">
                     </picture>
                 </div>
-                <div class="txt-sym-container">
+                <div class="txt-sym-container" onclick="window.navAction('schedules')">
                     <div class="txt-container">
                         <div class="title">
                             FLIGHTS TO SOCAL
@@ -129,10 +129,10 @@
                     </picture>
                 </div>
 
-                <div class="txt-sym-container">
+                <div class="txt-sym-container" onclick="window.navAction('schedules')">
                     <div class="txt-container">
                         <div class="title">
-                            FLIGHTS TO Seattle/Oregon
+                            FLIGHTS TO SEATTLE/OREGON
                         </div>
                         <div class="desc">
                             Pack your bags and explore the great American Northwest! Take advantage of great fares and
@@ -158,7 +158,7 @@
                         <img src="https://pixboost.com/api/2/img/http://sfgo.today/img/fourth.jpg/asis?auth=MTc5MzczMTIxMA__">
                     </picture>
                 </div>
-                <div class="txt-sym-container">
+                <div class="txt-sym-container" onclick="window.navAction('schedules')">
                     <div class="txt-container">
                         <div class="title">
                             FLIGHTS TO NEVADA + ARIZONA + COLORADO
@@ -199,10 +199,8 @@
             });
             $('.deal-image.first > picture > img').on('load', function () {
                 let height = $('.deal-image.first').outerHeight() * 2;
-                console.info(height);
                 $('.deal-card').css('min-height', height);
             });
-
         </script>
     </section>
 </div>

@@ -1,3 +1,20 @@
-<div class="container-fluid content">
-
+<div class="container-fluid careers-container content-container">
+    <div class="basis-100 text-center small-desc">FIND YOUR FUTURE</div>
+    <div class="basis-100 text-center big-splash">SFGo Is Hiring Talented Individuals</div>
+    <div class="spinner-container small-desc">
+        <span>
+            <div class="spinner-border" role="status"></div>
+            Loading...
+        </span>
+    </div>
+    <div class="job-desc-container white-bg-container">
+    </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $.get('/api/jobs', {}, function(data, status){
+            console.info(data);
+        }, 'json')
+    });
+</script>

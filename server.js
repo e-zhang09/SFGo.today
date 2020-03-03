@@ -8,6 +8,7 @@ const airportsList = require(path.join(__dirname, 'public/res/airports-flat'));
 const admin = require('firebase-admin');
 const stringSimilarity = require('string-similarity');
 const airlines = require(path.join(__dirname, 'public/res/airlines.json'));
+const jobs = require(path.join(__dirname, 'public/res/jobs.json'));
 
 const serviceAccount = require(path.join(__dirname, "secrets/wev-design-1920-firebase-adminsdk-1opaa-a70ea3673e.json"));
 
@@ -130,6 +131,10 @@ app.get('/api/flights', (req, res) => {
     }
     let similarity = stringSimilarity.compareTwoStrings(src.match(/\(([^)]+)\)/)[1], dest.match(/\(([^)]+)\)/)[1]);
     let start = 'a';
+});
+
+app.get('/api/jobs', (req, res) => {
+    res.json(jobs);
 });
 
 let server = app.listen(process.env.PORT || 3000, function () {

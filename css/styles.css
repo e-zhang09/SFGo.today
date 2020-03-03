@@ -408,6 +408,12 @@ footer {
 footer .disabled.btn-link {
   padding: 0;
 }
+footer a:link {
+  color: #FDAE5C;
+}
+footer a:visited {
+  color: #FDAE5C;
+}
 footer .copyright-container {
   padding: 0.8rem 0 3.5rem;
 }
@@ -708,109 +714,110 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
   color: #002e58;
 }
 
-.home-content .white-bg-container {
-  padding: 2.125rem 6rem 2rem;
-}
-.home-content .white-bg-container .new-card-container {
+.home-content .new-card-container {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.home-content .white-bg-container .new-card-container .left, .home-content .white-bg-container .new-card-container .right {
+.home-content .new-card-container .left, .home-content .new-card-container .right {
   flex: 1;
   margin: 0 5.5vw;
 }
-.home-content .white-bg-container .new-card-container .left img, .home-content .white-bg-container .new-card-container .right img {
+.home-content .new-card-container .left img, .home-content .new-card-container .right img {
   width: 100%;
   padding: 0 2vw;
 }
-.home-content .white-bg-container .new-card-container .right:hover {
+.home-content .new-card-container .right:hover {
   cursor: pointer;
 }
-.home-content .white-bg-container .new-card-container .right {
+.home-content .new-card-container .right {
   display: flex;
   align-items: center;
 }
-.home-content .white-bg-container .new-card-container .right .title {
+.home-content .new-card-container .right .title {
   font-size: 55%;
   font-weight: bolder;
   color: #002e58;
   padding-bottom: 1vh;
 }
-.home-content .white-bg-container .new-card-container .right .desc {
+.home-content .new-card-container .right .desc {
   font-size: 52%;
   color: #001D38;
 }
-.home-content .white-bg-container .new-card-container .right .sym {
+.home-content .new-card-container .right .sym {
   padding-left: 8px;
 }
-.home-content .white-bg-container .new-card-container .right .sym i {
+.home-content .new-card-container .right .sym i {
   font-size: 70%;
   color: #FDAE5C;
 }
-.home-content .white-bg-container .background-img {
+.home-content .background-img {
   background-color: #cbf7ff;
   background-image: url("https://pixboost.com/api/2/img/https://sfgo.today/img/backpacker.jpg/resize?size=1566&auth=MTc5MzczMTIxMA__");
   background-size: cover;
   width: 100%;
   max-height: 70vh;
 }
-.home-content .white-bg-container .background-img .box {
+.home-content .background-img .box {
   padding-left: 8.4%;
   padding-top: 9%;
   padding-bottom: 9.6%;
   height: 83%;
   width: 35%;
 }
-.home-content .white-bg-container .background-img .box .box-txt-container:hover {
+.home-content .background-img .box .box-txt-container:hover {
   cursor: pointer;
 }
-.home-content .white-bg-container .background-img .box .box-txt-container {
+.home-content .background-img .box .box-txt-container {
   padding: 2vw;
   background-color: #001D38;
   display: flex;
   align-items: center;
 }
-.home-content .white-bg-container .background-img .box .box-txt-container .title {
+.home-content .background-img .box .box-txt-container .title {
   font-size: 55%;
   font-weight: bolder;
   color: white;
   padding-bottom: 1vh;
 }
-.home-content .white-bg-container .background-img .box .box-txt-container .desc {
+.home-content .background-img .box .box-txt-container .desc {
   font-size: 52%;
   color: white;
 }
-.home-content .white-bg-container .background-img .box .box-txt-container .sym {
+.home-content .background-img .box .box-txt-container .sym {
   padding-left: 10px;
 }
-.home-content .white-bg-container .background-img .box .box-txt-container .sym i {
+.home-content .background-img .box .box-txt-container .sym i {
   font-size: 70%;
   color: #FDAE5C;
 }
-.home-content .white-bg-container .background-img .box .box-txt-container div {
+.home-content .background-img .box .box-txt-container div {
   color: white;
 }
-.home-content .btn {
+
+.explore-more .btn {
   background-color: #FDAE5C;
   border-radius: 0 !important;
   color: white !important;
   font-size: 70%;
   padding: 15px 75px;
 }
-.home-content .deals-dest {
+
+.deals-dest {
   padding: 4.5rem 6rem 6.5rem;
   margin-top: 4.5rem;
   margin-bottom: 4.5rem;
   background-color: #f5fbfd;
   width: 100%;
 }
-.home-content .xl-splash {
+
+.xl-splash {
   font-size: 125%;
   color: #002e58;
   position: relative;
 }
-.home-content .xl-splash:after {
+
+.xl-splash:after {
   position: absolute;
   left: 0;
   bottom: -3.5px;
@@ -818,46 +825,76 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
   content: "";
   border-bottom: #FDAE5C 3.5px solid;
 }
-.home-content .deals-container {
+
+.deals-container {
   padding-top: 2.5rem;
 }
-.home-content .deals-container .slick-prev {
+.deals-container .slick-prev {
   left: -30px;
 }
-.home-content .deals-container .slick-slide {
+.deals-container .slick-slide {
   margin: 0 15px;
 }
-.home-content .deals-container .slick-list {
+.deals-container .slick-list {
   margin: 0 -15px;
 }
-.home-content .deals-container .slick-arrow:before {
+.deals-container .slick-arrow:before {
   color: #001D38;
   font-size: 25px;
 }
-.home-content .deals-container .deal-card {
+.deals-container .deal-card {
   background-color: white;
 }
-.home-content .deals-container .deal-card img {
+.deals-container .deal-card img {
   width: 100%;
 }
-.home-content .deals-container .deal-card .txt-sym-container {
+.deals-container .deal-card .txt-sym-container:hover {
+  cursor: pointer;
+}
+.deals-container .deal-card .txt-sym-container {
   display: flex;
   align-items: center;
   padding: 4vh 2.5vw;
 }
-.home-content .deals-container .deal-card .txt-sym-container i {
+.deals-container .deal-card .txt-sym-container i {
   padding-left: 8px;
   color: #FDAE5C;
 }
-.home-content .deals-container .deal-card .title {
+.deals-container .deal-card .title {
   font-size: 55%;
   font-weight: bolder;
   color: #002e58;
   padding-bottom: 1vh;
 }
-.home-content .deals-container .deal-card .desc {
+.deals-container .deal-card .desc {
   font-size: 52%;
   color: #001D38;
+}
+
+.careers-container .job-desc-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2%;
+  width: 100%;
+}
+.careers-container .spinner-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding: 2rem 0;
+  justify-content: center;
+  align-items: flex-start;
+}
+.careers-container .spinner-container span {
+  display: flex;
+  align-items: center;
+}
+.careers-container .spinner-container span .spinner-border {
+  margin-right: 10px;
+}
+
+.white-bg-container {
+  padding: 2.125rem 6rem 2rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

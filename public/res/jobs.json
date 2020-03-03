@@ -1,0 +1,158 @@
+[
+  {
+    "type": "Aircraft Maintenance & Engineering",
+    "desc": "Ensure that our Customers are flying the safest and most reliable vehicles possible",
+    "jobs": [
+      {
+        "title": "A&P Mechanics",
+        "desc": "Our Mechanics are experts in their field, with Safety being their top priority."
+      },
+      {
+        "title": "Appearance Technicians",
+        "desc": "Keep our aircraft in tip-top shape."
+      },
+      {
+        "title": "Material Specialists",
+        "desc": "Stock, deliver and store inventory of our aircraft parts and materials."x
+      }
+    ]
+  },
+  {
+    "type": "Airport Operations",
+    "desc": "Keep our flights up and running and our Customers smiling.",
+    "jobs": [
+      {
+        "title": "Ramp Agents",
+        "desc": "These Warriors work mostly outdoors: loading bags and cargo, directing our airplanes in and out of the gate and assuring safe, on-time performance."
+      },
+      {
+        "title": "Operations Agents",
+        "desc": "Manage weight and balance of the aircraft, and oversee Customer boarding."
+      },
+      {
+        "title": "Customer Service Agents",
+        "desc": "Provide outstanding Customer Service by issuing tickets and checking bags at the ticket counter, being available at the gate for assistance pre-flight, and working in the Baggage Service Office."
+      },
+      {
+        "title": "Cargo Agents",
+        "desc": "Support our Customers’ cargo, freight, and shipping needs by working at this position."
+      },
+      {
+        "title": "Provisioning Agents",
+        "desc": "Ensure our planes are fully stocked for a great Customer experience. Do you enjoy pretzels and an inflight beverage? "
+      },
+      {
+        "title": "Leader Development Program",
+        "desc": "The Leader Development Program (LDP) is a program designed to develop well-rounded Emerging Leaders."
+      }
+    ]
+  },
+  {
+    "type": "Corporate Operations",
+    "desc": "Work at headquarters and handle operations for the future of flying in the Western Region of the United States. ",
+    "jobs": [
+      {
+        "title": "Business Consultant, Research and Design",
+        "desc": "Help develop the company brand and image. "
+      },
+      {
+        "title": "Corporate Facilities Field Manager",
+        "desc": "Perform quality checks and monitor work systems of local facilities."
+      },
+      {
+        "title": "Customer Service Supervisor",
+        "desc": "Ensure that our customer service team is doing their best to keep our Customers happy."
+      }
+    ]
+  },
+  {
+    "type": "Customer Support",
+    "desc": "Work closely with Customers to provide the best service possible.",
+    "jobs": [
+      {
+        "title": "Onsite Customer Service Representative",
+        "desc": "Handles issues Customers may have at various airports in the Western region."
+      },
+      {
+        "title": "Call Service",
+        "desc": "Handles general customer service issues."
+      },
+      {
+        "title": "Booking",
+        "desc": "Helps Customers with any questions they may have about booking."
+      },
+      {
+        "title": "Group Booking",
+        "desc": "Deals with any Customers who require assistance or want to book as a group."
+      },
+      {
+        "title": "Complaint Support",
+        "desc": "Ensure that our Customers receive compensation and are satisfied with airline performance."
+      }
+    ]
+  },
+  {
+    "type": "Inflight Operations",
+    "desc": "Spread SFGO’s® Legendary Customer Service while providing a safe travel experience, Customer snack, and beverage service, and Cabin preparation onboard the aircraft.",
+    "jobs": [
+      {
+        "title": "Flight Attendant",
+        "desc": "In charge of creating a safe environment for all Customers and ensures customer needs have been met."
+      },
+      {
+        "title": "Flight Supervisor",
+        "desc": "Ensures flight attendants are doing an adequate job."
+      },
+      {
+        "title": "Technician",
+        "desc": "Working with the pilots and crew to ensure the flight is operating properly in air."
+      }
+    ]
+  },
+  {
+    "type": "Marketing",
+    "desc": "Promotes your business and drives sales of company products or services.",
+    "jobs": [
+      {
+        "title": "Social Media Managers",
+        "desc": "Maintain social media profiles of SFGo and eliminate negative content."
+      },
+      {
+        "title": "Website Development",
+        "desc": "Maintain the SFGo website and ensure that Customers have an optimal experience without business."
+      },
+      {
+        "title": "Marketing Developer",
+        "desc": "Creates personalized messaging for our Customers that is intuitive, anticipatory, and relevant."
+      },
+      {
+        "title": "Head of Marketing",
+        "desc": "Manage marketing systems for each of the states underneath us."
+      }
+    ]
+  },
+  {
+    "type": "Pilot",
+    "desc": "SFGo®  Pilots are responsible for flying our aircraft throughout our system while maintaining the highest level of safety and professionalism.",
+    "jobs": [
+      {
+        "title": "Pilot",
+        "desc": "In Charge of the airline flight operations."
+      },
+      {
+        "title": "First Officer",
+        "desc": "Assists pilot with whatever it needs."
+      }
+    ]
+  },
+  {
+    "type": "Technology",
+    "desc": "Help shape and guide the strategic future of our airline through initiatives that touch every aspect of our business and operation.",
+    "jobs": [
+      {
+        "title": "Software Engineer",
+        "desc": "Develop either SFGo app, website, and any other technical aspects of the airline."
+      }
+    ]
+  }
+]
