@@ -358,6 +358,11 @@ button:disabled {
   pointer-events: all !important;
 }
 
+#jobAppModal {
+  max-height: 100vh;
+  min-height: 100vh;
+}
+
 #bookModal {
   max-height: 100vh;
   min-height: 100vh;
@@ -881,6 +886,7 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
   column-gap: 2rem;
   row-gap: 1rem;
   width: 100%;
+  margin-bottom: 4.5rem;
 }
 .careers-container .job-desc-container .category-container:hover .category-desc {
   opacity: 1;
