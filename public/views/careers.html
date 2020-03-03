@@ -7,14 +7,36 @@
             Loading...
         </span>
     </div>
-    <div class="job-desc-container white-bg-container">
+    <div class="job-desc-container white-bg-container is-loading">
     </div>
 </div>
 
 <script>
     $(document).ready(function () {
-        $.get('/api/jobs', {}, function(data, status){
-            console.info(data);
+        let qOnce = false;
+        $.get('/api/jobs', {}, function (data, status) {
+            if (qOnce) return;
+            qOnce = true;
+
+            let dKeys = Object.keys(data);
+            for (let i = 0; i < dKeys.length; i++) {
+                $('.job-desc-container').append(genCategoryComponent(data[dKeys[i]].type, data[dKeys[i]]['desc']));
+            }
+
+            function genCategoryComponent(title, description) {
+                return "<div class='category-container'> <div class='title title-top'> " + title + " </div> <div class='category-desc'> <div class='title-desc-container'> <div class='title'> " + title + " </div> <div class='desc'> " + description + " </div> </div> <div class='sym'> <i class='fas fa-chevron-right'></i> </div> </div> </div>"
+            }
+
+            $('.spinner-container').animate({
+                opacity: 0
+            }, 1000);
+            setTimeout(function () {
+                $('.spinner-container').css('display', 'none');
+            }, 1000);
+            $('.job-desc-container').animate({
+                "opacity": 1
+            }, 1500);
+
         }, 'json')
     });
 </script>
