@@ -1,10 +1,11 @@
-# SFGo
+# FBLA: SFGo Airline Website
 
-SFGo is the mock airline created for FBLA Website Design competition.
+CALIFORNIA  
+CUPERTINO HIGH SCHOOL
 
-## TO USE
+## TO VIEW
 
-Navigate to the site through this URL: [sfgo.today](https://sfgo.today)
+Please navigate to the site through this URL: [sfgo.today](https://sfgo.today)
 
 ## INTRODUCTION
 Our website is designed to cater to all the needs of a fictional Airline Company. 
@@ -26,4 +27,22 @@ Q: Why is the website seem squished or elongated?
 A: Try zooming in or out of your browser. Many times, you have zoomed in or out too much, which causes the website to attempt to resize. 
 
 Q: Why are the images not showing up?  
-A: The images are loading into the site. Usually the first time takes the longest. Please be patient.
+A: The images are loading into the site. Usually the first time takes the longest. Please be patient.  
+
+##FUTURE VISIONS
+In the future, we hope to utilize the user booking activities to better predict the next users' interaction with machine learning.
+
+##SOFTWARE USED  
+The website was written in pure HTML/CSS/Javascript with the addition of external Javascript libraries and external CSS links.
+
+##TEMPLATES USED
+No templates were used.
+
+##MAINTAINERS  
+Ethan Zhang  
+Neil Angajala  
+Ashwin Rajesh  
+
+##INFORMATION SOURCES
+- Stackoverflow
+- https://www.iata.org/en/services/codes/
