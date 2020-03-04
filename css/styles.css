@@ -337,6 +337,9 @@ body {
   font-weight: bolder;
   letter-spacing: -5px;
 }
+#loginModal .modal-body .right-container .form-group {
+  margin-bottom: 0.75rem;
+}
 #loginModal .modal-body .right-container label {
   font-size: 1.25rem;
 }
@@ -422,6 +425,9 @@ footer {
 }
 footer .disabled.btn-link {
   padding: 0;
+}
+footer .disabled {
+  text-align: left;
 }
 footer a:link {
   color: #FDAE5C;
@@ -1008,6 +1014,28 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
 
 .content-container {
   margin-bottom: 4.5rem;
+}
+
+.programs-container .white-bg-container {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 5%;
+  column-gap: 5%;
+  margin-bottom: 20vh;
+}
+.programs-container .white-bg-container .prime-desc {
+  font-size: 55%;
+  font-weight: bolder;
+  color: #002e58;
+  padding: 27%;
+}
+.programs-container .white-bg-container .img-desc {
+  height: 100%;
+}
+.programs-container .white-bg-container .img-desc img {
+  width: 100%;
+  object-fit: cover;
 }
 
 .white-bg-container {

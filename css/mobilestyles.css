@@ -79,10 +79,19 @@ header .navbar.sticky .navbar-collapse.show {
   #tag-line {
     text-align: left !important;
     font-size: 1rem !important;
+    text-shadow: rgba(0, 0, 0, 0.95) 2px 2px 7px !important;
   }
 
   .list-group-item {
+    border-top-width: unset !important;
     font-size: 1rem !important;
+  }
+  .list-group-item .btn-primary.book-now {
+    background-color: #FDAE5C;
+    border-color: #FDAE5C;
+  }
+  .list-group-item .num {
+    margin-left: 1px;
   }
   .list-group-item .ui.selection.dropdown {
     min-height: unset !important;
@@ -116,6 +125,86 @@ header .navbar.sticky .navbar-collapse.show {
   .modal .modal-body {
     height: unset !important;
     flex-direction: column !important;
+  }
+
+  .programs-container .white-bg-container {
+    grid-template-columns: 1fr;
+    row-gap: 2%;
+  }
+  .programs-container .white-bg-container .prime-desc {
+    padding: 0;
+    text-align: center;
+  }
+  .programs-container .explore-more {
+    padding: 1rem;
+  }
+
+  .careers-container .job-desc-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  .content-container .deals-dest,
+.content-container .big-splash,
+.content-container .white-bg-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .home-content .background-img {
+    margin-top: 10px;
+    max-height: 30vh !important;
+  }
+  .home-content .background-img .box {
+    width: 50% !important;
+    padding-left: 7.4%;
+    padding-top: 8%;
+    padding-bottom: 8.6%;
+  }
+  .home-content .background-img .box .desc {
+    height: 16vh !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .home-content .xl-splash:after {
+    left: 2px;
+  }
+  .home-content .slick-arrow {
+    display: none !important;
+  }
+
+  #loginModal .modal-content .modal-body .right-container {
+    position: unset !important;
+    padding: 0 !important;
+  }
+
+  .modal-content {
+    padding: 0 0 10vh 0 !important;
+  }
+
+  #bookModal .modal-body .flight-container {
+    justify-content: unset;
+    padding: 0;
+  }
+  #bookModal .modal-body .airline-logo {
+    width: 50%;
+    padding: 0 0 0 15px !important;
+  }
+  #bookModal .modal-body .price-type-container {
+    padding-left: 15px;
+  }
+
+  .schedules-container {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  .schedules-container tbody {
+    overflow-x: scroll;
+    width: 100vw;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  #loginModal .modal-body {
+    height: unset !important;
   }
 }
 

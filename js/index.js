@@ -11,6 +11,7 @@ let nextAct = null;
 let userName = null;
 let email = localStorage.getItem('email');
 let selectedFlights = 0;
+let guest = false;
 
 if (isStorage) {
     let status = localStorage.getItem('user');
@@ -30,7 +31,11 @@ $(document).ready(function () {
     loca = loca.replace(/\//g, "");
     curLoc = loca;
     if (loca.length === 0) loca = "home";
-    loadContent(loca);
+    if (loca === 'rapid' || loca === 'frequent') {
+        loadContent('programs|' + loca);
+    } else {
+        loadContent(loca);
+    }
 
     $(".active-underline").removeClass('active-underline');
     let loc = window.location.pathname;
@@ -55,6 +60,32 @@ $(document).ready(function () {
         $('.ui.single.dropdown').dropdown({
             onChange: function (value) {
                 update_dateSelectType(value)
+            }
+        });
+
+        $('.dropdown.dest-m').dropdown({
+            fullTextSearch: "fuzzy",
+            ignoreCase: "true",
+            apiSettings: {
+                url: '/api/airports/{query}'
+            },
+            minCharacters: 0,
+            onChange: function (value, text, el) {
+                // closeTop();
+                airportSelected(value, text, el, 'dest')
+            }
+        });
+
+        $('.dropdown-m.src-m').dropdown({
+            fullTextSearch: "fuzzy",
+            ignoreCase: "true",
+            apiSettings: {
+                url: '/api/airports/{query}'
+            },
+            minCharacters: 0,
+            onChange: function (value, text, el) {
+                // closeTop();
+                airportSelected(value, text, el, 'src')
             }
         });
     } else {
@@ -121,14 +152,14 @@ $(document).ready(function () {
                 this.value = 'Departure Date'
             }
         });
-
-        $('.dropdown.num').dropdown({
-            onChange: function (value, text, el) {
-                numPassenger = +value;
-                $('.dropdown.num .drop-num').text(text);
-            }
-        });
     }
+
+    $('.dropdown.num').dropdown({
+        onChange: function (value, text, el) {
+            numPassenger = +value;
+            $('.dropdown.num .drop-num').text(text);
+        }
+    });
 
     // close opened tabs one by one
     $(document).keyup(function (event) {
@@ -287,10 +318,12 @@ $(document).ready(function () {
 
     function loadContent(loc) {
         loadNewSplash(loc.split('|')[0]);
-        $(".page-content").load('./public/views/' + loc.split('|')[0] + '.html');
         if (loc.split('|')[1]) {
-            //todo scroll to new spot
+            window.PROGRAM_LOC = loc.split('|')[1];
+        } else {
+            window.PROGRAM_LOC = null;
         }
+        $(".page-content").load('./public/views/' + loc.split('|')[0] + '.html');
     }
 
     function loadNewSplash(loc) {
@@ -304,7 +337,7 @@ $(document).ready(function () {
             src += 'support-lady-sm.jpg';
             bigHeader = 'Contact Us';
         } else if (loc === 'programs') {
-            src += 'programs.jpg';
+            src += 'programs' + (isMobile ? '-m' : '') + '.jpg';
             bigHeader = 'Join Our Programs'
         } else if (loc === 'home') {
             src += 'plane-taking-off-' + (isMobile ? 'm-' : '') + 'xl.jpg';
@@ -338,6 +371,16 @@ $(document).ready(function () {
             $('.land-section').css({
                 backgroundImage: 'url(' + fullSrc + ')'
             });
+
+            if (isMobile && loc === 'programs') {
+                $('.land-section').css({
+                    backgroundPositionX: '-74px'
+                });
+            } else {
+                $('.land-section').css({
+                    backgroundPositionX: ''
+                });
+            }
 
             //calculate landing-splash size
             let image = new Image();
@@ -530,14 +573,15 @@ $(document).ready(function () {
         $(this).html('<span class="spinner-border spinner-border-sm"></span>');
         setTimeout(function () {
             $(evt.target).html('<i class="fas fa-check">');
-        }, rndInt(500,4500));
+        }, rndInt(500, 4500));
         console.info($(this).data('book-id'));
     });
 });
 
 function bookFlight() {
+    $('.navbar-collapse').collapse('hide');
     nextAct = 'book';
-    if (!isLoggedIn) {
+    if (!isLoggedIn && !guest) {
         signIn('book');
     } else {
         nextStep();
@@ -545,6 +589,7 @@ function bookFlight() {
 }
 
 function signIn(isBook) {
+    $('.navbar-collapse').collapse('hide');
     if (!isBook && nextAct === 'book') {
         nextAct = null;
     }
@@ -560,6 +605,111 @@ function signIn(isBook) {
 }
 
 function registerClick(isReset) {
+    $('.navbar-collapse').collapse('hide');
+    if (isMobile) {
+        if (isReset) {
+            let isRegVis = $('.register-container').is(':visible');
+            let isLogVis = $('.login-container').is(':visible');
+
+            $('.modal-content .display-6').fadeOut(function () {
+                $(this).text("Log in to SFGo").fadeIn();
+            });
+            $('.lead .btn-dark').fadeOut(function () {
+                $(this).text("Log In Now").fadeIn();
+            });
+            $('#loginModalLabel').fadeOut(function () {
+                $(this).text("Reset Password").fadeIn();
+            });
+
+            $('.modal-footer .btn-primary').fadeOut(function () {
+                $(this).text("Reset").fadeIn();
+            });
+
+            $('.register-container [required]').removeAttr('required');
+            $('.login-container [required]').removeAttr('required');
+            $('.reset-container input').attr("required");
+
+            if (isLogVis) {
+                $('.login-container').animate({'opacity': '0', 'display': 'none'}, 1000).css({'top': 250}).addClass('is-hide');
+
+            }
+            if (isRegVis) {
+                $('.register-container').animate({
+                    'opacity': '0',
+                    'display': 'none'
+                }, 1000).css({'top': 250}).addClass('is-hide');
+            }
+
+            $('.reset-container').css({'top': 250, 'opacity': 0});
+            $('.reset-container').removeClass('is-hide');
+            setTimeout(function () {
+                $('.reset-container').animate({'top': '0', 'opacity': '1', 'display': 'block'}, 1000);
+            }, 250);
+        } else if ($('.register-container').is(':visible') || $('.reset-container').is(':visible')) {
+            let isRegVis = $('.register-container').is(':visible');
+            let isResVis = $('.reset-container').is(':visible');
+
+            $('.modal-content .display-6').fadeOut(function () {
+                $(this).text("Register for SFGo").fadeIn();
+            });
+            $('.lead .btn-dark').fadeOut(function () {
+                $(this).text("Register Now").fadeIn();
+            });
+            $('.modal-footer .btn-primary').fadeOut(function () {
+                $(this).text("Log In").fadeIn();
+            });
+            $('#loginModalLabel').fadeOut(function () {
+                $(this).text("Log In Now").fadeIn();
+            });
+
+            $('.reset-container [required]').removeAttr('required');
+            $('.register-container [required]').removeAttr('required');
+            $('.login-container input').attr("required");
+
+            if (isResVis) {
+                $('.reset-container').animate({'opacity': '0', 'display': 'none'}, 1000).css({'top': 250}).addClass('is-hide');
+            }
+            if (isRegVis) {
+                $('.register-container').animate({
+                    'opacity': '0',
+                    'display': 'none'
+                }, 1000).css({'top': 250}).addClass('is-hide');
+            }
+            $('.login-container').css({'top': 250, 'opacity': 0});
+            setTimeout(function () {
+                $('.login-container').removeClass('is-hide');
+                $('.login-container').animate({'top': '0', 'opacity': '1', 'display': 'block'}, 1000);
+                setTimeout(function () {
+                    $('.register-container').addClass('is-hide');
+                    $('.reset-container').addClass('is-hide');
+                }, 1000);
+            }, 250);
+        } else {
+            $('.modal-content .display-6').fadeOut(function () {
+                $(this).text("Log in to SFGo").fadeIn();
+            });
+            $('.lead .btn-dark').fadeOut(function () {
+                $(this).text("Log In Now").fadeIn();
+            });
+            $('.modal-footer .btn-primary').fadeOut(function () {
+                $(this).text("Register").fadeIn();
+            });
+            $('#loginModalLabel').fadeOut(function () {
+                $(this).text("Register Now").fadeIn();
+            });
+
+            $('.login-container [required]').removeAttr('required');
+            $('.register-container input').attr("required");
+
+            $('.login-container').animate({'opacity': '0', 'display': 'none'}, 1000).css({'top': 250}).addClass('is-hide');
+            $('.register-container').css({'top': 250, 'opacity': 0});
+            $('.register-container').removeClass('is-hide');
+            setTimeout(function () {
+                $('.register-container').animate({'top': '0', 'opacity': '1', 'display': 'block'}, 1000);
+            }, 250);
+        }
+        return;
+    }
     if (isReset) {
         let isRegVis = $('.register-container').is(':visible');
         let isLogVis = $('.login-container').is(':visible');
@@ -673,7 +823,7 @@ function loginClick(e) {
         setTimeout(function () {
             window.alert('Email sent. Check your email for more instructions!');
             window.location = './';
-        }, rndInt(1000,2000));
+        }, rndInt(1000, 2000));
         return;
     }
 
@@ -695,6 +845,7 @@ function loginClick(e) {
             isLoggedIn = true;
             localStorage.setItem('user', userName);
             localStorage.setItem('email', dataPrep.email);
+            guest = false;
             update_userImg();
             nextStep();
         },
@@ -707,20 +858,35 @@ function loginClick(e) {
 }
 
 function nextStep(isGuest) {
+    if (isGuest) {
+        guest = true;
+    }
     $('.modal').modal('hide');
     if (nextAct) {
         $('#bookModal').modal('show');
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+            "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ];
+
         if (tripType === 'round') {
-            let startDate = ($('.date-container .input-sm[name=start]').datepicker('getUTCDate'));
-            let endDate = ($('.date-container .input-sm[name=end]').datepicker('getUTCDate'));
+            let startDate = ($('.date-container .input-sm[name=start]').datepicker('getDate'));
+            let endDate = ($('.date-container .input-sm[name=end]').datepicker('getDate'));
             $('.details').text('Showing flights departing on ' + startDate + ' and returning on ' + endDate + ' from ' + srcAirport + ' to ' + destAirport + '...');
-        } else if(tripType === 'one') {
-            let date = ($('.date-container .single-date').datepicker('getUTCDate'));
-            $('.details').text('Showing flights departing on ' + date + ' from ' + srcAirport + ' to ' + destAirport + '...');
-        }else{
-            let date = ($('.date-container .single-date').datepicker('getUTCDate'));
-            $('.details').text('Showing Rapid Connect® flights departing on ' + date + ' from ' + srcAirport + ' to ' + destAirport + '...');
+        } else if (tripType === 'one') {
+            let date = ($('.date-container .single-date').datepicker('getDate'));
+            let startObj = new Date(date);
+            let startStr = days[startObj.getDay()] + " " + monthNames[startObj.getMonth()] + " " + (startObj.getDate());
+            $('.details').text('Showing flights departing on ' + startStr + ' from ' + srcAirport + ' to ' + destAirport + '...');
+        } else {
+            let date = ($('.date-container .single-date').datepicker('getDate'));
+            let startObj = new Date(date);
+            let startStr = days[startObj.getDay()] + " " + monthNames[startObj.getMonth()] + " " + (startObj.getDate());
+            $('.details').text('Showing Rapid Connect® flights departing on ' + startStr + ' from ' + srcAirport + ' to ' + destAirport + '...');
         }
+        $('.src-dest').each(function(index, elem){
+            $(elem).text(srcAirport.substr(-4, 3) + '-' + destAirport.substr(-4, 3))
+        });
     }
 }
 
@@ -765,14 +931,14 @@ function checkOut() {
         $('#bookModal').modal('hide');
         $('#checkoutModal').modal('show');
         $('#checkOutBtn').html('Check Out');
-        setTimeout(function(){
+        setTimeout(function () {
             let $form = $('#200621569630148');
             console.info($form.attr('height'));
-            if($form.css('height') === "0px"){
+            if ($form.css('height') === "0px") {
                 $form.css('height', 'unset');
             }
-        },1500);
-    }, rndInt(500,2500));
+        }, 1500);
+    }, rndInt(500, 2500));
 }
 
 

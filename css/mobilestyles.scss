@@ -1,16 +1,22 @@
+$main-yellow: #FDAE5C;
+$main-dark-grey: #727272;
+$main-dark-blue: #001D38;
+
 @media only screen and (max-width: 576px) {
-  header{
+  header {
     .navbar-brand {
       padding-left: 0;
     }
+
     .navbar {
-      .dropdown-menu{
+      .dropdown-menu {
         margin: 0 !important;
         padding: 0 !important;
         background-color: unset !important;
         border: unset !important;
         border-radius: unset !important;
-        a{
+
+        a {
           color: cornsilk;
         }
       }
@@ -42,6 +48,7 @@
         }
       }
     }
+
     .navbar.sticky {
       width: 100vw !important;
 
@@ -56,7 +63,7 @@
 
   }
 
-  .book-flight{
+  .book-flight {
     display: none !important;
   }
 
@@ -67,11 +74,11 @@
     border-radius: 0.5rem 0.5rem 0 0;
     padding: 0 1rem;
 
-    .navbar-nav{
+    .navbar-nav {
       height: 60vh;
     }
 
-    .navbar-toggler{
+    .navbar-toggler {
       padding: 0;
       display: flex;
       justify-content: space-between;
@@ -81,7 +88,8 @@
       color: unset !important;
       border: none !important;
     }
-    .navbar-brand{
+
+    .navbar-brand {
       padding: 4vh 0;
     }
   }
@@ -90,35 +98,50 @@
     text-align: left !important;
     width: 67.5vw;
     font-size: 2.5rem !important;
-    text-shadow: rgba(0,0,0,0.75) 3px 3px 10px !important;
+    text-shadow: rgba(0, 0, 0, 0.75) 3px 3px 10px !important;
   }
 
   #tag-line {
     text-align: left !important;
     font-size: 1rem !important;
+    text-shadow: rgba(0, 0, 0, 0.95) 2px 2px 7px !important;
   }
 
-  .list-group-item{
+  .list-group-item {
+    border-top-width: unset !important;
+
+    .btn-primary.book-now {
+      background-color: $main-yellow;
+      border-color: $main-yellow;
+    }
+
+    .num {
+      margin-left: 1px;
+    }
+
     font-size: 1rem !important;
-    .ui.selection.dropdown{
+
+    .ui.selection.dropdown {
       min-height: unset !important;
       min-width: 8em !important;
       padding: 5px 0 8px 4px !important;
       font-size: 1.25rem !important;
+
       .icon,
       .search,
-      .single{
+      .single {
         padding: 5px !important;
       }
-      .text{
-        i{
+
+      .text {
+        i {
           display: none;
         }
       }
     }
 
-    .input-group{
-      .input-group-addon{
+    .input-group {
+      .input-group-addon {
         padding: 0 5px;
         display: flex;
         justify-content: center;
@@ -127,20 +150,128 @@
     }
   }
 
-  footer{
-    .disabled.btn-link{
+  footer {
+    .disabled.btn-link {
       padding: 0;
       display: none;
     }
   }
 
-  .modal{
-    .modal-dialog{
+  .modal {
+    .modal-dialog {
       max-width: unset !important;
     }
-    .modal-body{
+
+    .modal-body {
       height: unset !important;
       flex-direction: column !important;
+    }
+  }
+
+  .programs-container {
+    .white-bg-container {
+      grid-template-columns: 1fr;
+      row-gap: 2%;
+
+      .prime-desc {
+        padding: 0;
+        text-align: center;
+      }
+    }
+
+    .explore-more {
+      padding: 1rem;
+    }
+  }
+
+  .careers-container {
+    .job-desc-container {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  .content-container {
+    .deals-dest,
+    .big-splash,
+    .white-bg-container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+
+  .home-content {
+    .background-img {
+      margin-top: 10px;
+      max-height: 30vh !important;
+
+      .box {
+        width: 50% !important;
+        padding-left: 7.4%;
+        padding-top: 8%;
+        padding-bottom: 8.6%;
+
+        .desc {
+          height: 16vh !important;
+          overflow-y: scroll;
+          overflow-x: hidden;
+        }
+      }
+    }
+
+    .xl-splash:after {
+      left: 2px;
+    }
+
+    .slick-arrow {
+      display: none !important;
+    }
+  }
+
+  #loginModal {
+    .modal-content {
+      .modal-body {
+        .right-container {
+          position: unset !important;
+          padding: 0 !important;
+        }
+      }
+
+    }
+  }
+  .modal-content{
+    padding: 0 0 10vh 0 !important;
+  }
+
+  #bookModal{
+    .modal-body{
+      .flight-container{
+        justify-content: unset;
+        padding: 0;
+      }
+      .airline-logo{
+        width: 50%;
+        padding: 0 0 0 15px !important;
+      }
+      .price-type-container{
+        padding-left: 15px;
+      }
+    }
+  }
+
+  .schedules-container{
+    width: 100vw;
+    overflow-x: hidden;
+    tbody{
+      overflow-x: scroll;
+      width: 100vw;
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  #loginModal {
+    .modal-body {
+      height: unset !important;
     }
   }
 }
