@@ -1024,6 +1024,9 @@ header .navbar.sticky .nav-item.active-underline::after, header .navbar.sticky .
   column-gap: 5%;
   margin-bottom: 20vh;
 }
+.programs-container .white-bg-container div {
+  order: unset;
+}
 .programs-container .white-bg-container .prime-desc {
   font-size: 55%;
   font-weight: bolder;

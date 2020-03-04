@@ -131,6 +131,27 @@ header .navbar.sticky .navbar-collapse.show {
     grid-template-columns: 1fr;
     row-gap: 2%;
   }
+  .programs-container .white-bg-container .order-1 {
+    order: 1 !important;
+  }
+  .programs-container .white-bg-container .order-2 {
+    order: 2 !important;
+  }
+  .programs-container .white-bg-container .order-3 {
+    order: 3 !important;
+  }
+  .programs-container .white-bg-container .order-4 {
+    order: 4 !important;
+  }
+  .programs-container .white-bg-container .order-5 {
+    order: 5 !important;
+  }
+  .programs-container .white-bg-container .order-6 {
+    order: 6 !important;
+  }
+  .programs-container .white-bg-container .order-1 {
+    order: 1 !important;
+  }
   .programs-container .white-bg-container .prime-desc {
     padding: 0;
     text-align: center;

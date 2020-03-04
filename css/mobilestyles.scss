@@ -173,6 +173,35 @@ $main-dark-blue: #001D38;
       grid-template-columns: 1fr;
       row-gap: 2%;
 
+      .order-1 {
+        order: 1 !important;
+      }
+
+      .order-2 {
+        order: 2 !important;
+      }
+
+      .order-3 {
+        order: 3 !important;
+      }
+
+      .order-4 {
+        order: 4 !important;
+      }
+
+      .order-5 {
+        order: 5 !important;
+      }
+
+      .order-6 {
+        order: 6 !important;
+      }
+
+      .order-1 {
+        order: 1 !important;
+      }
+
+
       .prime-desc {
         padding: 0;
         text-align: center;
@@ -238,30 +267,33 @@ $main-dark-blue: #001D38;
 
     }
   }
-  .modal-content{
+  .modal-content {
     padding: 0 0 10vh 0 !important;
   }
 
-  #bookModal{
-    .modal-body{
-      .flight-container{
+  #bookModal {
+    .modal-body {
+      .flight-container {
         justify-content: unset;
         padding: 0;
       }
-      .airline-logo{
+
+      .airline-logo {
         width: 50%;
         padding: 0 0 0 15px !important;
       }
-      .price-type-container{
+
+      .price-type-container {
         padding-left: 15px;
       }
     }
   }
 
-  .schedules-container{
+  .schedules-container {
     width: 100vw;
     overflow-x: hidden;
-    tbody{
+
+    tbody {
       overflow-x: scroll;
       width: 100vw;
     }

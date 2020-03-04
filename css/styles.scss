@@ -1223,6 +1223,9 @@ header {
     column-gap: 5%;
     margin-bottom: 20vh;
 
+    div{
+      order: unset;
+    }
     .prime-desc {
       font-size: 55%;
       font-weight: bolder;
