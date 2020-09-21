@@ -392,15 +392,17 @@ $(document).ready(function () {
             }
             $('.land-section').animate({opacity: 1}, 500);
 
-            if ($("#book-flight-bar").scrollTop !== 20) {
+            if ($("#book-flight-bar").scrollTop !== 20) { // not sure what does this tbh
+                let destHeight = $(window).height() / 20 + 107;
+                let barHeight = $(window).height() / 100 + 2;
                 //slide in animation for booking bar
-                $("#book-flight-bar").animate({top: 5, opacity: 1}, 1000);
+                $("#book-flight-bar").animate({top: barHeight, opacity: 1}, 1000);
                 setTimeout(function () {
-                    $("#welcome-message").animate({top: (isMobile ? 15 : 137), opacity: 1}, 1000);
+                    $("#welcome-message").animate({top: (isMobile ? 15 : destHeight), opacity: 1}, 1000);
                 }, 250);
                 setTimeout(function () {
                     let ratio = screen.width / screen.height;
-                    $("#tag-line").animate({top: 217 + (isMobile ? 10 + 30 * (1 - ratio) : 0), opacity: 1}, 1000);
+                    $("#tag-line").animate({top: destHeight + 80 + (isMobile ? 10 + 30 * (1 - ratio) : 0), opacity: 1}, 1000);
                 }, 400);
             }
         });
@@ -488,11 +490,12 @@ $(document).ready(function () {
         }
 
         function reanim_welcomeMsg() {
+            let destHeight = $(window).height() / 20 + 107;
             $("#welcome-message").stop(true);
             $("#tag-line").stop(true);
-            $("#welcome-message").animate({top: (isMobile ? 15 : 137), opacity: 1}, 1000);
+            $("#welcome-message").animate({top: (isMobile ? 15 : destHeight), opacity: 1}, 1000);
             let ratio = screen.width / screen.height;
-            $("#tag-line").animate({top: 217 + (isMobile ? 10 + 30 * (1 - ratio) : 0), opacity: 1}, 1000);
+            $("#tag-line").animate({top: destHeight + 80 + (isMobile ? 10 + 30 * (1 - ratio) : 0), opacity: 1}, 1000);
         }
     }
 
@@ -630,7 +633,10 @@ function registerClick(isReset) {
             $('.reset-container input').attr("required");
 
             if (isLogVis) {
-                $('.login-container').animate({'opacity': '0', 'display': 'none'}, 1000).css({'top': 250}).addClass('is-hide');
+                $('.login-container').animate({
+                    'opacity': '0',
+                    'display': 'none'
+                }, 1000).css({'top': 250}).addClass('is-hide');
 
             }
             if (isRegVis) {
@@ -667,7 +673,10 @@ function registerClick(isReset) {
             $('.login-container input').attr("required");
 
             if (isResVis) {
-                $('.reset-container').animate({'opacity': '0', 'display': 'none'}, 1000).css({'top': 250}).addClass('is-hide');
+                $('.reset-container').animate({
+                    'opacity': '0',
+                    'display': 'none'
+                }, 1000).css({'top': 250}).addClass('is-hide');
             }
             if (isRegVis) {
                 $('.register-container').animate({
@@ -701,7 +710,10 @@ function registerClick(isReset) {
             $('.login-container [required]').removeAttr('required');
             $('.register-container input').attr("required");
 
-            $('.login-container').animate({'opacity': '0', 'display': 'none'}, 1000).css({'top': 250}).addClass('is-hide');
+            $('.login-container').animate({
+                'opacity': '0',
+                'display': 'none'
+            }, 1000).css({'top': 250}).addClass('is-hide');
             $('.register-container').css({'top': 250, 'opacity': 0});
             $('.register-container').removeClass('is-hide');
             setTimeout(function () {
@@ -884,7 +896,7 @@ function nextStep(isGuest) {
             let startStr = days[startObj.getDay()] + " " + monthNames[startObj.getMonth()] + " " + (startObj.getDate());
             $('.details').text('Showing Rapid Connect® flights departing on ' + startStr + ' from ' + srcAirport + ' to ' + destAirport + '...');
         }
-        $('.src-dest').each(function(index, elem){
+        $('.src-dest').each(function (index, elem) {
             $(elem).text(srcAirport.substr(-4, 3) + '-' + destAirport.substr(-4, 3))
         });
     }

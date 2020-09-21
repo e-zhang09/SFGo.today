@@ -76,6 +76,7 @@ $main-dark-blue: #001D38;
 
     .navbar-nav {
       height: 60vh;
+      overflow-y: scroll;
     }
 
     .navbar-toggler {
@@ -113,6 +114,7 @@ $main-dark-blue: #001D38;
     .btn-primary.book-now {
       background-color: $main-yellow;
       border-color: $main-yellow;
+      margin-bottom: 30vh;
     }
 
     .num {

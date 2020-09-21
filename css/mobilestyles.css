@@ -55,6 +55,7 @@ header .navbar.sticky .navbar-collapse.show {
   }
   .book-flight-m .navbar-nav {
     height: 60vh;
+    overflow-y: scroll;
   }
   .book-flight-m .navbar-toggler {
     padding: 0;
@@ -89,6 +90,7 @@ header .navbar.sticky .navbar-collapse.show {
   .list-group-item .btn-primary.book-now {
     background-color: #FDAE5C;
     border-color: #FDAE5C;
+    margin-bottom: 30vh;
   }
   .list-group-item .num {
     margin-left: 1px;
