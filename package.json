@@ -24,7 +24,7 @@
     "body-parser": "latest",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase-admin": "^8.9.2",
     "fuse.js": "^3.4.6",
     "string-similarity": "^4.0.1",
